@@ -5,1070 +5,284 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HotLatinas4U.net - Meet Singles In Your Area!!!</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Impact&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Impact&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#000080;font-family:'Comic Sans MS','Comic Neue',cursive;overflow-x:hidden;cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext y='28' font-size='28'%3E❤️%3C/text%3E%3C/svg%3E") 16 16,auto;}
+.marquee-top{background:linear-gradient(90deg,#f00,#f60,#ff0,#0f0,#00f,#f0f,#f00);background-size:400%;animation:rainbowScroll 2s linear infinite;color:#fff;font-size:14px;font-weight:bold;padding:4px 0;white-space:nowrap;overflow:hidden;}
+@keyframes rainbowScroll{0%{background-position:0%}100%{background-position:400%}}
+.site-header{background:linear-gradient(135deg,#c00,#f30);padding:10px;text-align:center;border-bottom:4px solid yellow;position:relative;}
+.site-title{font-family:Impact,sans-serif;font-size:clamp(28px,6vw,56px);color:yellow;text-shadow:3px 3px 0 #000,-1px -1px 0 #f60;letter-spacing:2px;animation:titlePulse 1s ease-in-out infinite alternate;}
+@keyframes titlePulse{from{transform:scale(1)}to{transform:scale(1.04)}}
+.site-subtitle{color:#fff;font-size:13px;text-shadow:1px 1px 0 #000;margin-top:4px;}
+.verified-badge{display:inline-block;background:#0c0;color:#fff;font-size:10px;padding:2px 8px;border-radius:12px;margin-left:8px;border:2px solid #0f0;animation:blink .7s step-end infinite;}
+@keyframes blink{50%{opacity:0}}
+.main-layout{display:grid;grid-template-columns:160px 1fr 160px;min-height:calc(100vh - 120px);}
+.sidebar{background:#c0c0c0;border:2px inset #808080;padding:6px;display:flex;flex-direction:column;gap:8px;overflow:hidden;}
+.ad-block{background:#fff;border:3px solid red;padding:6px;text-align:center;font-size:10px;color:#000;position:relative;overflow:hidden;}
+.ad-title{font-size:11px;font-weight:bold;color:#c00;line-height:1.2;margin-bottom:4px;}
+.ad-emoji{font-size:32px;line-height:60px;display:block;}
+.ad-btn{display:block;background:#f60;color:#fff;border:2px solid #c30;padding:2px 4px;font-size:9px;font-weight:bold;cursor:pointer;text-decoration:none;margin-top:4px;animation:btnPulse .5s ease-in-out infinite alternate;}
+@keyframes btnPulse{from{background:#f60}to{background:red}}
+.blink-ad{animation:blinkAd .4s step-end infinite;}
+@keyframes blinkAd{50%{opacity:.3}}
+.visitor-counter{background:#000;color:#0f0;font-family:'Courier New',monospace;font-size:11px;padding:4px;text-align:center;border:2px solid #0f0;}
+.content-area{background:#1a1a2e;padding:10px;}
+.location-bar{background:linear-gradient(90deg,#036,#069);border:2px solid #0af;border-radius:4px;padding:8px 12px;margin-bottom:10px;display:flex;align-items:center;gap:10px;color:#fff;font-size:13px;}
+.location-pin{font-size:24px;animation:pinBounce 1s ease-in-out infinite;}
+@keyframes pinBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.location-text strong{color:#ff0;font-size:15px;display:block;}
+.location-text span{font-size:11px;color:#adf;}
+.online-dot{width:10px;height:10px;background:#0f0;border-radius:50%;margin-left:auto;box-shadow:0 0 8px #0f0;animation:dotPulse 1s ease-in-out infinite alternate;}
+@keyframes dotPulse{from{box-shadow:0 0 4px #0f0}to{box-shadow:0 0 16px #0f0}}
+.section-header{font-family:Impact,sans-serif;font-size:22px;color:#f60;text-shadow:2px 2px 0 #000;margin-bottom:8px;letter-spacing:1px;}
+.section-header span{color:yellow;}
+.profiles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-bottom:14px;}
+.profile-card{background:linear-gradient(135deg,#2d1b4e,#1a0f2e);border:2px solid #f39;border-radius:6px;padding:8px;text-align:center;cursor:pointer;transition:transform .1s;position:relative;overflow:hidden;}
+.profile-card:hover{transform:scale(1.05);border-color:#ff0;}
+.profile-avatar{width:60px;height:60px;border-radius:50%;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;font-size:36px;border:3px solid #f39;background:linear-gradient(135deg,#f69,#c04);}
+.profile-name{color:#fff;font-weight:bold;font-size:12px;margin-bottom:2px;}
+.profile-age{color:#f9c;font-size:10px;margin-bottom:3px;}
+.profile-distance{color:#0f8;font-size:10px;display:flex;align-items:center;justify-content:center;gap:3px;}
+.profile-status{position:absolute;top:5px;right:5px;background:#0c0;width:8px;height:8px;border-radius:50%;box-shadow:0 0 6px #0f0;}
+.profile-new{position:absolute;top:5px;left:5px;background:red;color:#fff;font-size:8px;padding:1px 4px;border-radius:3px;font-weight:bold;}
+.middle-banner{background:linear-gradient(90deg,red,#f60,#ff0);padding:8px;text-align:center;font-size:18px;font-weight:bold;color:#000;margin:10px 0;border:3px dashed #000;animation:bannerShake .5s ease-in-out infinite;}
+@keyframes bannerShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-2px)}75%{transform:translateX(2px)}}
+.chat-box{background:#000;border:2px solid #0f0;padding:8px;margin-bottom:10px;height:90px;overflow:hidden;}
+.chat-line{font-size:11px;color:#0f0;font-family:'Courier New',monospace;line-height:1.6;}
+.chat-line .uname{color:#f9f;}
+.site-footer{background:#000033;border-top:3px solid red;padding:8px;text-align:center;font-size:10px;color:#aaa;}
+.footer-links a{color:#69f;text-decoration:underline;margin:0 6px;cursor:pointer;}
+.floating-cursor{position:fixed;font-size:18px;pointer-events:none;z-index:500;animation:floatAbout 4s ease-in-out infinite;}
+@keyframes floatAbout{0%,100%{transform:translate(0,0) rotate(0deg)}25%{transform:translate(20px,-15px) rotate(10deg)}75%{transform:translate(-10px,10px) rotate(-5deg)}}
+.sparkle{position:fixed;pointer-events:none;font-size:20px;z-index:400;animation:sparkleFly 3s ease-in-out infinite;}
+@keyframes sparkleFly{0%{opacity:0;transform:translateY(0) scale(0)}20%{opacity:1;transform:translateY(-20px) scale(1)}100%{opacity:0;transform:translateY(-100px) scale(0)}}
+.worm{position:fixed;font-size:20px;z-index:500;pointer-events:none;animation:wormMove 6s linear infinite;}
+@keyframes wormMove{0%{left:-60px;top:60%}100%{left:110vw;top:40%}}
+.music-note{position:fixed;bottom:10px;left:10px;font-size:28px;z-index:400;animation:musicSpin 2s linear infinite;cursor:pointer;}
+@keyframes musicSpin{to{transform:rotate(360deg)}}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+/* POPUP */
+#popup-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9000;align-items:center;justify-content:center;}
+#popup-overlay.show{display:flex;}
+#meme-popup{background:linear-gradient(135deg,#1a0000,#330000);border:4px solid red;border-radius:12px;padding:30px;text-align:center;max-width:380px;width:90%;box-shadow:0 0 60px red,0 0 120px rgba(255,0,0,.3);animation:popupEntrance .3s ease-out;}
+@keyframes popupEntrance{from{transform:scale(.5) rotate(-5deg);opacity:0}to{transform:scale(1) rotate(0) ;opacity:1}}
+.popup-title{font-family:Impact,sans-serif;font-size:28px;color:#f30;text-shadow:0 0 20px red;margin-bottom:6px;}
+.popup-subtitle{color:#fcc;font-size:14px;margin-bottom:20px;}
+#countdown-display{font-family:Impact,sans-serif;font-size:100px;color:red;text-shadow:0 0 30px red,0 0 60px #f60;line-height:1;margin:10px 0;animation:countPulse 1s ease-in-out infinite;}
+@keyframes countPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+.countdown-bar-wrap{background:#300;border:2px solid #f30;border-radius:4px;height:16px;margin:16px 0;overflow:hidden;}
+#countdown-bar{height:100%;background:linear-gradient(90deg,#f60,red);width:100%;transition:width 1s linear;box-shadow:0 0 10px #f60;}
+.popup-warning{color:#f99;font-size:11px;margin-top:10px;opacity:.7;}
 
-  body {
-    background: #000080;
-    font-family: 'Comic Sans MS', 'Comic Neue', cursive;
-    overflow-x: hidden;
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext y='28' font-size='28'%3E❤️%3C/text%3E%3C/svg%3E") 16 16, auto;
-  }
+/* CHAOS */
+body.chaos{animation:chaosShake .1s infinite;background:red;}
+@keyframes chaosShake{0%{transform:translate(0,0) rotate(0deg)}10%{transform:translate(-8px,4px) rotate(-1deg)}20%{transform:translate(6px,-6px) rotate(1.5deg)}30%{transform:translate(-10px,2px) rotate(-.5deg)}40%{transform:translate(8px,8px) rotate(2deg)}50%{transform:translate(-4px,-8px) rotate(-1deg)}60%{transform:translate(10px,4px) rotate(1deg)}70%{transform:translate(-6px,6px) rotate(-2deg)}80%{transform:translate(4px,-4px) rotate(.5deg)}90%{transform:translate(-8px,2px) rotate(-1.5deg)}100%{transform:translate(0,0) rotate(0)}}
+.chaos-emoji{position:fixed;font-size:40px;pointer-events:none;z-index:10000;animation:emojiRain 1.5s linear forwards;}
+@keyframes emojiRain{0%{transform:translateY(-60px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:.5}}
+.glitch-text{position:fixed;font-family:Impact,sans-serif;font-size:clamp(24px,6vw,60px);pointer-events:none;z-index:10000;animation:glitchText .3s step-end infinite;white-space:nowrap;text-shadow:3px 0 red,-3px 0 #0ff;}
+@keyframes glitchText{0%{color:red;transform:translateX(0) skewX(0)}20%{color:#0ff;transform:translateX(-6px) skewX(-8deg)}40%{color:#f0f;transform:translateX(6px) skewX(5deg)}60%{color:#ff0;transform:translateX(-3px) skewX(2deg)}80%{color:#0f0;transform:translateX(4px) skewX(-4deg)}100%{color:red;transform:translateX(0) skewX(0)}}
+.screen-tear{position:fixed;left:0;right:0;height:8px;pointer-events:none;z-index:9999;background:linear-gradient(90deg,red 0%,#0f0 25%,#00f 50%,#ff0 75%,#f0f 100%);mix-blend-mode:difference;animation:tearMove .2s step-end infinite;}
+@keyframes tearMove{to{transform:translateY(100vh)}}
+#chaos-overlay{display:none;position:fixed;inset:0;z-index:8000;pointer-events:none;animation:overlayFlash .15s step-end infinite;}
+#chaos-overlay.active{display:block;}
+@keyframes overlayFlash{0%{background:rgba(255,0,0,.08)}33%{background:rgba(0,255,255,.05)}66%{background:rgba(255,0,255,.08)}100%{background:rgba(0,0,0,0)}}
+.broken-window{position:fixed;background:linear-gradient(135deg,#c0c0c0,#d0d0d0);border:2px solid #808080;border-top:28px solid #000080;padding:10px;font-size:12px;color:#000;font-family:Arial,sans-serif;z-index:10500;box-shadow:3px 3px 0 #000;min-width:200px;max-width:280px;animation:windowWobble .3s ease-in-out infinite alternate;}
+@keyframes windowWobble{from{transform:rotate(-2deg) scale(1)}to{transform:rotate(2deg) scale(1.02)}}
+.broken-window .win-title{position:absolute;top:-24px;left:4px;color:#fff;font-size:11px;font-weight:bold;}
+.broken-window .win-close{position:absolute;top:-24px;right:4px;color:#fff;font-size:12px;font-weight:bold;cursor:pointer;background:#c00;padding:0 5px;line-height:20px;}
+.broken-window .win-icon{font-size:24px;margin-bottom:6px;}
+.broken-window button{background:#c0c0c0;border:2px outset #fff;padding:3px 12px;font-size:11px;cursor:pointer;margin:3px;}
 
-  /* ===== MARQUEE BARS ===== */
-  .marquee-top {
-    background: linear-gradient(90deg, #ff0000, #ff6600, #ffff00, #00ff00, #0000ff, #ff00ff, #ff0000);
-    background-size: 400%;
-    animation: rainbowScroll 2s linear infinite;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-    padding: 4px 0;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-  @keyframes rainbowScroll { 0%{background-position:0%} 100%{background-position:400%} }
+/* BSOD */
+#bsod{display:none;position:fixed;inset:0;background:#00a;color:#fff;font-family:'Courier New',monospace;padding:40px;z-index:20000;flex-direction:column;gap:20px;}
+#bsod.show{display:flex;}
+#bsod h1{background:#aaa;color:#00a;font-size:clamp(16px,3.5vw,28px);padding:4px 10px;}
+#bsod p{font-size:14px;line-height:1.8;max-width:600px;}
+#bsod2{display:none;position:fixed;inset:0;background:#006;color:#fff;font-family:'Courier New',monospace;padding:40px;z-index:51000;flex-direction:column;gap:16px;}
+#bsod2.show{display:flex;}
+#bsod2 h1{background:#aaf;color:#006;font-size:clamp(16px,3.5vw,28px);padding:4px 10px;}
+#bsod2 p{font-size:13px;line-height:1.8;max-width:600px;}
 
-  /* ===== HEADER ===== */
-  .site-header {
-    background: linear-gradient(135deg, #cc0000, #ff3300);
-    padding: 10px;
-    text-align: center;
-    border-bottom: 4px solid yellow;
-    position: relative;
-  }
-  .site-title {
-    font-family: Impact, sans-serif;
-    font-size: clamp(28px, 6vw, 56px);
-    color: yellow;
-    text-shadow: 3px 3px 0 #000, -1px -1px 0 #ff6600;
-    letter-spacing: 2px;
-    animation: titlePulse 1s ease-in-out infinite alternate;
-  }
-  @keyframes titlePulse { from{transform:scale(1)} to{transform:scale(1.04)} }
-  .site-subtitle {
-    color: #fff;
-    font-size: 13px;
-    text-shadow: 1px 1px 0 #000;
-    margin-top: 4px;
-  }
-  .verified-badge {
-    display: inline-block;
-    background: #00cc00;
-    color: white;
-    font-size: 10px;
-    padding: 2px 8px;
-    border-radius: 12px;
-    margin-left: 8px;
-    border: 2px solid #00ff00;
-    animation: badgeBlink 0.7s step-end infinite;
-  }
-  @keyframes badgeBlink { 50%{opacity:0} }
+/* FAKE REBOOT */
+#fake-reboot{display:none;position:fixed;inset:0;background:#000;z-index:25000;flex-direction:column;align-items:center;justify-content:center;gap:20px;font-family:'Courier New',monospace;color:#fff;}
+#fake-reboot.show{display:flex;}
+#reboot-logo{font-size:80px;animation:spin 2s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+#reboot-text{font-size:20px;color:#aaa;}
+#reboot-dots{font-size:28px;color:#0af;letter-spacing:8px;}
 
-  /* ===== LAYOUT ===== */
-  .main-layout {
-    display: grid;
-    grid-template-columns: 160px 1fr 160px;
-    gap: 0;
-    min-height: calc(100vh - 120px);
-  }
+/* PHASE 3 */
+.phase3-text{position:fixed;font-family:Impact,sans-serif;font-size:clamp(30px,8vw,90px);color:#fff;z-index:30000;pointer-events:none;text-align:center;width:100vw;top:50%;left:0;transform:translateY(-50%);text-shadow:6px 0 red,-6px 0 #0ff,0 4px #f0f;animation:p3in .5s ease-out forwards;}
+@keyframes p3in{from{transform:translateY(-50%) scale(3);opacity:0}to{transform:translateY(-50%) scale(1);opacity:1}}
+.inverted{filter:invert(1) hue-rotate(180deg);}
+.wiggle{animation:wig .15s ease-in-out infinite alternate;}
+@keyframes wig{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
+.cursor-trail{position:fixed;pointer-events:none;z-index:99999;font-size:18px;animation:trailFade .8s linear forwards;}
+@keyframes trailFade{to{opacity:0;transform:scale(2) translateY(-20px)}}
+.cursor-boom{position:fixed;pointer-events:none;z-index:99998;font-size:24px;animation:boomAnim .6s ease-out forwards;}
+@keyframes boomAnim{to{opacity:0;transform:scale(3) translateY(-30px)}}
+.speech-bubble{position:fixed;background:#fff;border:3px solid #000;border-radius:12px;padding:10px 14px;font-size:14px;font-weight:bold;color:#000;z-index:40000;pointer-events:none;max-width:240px;text-align:center;box-shadow:4px 4px 0 #000;animation:bubPop .3s ease-out forwards;}
+@keyframes bubPop{from{transform:scale(0)}to{transform:scale(1)}}
+.speech-bubble::after{content:'';position:absolute;bottom:-14px;left:20px;border:7px solid transparent;border-top-color:#000;}
+.sus{position:fixed;font-size:40px;pointer-events:none;z-index:38000;animation:susWalk 4s linear forwards;}
+@keyframes susWalk{0%{left:-60px}100%{left:110vw}}
+.pixel-block{position:fixed;pointer-events:none;z-index:29000;animation:pixFlash .2s step-end infinite;}
+@keyframes pixFlash{50%{opacity:0}}
+.float-head{position:fixed;pointer-events:none;z-index:36000;font-size:clamp(30px,5vw,65px);animation:headFloat 5s ease-in-out infinite;}
+@keyframes headFloat{0%,100%{transform:translateY(0) rotate(0)}33%{transform:translateY(-30px) rotate(12deg)}66%{transform:translateY(20px) rotate(-8deg)}}
 
-  /* ===== ADS SIDEBARS ===== */
-  .sidebar {
-    background: #c0c0c0;
-    border: 2px inset #808080;
-    padding: 6px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    overflow: hidden;
-  }
-  .ad-block {
-    background: white;
-    border: 3px solid #ff0000;
-    padding: 6px;
-    text-align: center;
-    font-size: 10px;
-    color: #000;
-    position: relative;
-    overflow: hidden;
-  }
-  .ad-block .ad-title {
-    font-size: 11px;
-    font-weight: bold;
-    color: #cc0000;
-    line-height: 1.2;
-    margin-bottom: 4px;
-  }
-  .ad-block .ad-img {
-    width: 100%;
-    height: 60px;
-    object-fit: cover;
-    display: block;
-    background: linear-gradient(135deg, #ff9999, #ff6666);
-    margin-bottom: 4px;
-    position: relative;
-  }
-  .ad-emoji { font-size: 32px; line-height: 60px; display: block; }
-  .ad-btn {
-    display: block;
-    background: #ff6600;
-    color: white;
-    border: 2px solid #cc3300;
-    padding: 2px 4px;
-    font-size: 9px;
-    font-weight: bold;
-    cursor: pointer;
-    text-decoration: none;
-    margin-top: 4px;
-    animation: btnPulse 0.5s ease-in-out infinite alternate;
-  }
-  @keyframes btnPulse { from{background:#ff6600} to{background:#ff0000} }
-  .ad-block.blink-ad { animation: blinkAd 0.4s step-end infinite; }
-  @keyframes blinkAd { 50%{opacity:0.3} }
+/* TASKBAR */
+#fake-taskbar{display:none;position:fixed;bottom:0;left:0;right:0;height:36px;background:linear-gradient(180deg,#245edc,#1442a0);border-top:2px solid #6fa7f5;z-index:28000;align-items:center;padding:0 4px;gap:4px;font-family:Arial,sans-serif;font-size:11px;color:#fff;overflow:hidden;}
+#fake-taskbar.show{display:flex;}
+.tb-start{background:linear-gradient(90deg,#3c9a3c,#5cb85c);border:1px outset #7de87d;padding:3px 10px 3px 6px;border-radius:0 12px 12px 0;font-weight:bold;font-size:13px;white-space:nowrap;cursor:pointer;display:flex;align-items:center;gap:4px;}
+.tb-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:2px 8px;border-radius:3px;white-space:nowrap;cursor:pointer;max-width:140px;overflow:hidden;text-overflow:ellipsis;animation:tbFlash 1s step-end infinite;}
+@keyframes tbFlash{50%{background:rgba(255,255,255,.4)}}
+.tb-clock{margin-left:auto;background:rgba(0,0,0,.3);padding:2px 8px;border:1px inset rgba(255,255,255,.2);font-family:'Courier New',monospace;font-size:11px;white-space:nowrap;}
+.tb-tray{font-size:14px;display:flex;gap:4px;}
 
-  .visitor-counter {
-    background: #000;
-    color: #00ff00;
-    font-family: 'Courier New', monospace;
-    font-size: 11px;
-    padding: 4px;
-    text-align: center;
-    border: 2px solid #00ff00;
-  }
+/* NYAN */
+#nyan{display:none;position:fixed;font-size:40px;z-index:35000;pointer-events:none;top:30vh;left:-80px;animation:nyanFly 3s linear forwards;}
+#nyan.show{display:block;}
+@keyframes nyanFly{to{left:110vw}}
+.nyan-trail-piece{position:fixed;pointer-events:none;z-index:34999;top:30vh;font-size:22px;animation:nyanTrailFade 1.5s linear forwards;}
+@keyframes nyanTrailFade{to{opacity:0;transform:scaleX(.1)}}
 
-  /* ===== MAIN CONTENT ===== */
-  .content-area {
-    background: #1a1a2e;
-    padding: 10px;
-  }
+/* JUMPSCARE */
+#jumpscare{display:none;position:fixed;inset:0;background:#fff;z-index:50000;align-items:center;justify-content:center;flex-direction:column;animation:jFlash .05s step-end infinite;}
+#jumpscare.show{display:flex;}
+@keyframes jFlash{0%{background:red}33%{background:#fff}66%{background:#000}}
+#jumpscare-face{font-size:clamp(80px,20vw,200px);animation:faceShake .05s linear infinite;}
+@keyframes faceShake{0%{transform:translate(0,0) rotate(0) scale(1)}25%{transform:translate(-15px,10px) rotate(-5deg) scale(1.1)}50%{transform:translate(15px,-10px) rotate(5deg) scale(.9)}75%{transform:translate(-10px,-15px) rotate(-3deg) scale(1.05)}100%{transform:translate(10px,15px) rotate(3deg) scale(.95)}}
+#jumpscare-text{font-family:Impact,sans-serif;font-size:clamp(30px,8vw,80px);color:red;text-shadow:4px 4px 0 #000,-4px -4px 0 #000;text-align:center;animation:faceShake .08s linear infinite;}
 
-  .location-bar {
-    background: linear-gradient(90deg, #003366, #0066cc);
-    border: 2px solid #00aaff;
-    border-radius: 4px;
-    padding: 8px 12px;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #fff;
-    font-size: 13px;
-  }
-  .location-pin {
-    font-size: 24px;
-    animation: pinBounce 1s ease-in-out infinite;
-  }
-  @keyframes pinBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
-  .location-text strong {
-    color: #ffff00;
-    font-size: 15px;
-    display: block;
-  }
-  .location-text span { font-size: 11px; color: #aaddff; }
-  .online-dot {
-    width: 10px; height: 10px;
-    background: #00ff00;
-    border-radius: 50%;
-    margin-left: auto;
-    box-shadow: 0 0 8px #00ff00;
-    animation: dotPulse 1s ease-in-out infinite alternate;
-  }
-  @keyframes dotPulse { from{box-shadow:0 0 4px #00ff00} to{box-shadow:0 0 16px #00ff00} }
+/* DVD SCREENSAVER */
+#screensaver{display:none;position:fixed;inset:0;background:#000;z-index:43000;}
+#screensaver.show{display:block;}
+#dvd-logo{position:absolute;font-family:Impact,sans-serif;font-size:clamp(28px,5vw,56px);padding:10px 20px;border:4px solid currentColor;border-radius:8px;white-space:nowrap;}
+#dvd-msg{position:fixed;bottom:20px;left:0;right:0;text-align:center;color:#333;font-family:'Courier New',monospace;font-size:14px;animation:blink 1s step-end infinite;}
 
-  /* ===== PROFILES GRID ===== */
-  .section-header {
-    font-family: Impact, sans-serif;
-    font-size: 22px;
-    color: #ff6600;
-    text-shadow: 2px 2px 0 #000;
-    margin-bottom: 8px;
-    letter-spacing: 1px;
-  }
-  .section-header span { color: yellow; }
+/* CONSPIRACY */
+#conspiracy{display:none;position:fixed;inset:0;background:#1a0a00;z-index:44000;overflow:hidden;}
+#conspiracy.show{display:block;}
+.corkboard{position:absolute;inset:0;background:repeating-linear-gradient(45deg,#2d1500 0px,#2d1500 2px,#1a0a00 2px,#1a0a00 20px);}
+.sticky-note{position:absolute;padding:10px 12px;font-size:11px;font-weight:bold;box-shadow:4px 4px 8px rgba(0,0,0,.5);max-width:160px;line-height:1.4;}
+.red-string{position:absolute;pointer-events:none;border-top:2px solid rgba(255,0,0,.6);transform-origin:0 0;}
+#conspiracy-title{position:fixed;top:10px;left:50%;transform:translateX(-50%);font-family:Impact,sans-serif;font-size:clamp(18px,4vw,38px);color:#f60;text-shadow:2px 2px 0 #000;z-index:44001;white-space:nowrap;}
+#conspiracy-skip{position:fixed;bottom:20px;right:20px;background:#c00;color:#fff;border:none;padding:8px 16px;font-size:13px;cursor:pointer;z-index:44002;border-radius:4px;animation:btnPulse .5s ease-in-out infinite alternate;}
 
-  .profiles-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-    gap: 8px;
-    margin-bottom: 14px;
-  }
-  .profile-card {
-    background: linear-gradient(135deg, #2d1b4e, #1a0f2e);
-    border: 2px solid #ff3399;
-    border-radius: 6px;
-    padding: 8px;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.1s;
-    position: relative;
-    overflow: hidden;
-  }
-  .profile-card:hover { transform: scale(1.05); border-color: #ffff00; }
-  .profile-avatar {
-    width: 60px; height: 60px;
-    border-radius: 50%;
-    margin: 0 auto 6px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 36px;
-    border: 3px solid #ff3399;
-    background: linear-gradient(135deg, #ff6699, #cc0044);
-  }
-  .profile-name {
-    color: #fff;
-    font-weight: bold;
-    font-size: 12px;
-    margin-bottom: 2px;
-  }
-  .profile-age { color: #ff99cc; font-size: 10px; margin-bottom: 3px; }
-  .profile-distance {
-    color: #00ff88;
-    font-size: 10px;
-    display: flex; align-items: center; justify-content: center; gap: 3px;
-  }
-  .profile-status {
-    position: absolute;
-    top: 5px; right: 5px;
-    background: #00cc00;
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    box-shadow: 0 0 6px #00ff00;
-  }
-  .profile-new {
-    position: absolute;
-    top: 5px; left: 5px;
-    background: #ff0000;
-    color: white;
-    font-size: 8px;
-    padding: 1px 4px;
-    border-radius: 3px;
-    font-weight: bold;
-  }
+/* QUIZ */
+#quiz-screen{display:none;position:fixed;inset:0;background:linear-gradient(135deg,#000066,#003399);z-index:45000;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;}
+#quiz-screen.show{display:flex;}
+#quiz-title{font-family:Impact,sans-serif;font-size:clamp(20px,4.5vw,50px);color:#ff0;text-shadow:3px 3px 0 #000;margin-bottom:6px;}
+#quiz-host{font-size:clamp(40px,8vw,80px);margin-bottom:6px;animation:spin 3s linear infinite;}
+#quiz-question{background:rgba(255,255,255,.1);border:3px solid #ff0;border-radius:12px;padding:14px 20px;color:#fff;font-size:clamp(13px,2.5vw,22px);margin-bottom:16px;max-width:600px;}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:600px;width:100%;}
+.quiz-opt{background:linear-gradient(135deg,#c00,#f30);border:3px solid #f60;border-radius:8px;padding:10px;color:#fff;font-size:clamp(11px,2vw,17px);font-weight:bold;cursor:pointer;transition:transform .1s;}
+.quiz-opt:hover{transform:scale(1.05);}
+#quiz-result{font-size:clamp(16px,3vw,32px);color:#0f0;font-weight:bold;margin-top:12px;min-height:44px;}
+#quiz-progress{color:#aaa;font-size:12px;margin-top:8px;}
 
-  /* ===== MIDDLE STUFF ===== */
-  .middle-banner {
-    background: linear-gradient(90deg, #ff0000, #ff6600, #ffff00);
-    padding: 8px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    color: #000;
-    text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
-    margin: 10px 0;
-    border: 3px dashed #000;
-    animation: bannerShake 0.5s ease-in-out infinite;
-  }
-  @keyframes bannerShake {
-    0%,100%{transform:translateX(0)}
-    25%{transform:translateX(-2px)}
-    75%{transform:translateX(2px)}
-  }
+/* LOADING HELL */
+#loading-hell{display:none;position:fixed;inset:0;background:#000;z-index:46000;flex-direction:column;align-items:center;justify-content:center;gap:14px;font-family:'Courier New',monospace;color:#0f0;}
+#loading-hell.show{display:flex;}
+#loading-title{font-size:clamp(14px,3vw,26px);color:#0f0;text-align:center;}
+#loading-bar-outer{width:min(80vw,500px);height:26px;border:3px solid #0f0;border-radius:4px;overflow:hidden;}
+#loading-bar-inner{height:100%;width:0%;background:linear-gradient(90deg,#0a0,#0f0);transition:width .3s linear;box-shadow:0 0 10px #0f0;}
+#loading-pct{font-size:22px;}
+#loading-status{font-size:12px;color:#aaa;max-width:500px;text-align:center;min-height:36px;}
+#loading-log{font-size:10px;color:#060;max-width:500px;width:100%;height:70px;overflow:hidden;text-align:left;line-height:1.5;}
 
-  .chat-box {
-    background: #000;
-    border: 2px solid #00ff00;
-    padding: 8px;
-    margin-bottom: 10px;
-    height: 90px;
-    overflow: hidden;
-    position: relative;
-  }
-  .chat-line {
-    font-size: 11px;
-    color: #00ff00;
-    font-family: 'Courier New', monospace;
-    line-height: 1.6;
-  }
-  .chat-line .uname { color: #ff99ff; }
-  .chat-line .msg { color: #00ff00; }
+/* ANTIVIRUS */
+#antivirus-screen{display:none;position:fixed;inset:0;background:linear-gradient(135deg,#1a1a1a,#2d2d2d);z-index:47000;flex-direction:column;align-items:center;justify-content:flex-start;overflow:hidden;}
+#antivirus-screen.show{display:flex;}
+#av-titlebar{width:100%;background:linear-gradient(90deg,#c00,#f30);padding:6px 12px;display:flex;align-items:center;gap:10px;color:#fff;font-family:Arial,sans-serif;font-size:14px;font-weight:bold;}
+#av-body{padding:16px;width:100%;max-width:680px;margin:0 auto;color:#fff;font-family:Arial,sans-serif;}
+#av-scan-bar-outer{width:100%;height:20px;background:#333;border:1px solid #555;border-radius:3px;overflow:hidden;margin:10px 0;}
+#av-scan-bar{height:100%;width:0%;background:linear-gradient(90deg,#0a0,#0f0);transition:width .2s;}
+#av-file-list{background:#111;border:1px solid #333;padding:8px;height:150px;overflow-y:auto;font-family:'Courier New',monospace;font-size:10px;color:#0f0;margin-bottom:10px;}
+#av-threat-count{font-size:26px;color:red;font-weight:bold;text-align:center;animation:blink .5s step-end infinite;}
+.av-threat-item{color:#f44;font-family:'Courier New',monospace;font-size:10px;padding:2px 0;border-bottom:1px solid #222;}
+#av-threats{max-height:100px;overflow-y:auto;margin-bottom:10px;}
+.av-btn{background:#c00;color:#fff;border:none;padding:8px 20px;font-size:13px;font-weight:bold;cursor:pointer;border-radius:4px;margin:4px;}
+.av-btn:hover{background:red;}
 
-  /* ===== FOOTER ===== */
-  .site-footer {
-    background: #000033;
-    border-top: 3px solid #ff0000;
-    padding: 8px;
-    text-align: center;
-    font-size: 10px;
-    color: #aaaaaa;
-  }
-  .footer-links a {
-    color: #6699ff;
-    text-decoration: underline;
-    margin: 0 6px;
-    cursor: pointer;
-  }
+/* KARAOKE */
+#karaoke-screen{display:none;position:fixed;inset:0;background:radial-gradient(ellipse at center,#220044 0%,#000 100%);z-index:48000;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;}
+#karaoke-screen.show{display:flex;}
+#karaoke-dude{font-size:clamp(50px,10vw,110px);animation:karaokeBounce .5s ease-in-out infinite alternate;}
+@keyframes karaokeBounce{from{transform:rotate(-10deg) scale(1)}to{transform:rotate(10deg) scale(1.1)}}
+#karaoke-line{font-family:Impact,sans-serif;font-size:clamp(18px,4.5vw,52px);color:#fff;text-shadow:4px 4px 0 #000;margin:14px 0;min-height:70px;max-width:700px;}
+#karaoke-line .lit{color:#ff0;text-shadow:0 0 20px #ff0,4px 4px 0 #c80;}
+#karaoke-line .dim{color:#444;}
+#karaoke-sub{color:#aaa;font-size:13px;}
+.disco-ball{position:fixed;pointer-events:none;z-index:47999;font-size:clamp(16px,3vw,30px);animation:discoBall 1s linear infinite;}
+@keyframes discoBall{0%{transform:rotate(0) translateX(40px) rotate(0)}100%{transform:rotate(360deg) translateX(40px) rotate(-360deg)}}
+#karaoke-progress{width:min(80vw,400px);height:8px;background:#333;border-radius:4px;overflow:hidden;margin-top:10px;}
+#karaoke-fill{height:100%;background:linear-gradient(90deg,#f0f,#0ff);width:0%;transition:width .1s linear;}
 
-  /* ===== FLOATING ELEMENTS ===== */
-  .floating-cursor {
-    position: fixed;
-    font-size: 18px;
-    pointer-events: none;
-    z-index: 500;
-    transition: none;
-    animation: floatAbout 4s ease-in-out infinite;
-  }
-  @keyframes floatAbout {
-    0%,100%{transform:translate(0,0) rotate(0deg)}
-    25%{transform:translate(20px,-15px) rotate(10deg)}
-    75%{transform:translate(-10px,10px) rotate(-5deg)}
-  }
+/* WINDOWS UPDATE */
+#win-update{display:none;position:fixed;inset:0;background:#0078d4;z-index:49000;flex-direction:column;align-items:center;justify-content:center;font-family:'Segoe UI',Arial,sans-serif;color:#fff;text-align:center;padding:40px;}
+#win-update.show{display:flex;}
+#wu-logo{font-size:80px;margin-bottom:20px;animation:spin 4s linear infinite;}
+#wu-title{font-size:clamp(20px,4vw,42px);font-weight:300;margin-bottom:8px;}
+#wu-sub{font-size:15px;opacity:.8;margin-bottom:36px;}
+#wu-pct{font-size:clamp(38px,8vw,80px);font-weight:100;margin-bottom:10px;}
+#wu-bar-outer{width:min(70vw,400px);height:6px;background:rgba(255,255,255,.3);border-radius:3px;overflow:hidden;margin-bottom:20px;}
+#wu-bar{height:100%;width:0%;background:#fff;transition:width .5s linear;border-radius:3px;}
+#wu-status{font-size:13px;opacity:.7;max-width:400px;min-height:40px;}
+#wu-warning{font-size:11px;opacity:.5;margin-top:36px;}
 
-  .sparkle {
-    position: fixed;
-    pointer-events: none;
-    font-size: 20px;
-    z-index: 400;
-    animation: sparkleFly 3s ease-in-out infinite;
-  }
-  @keyframes sparkleFly {
-    0%{opacity:0;transform:translateY(0) scale(0)}
-    20%{opacity:1;transform:translateY(-20px) scale(1)}
-    100%{opacity:0;transform:translateY(-100px) scale(0)}
-  }
+/* GAME OVER */
+#game-over{display:none;position:fixed;inset:0;background:#000;z-index:50000;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;}
+#game-over.show{display:flex;}
+#go-title{font-family:Impact,sans-serif;font-size:clamp(40px,10vw,120px);color:red;text-shadow:6px 6px 0 #800,0 0 40px red;animation:goFlash .4s step-end infinite;margin-bottom:10px;}
+@keyframes goFlash{50%{color:#f60;text-shadow:6px 6px 0 #c40,0 0 60px #f60;}}
+#go-score{font-family:'Courier New',monospace;font-size:clamp(13px,2.5vw,22px);color:#fff;line-height:2.2;margin-bottom:20px;}
+#go-score .hi{color:#ff0;}
+#go-insert{font-family:Impact,sans-serif;font-size:clamp(16px,3.5vw,34px);color:#ff0;animation:blink .6s step-end infinite;}
+.go-star{position:fixed;pointer-events:none;z-index:49999;font-size:24px;animation:goStar 2s linear infinite;}
+@keyframes goStar{to{transform:translateY(-110vh) rotate(720deg);opacity:0;}}
 
-  /* ===== POPUP OVERLAY ===== */
-  #popup-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    z-index: 9000;
-    align-items: center;
-    justify-content: center;
-  }
-  #popup-overlay.show { display: flex; }
-
-  #meme-popup {
-    background: linear-gradient(135deg, #1a0000, #330000);
-    border: 4px solid #ff0000;
-    border-radius: 12px;
-    padding: 30px;
-    text-align: center;
-    max-width: 380px;
-    width: 90%;
-    box-shadow: 0 0 60px #ff0000, 0 0 120px rgba(255,0,0,0.3);
-    position: relative;
-    animation: popupEntrance 0.3s ease-out;
-  }
-  @keyframes popupEntrance {
-    from{transform:scale(0.5) rotate(-5deg);opacity:0}
-    to{transform:scale(1) rotate(0deg);opacity:1}
-  }
-  .popup-title {
-    font-family: Impact, sans-serif;
-    font-size: 28px;
-    color: #ff3300;
-    text-shadow: 0 0 20px #ff0000;
-    margin-bottom: 6px;
-    letter-spacing: 1px;
-  }
-  .popup-subtitle {
-    color: #ffcccc;
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
-  #countdown-display {
-    font-family: Impact, sans-serif;
-    font-size: 100px;
-    color: #ff0000;
-    text-shadow: 0 0 30px #ff0000, 0 0 60px #ff6600;
-    line-height: 1;
-    margin: 10px 0;
-    animation: countPulse 1s ease-in-out infinite;
-  }
-  @keyframes countPulse {
-    0%,100%{transform:scale(1)}
-    50%{transform:scale(1.15)}
-  }
-  .countdown-bar-wrap {
-    background: #330000;
-    border: 2px solid #ff3300;
-    border-radius: 4px;
-    height: 16px;
-    margin: 16px 0;
-    overflow: hidden;
-  }
-  #countdown-bar {
-    height: 100%;
-    background: linear-gradient(90deg, #ff6600, #ff0000);
-    width: 100%;
-    transition: width 1s linear;
-    box-shadow: 0 0 10px #ff6600;
-  }
-  .popup-warning {
-    color: #ff9999;
-    font-size: 11px;
-    margin-top: 10px;
-    opacity: 0.7;
-  }
-
-  /* ===== CHAOS MODE ===== */
-  body.chaos {
-    animation: chaosShake 0.1s infinite;
-    background: #ff0000;
-  }
-  @keyframes chaosShake {
-    0%{transform:translate(0,0) rotate(0deg)}
-    10%{transform:translate(-8px,4px) rotate(-1deg)}
-    20%{transform:translate(6px,-6px) rotate(1.5deg)}
-    30%{transform:translate(-10px,2px) rotate(-0.5deg)}
-    40%{transform:translate(8px,8px) rotate(2deg)}
-    50%{transform:translate(-4px,-8px) rotate(-1deg)}
-    60%{transform:translate(10px,4px) rotate(1deg)}
-    70%{transform:translate(-6px,6px) rotate(-2deg)}
-    80%{transform:translate(4px,-4px) rotate(0.5deg)}
-    90%{transform:translate(-8px,2px) rotate(-1.5deg)}
-    100%{transform:translate(0,0) rotate(0deg)}
-  }
-  .chaos-emoji {
-    position: fixed;
-    font-size: 40px;
-    pointer-events: none;
-    z-index: 10000;
-    animation: emojiRain 1.5s linear forwards;
-  }
-  @keyframes emojiRain {
-    0%{transform:translateY(-60px) rotate(0deg);opacity:1}
-    100%{transform:translateY(110vh) rotate(720deg);opacity:0.5}
-  }
-  .glitch-text {
-    position: fixed;
-    font-family: Impact, sans-serif;
-    font-size: clamp(24px, 6vw, 60px);
-    pointer-events: none;
-    z-index: 10000;
-    animation: glitchText 0.3s step-end infinite;
-    white-space: nowrap;
-    text-shadow: 3px 0 #ff0000, -3px 0 #00ffff;
-  }
-  @keyframes glitchText {
-    0%{color:#ff0000;transform:translateX(0) skewX(0)}
-    20%{color:#00ffff;transform:translateX(-6px) skewX(-8deg)}
-    40%{color:#ff00ff;transform:translateX(6px) skewX(5deg)}
-    60%{color:#ffff00;transform:translateX(-3px) skewX(2deg)}
-    80%{color:#00ff00;transform:translateX(4px) skewX(-4deg)}
-    100%{color:#ff0000;transform:translateX(0) skewX(0)}
-  }
-  .screen-tear {
-    position: fixed;
-    left: 0; right: 0;
-    height: 8px;
-    pointer-events: none;
-    z-index: 9999;
-    background: linear-gradient(90deg, #ff0000 0%, #00ff00 25%, #0000ff 50%, #ffff00 75%, #ff00ff 100%);
-    mix-blend-mode: difference;
-    animation: tearMove 0.2s step-end infinite;
-  }
-  @keyframes tearMove { to{transform:translateY(100vh)} }
-  #chaos-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 8000;
-    pointer-events: none;
-    animation: overlayFlash 0.15s step-end infinite;
-  }
-  #chaos-overlay.active { display: block; }
-  @keyframes overlayFlash {
-    0%{background:rgba(255,0,0,0.08)}
-    33%{background:rgba(0,255,255,0.05)}
-    66%{background:rgba(255,0,255,0.08)}
-    100%{background:rgba(0,0,0,0)}
-  }
-  .broken-window {
-    position: fixed;
-    background: linear-gradient(135deg, #c0c0c0, #d0d0d0);
-    border: 2px solid #808080;
-    border-top: 28px solid #000080;
-    padding: 10px;
-    font-size: 12px;
-    color: #000;
-    font-family: 'Arial', sans-serif;
-    z-index: 10500;
-    box-shadow: 3px 3px 0 #000;
-    min-width: 200px;
-    max-width: 280px;
-    animation: windowWobble 0.3s ease-in-out infinite alternate;
-  }
-  @keyframes windowWobble {
-    from{transform:rotate(-2deg) scale(1)}
-    to{transform:rotate(2deg) scale(1.02)}
-  }
-  .broken-window .win-title {
-    position: absolute;
-    top: -24px; left: 4px;
-    color: white;
-    font-size: 11px;
-    font-weight: bold;
-  }
-  .broken-window .win-close {
-    position: absolute;
-    top: -24px; right: 4px;
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    cursor: pointer;
-    background: #cc0000;
-    padding: 0 5px;
-    line-height: 20px;
-  }
-  .broken-window .win-icon { font-size: 24px; margin-bottom: 6px; }
-  .broken-window button {
-    background: #c0c0c0;
-    border: 2px outset #fff;
-    padding: 3px 12px;
-    font-size: 11px;
-    cursor: pointer;
-    margin: 3px;
-  }
-  .broken-window button:active { border-style: inset; }
-
-  #bsod {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: #0000aa;
-    color: white;
-    font-family: 'Courier New', monospace;
-    padding: 40px;
-    z-index: 20000;
-    flex-direction: column;
-    gap: 20px;
-  }
-  #bsod.show { display: flex; }
-  #bsod h1 {
-    background: #aaaaaa;
-    color: #0000aa;
-    font-size: 28px;
-    padding: 4px 10px;
-    font-family: 'Courier New', monospace;
-  }
-  #bsod p { font-size: 14px; line-height: 1.8; max-width: 600px; }
-  #bsod .bsod-code { font-size: 11px; opacity: 0.7; }
-  .bsod-progress {
-    font-size: 13px;
-    margin-top: 20px;
-  }
-
-  /* ===== PHASE 2: FAKE REBOOT ===== */
-  #fake-reboot {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: #000;
-    z-index: 25000;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    font-family: 'Courier New', monospace;
-    color: #fff;
-  }
-  #fake-reboot.show { display: flex; }
-  #reboot-logo {
-    font-size: 80px;
-    animation: rebootSpin 2s linear infinite;
-  }
-  @keyframes rebootSpin { to { transform: rotate(360deg); } }
-  #reboot-text { font-size: 20px; color: #aaa; }
-  #reboot-dots { font-size: 28px; color: #00aaff; letter-spacing: 8px; }
-
-  /* ===== PHASE 3: SECOND WAVE ===== */
-  .phase3-text {
-    position: fixed;
-    font-family: Impact, sans-serif;
-    font-size: clamp(30px, 8vw, 90px);
-    color: #fff;
-    z-index: 30000;
-    pointer-events: none;
-    text-align: center;
-    width: 100vw;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    text-shadow: 6px 0 #ff0000, -6px 0 #00ffff, 0 4px #ff00ff;
-    animation: phase3Entrance 0.5s ease-out forwards;
-  }
-  @keyframes phase3Entrance {
-    from { transform: translateY(-50%) scale(3); opacity: 0; }
-    to   { transform: translateY(-50%) scale(1); opacity: 1; }
-  }
-
-  .inverted { filter: invert(1) hue-rotate(180deg); }
-
-  .zoom-in { animation: pageZoom 0.4s ease-in-out infinite alternate; }
-  @keyframes pageZoom { from{transform:scale(1)} to{transform:scale(1.08)} }
-
-  .rotating-page { animation: pageRotate 3s linear infinite; transform-origin: center center; }
-  @keyframes pageRotate { to { transform: rotate(360deg); } }
-
-  /* cursor trail */
-  .cursor-trail {
-    position: fixed;
-    pointer-events: none;
-    z-index: 99999;
-    font-size: 18px;
-    animation: trailFade 0.8s linear forwards;
-  }
-  @keyframes trailFade { to { opacity: 0; transform: scale(2) translateY(-20px); } }
-
-  /* ===== FAKE TASKBAR ===== */
-  #fake-taskbar {
-    display: none;
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    height: 36px;
-    background: linear-gradient(180deg, #245edc, #1442a0);
-    border-top: 2px solid #6fa7f5;
-    z-index: 28000;
-    align-items: center;
-    padding: 0 4px;
-    gap: 4px;
-    font-family: Arial, sans-serif;
-    font-size: 11px;
-    color: white;
-    overflow: hidden;
-  }
-  #fake-taskbar.show { display: flex; }
-  .tb-start {
-    background: linear-gradient(90deg, #3c9a3c, #5cb85c);
-    border: 1px outset #7de87d;
-    padding: 3px 10px 3px 6px;
-    border-radius: 0 12px 12px 0;
-    font-weight: bold;
-    font-size: 13px;
-    white-space: nowrap;
-    cursor: pointer;
-    display: flex; align-items: center; gap: 4px;
-  }
-  .tb-btn {
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.3);
-    padding: 2px 8px;
-    border-radius: 3px;
-    white-space: nowrap;
-    cursor: pointer;
-    max-width: 140px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    animation: tbFlash 1s step-end infinite;
-  }
-  @keyframes tbFlash { 50% { background: rgba(255,255,255,0.4); } }
-  .tb-clock {
-    margin-left: auto;
-    background: rgba(0,0,0,0.3);
-    padding: 2px 8px;
-    border: 1px inset rgba(255,255,255,0.2);
-    font-family: 'Courier New', monospace;
-    font-size: 11px;
-    white-space: nowrap;
-  }
-  .tb-tray { font-size: 14px; display: flex; gap: 4px; }
-
-  /* ===== JUMPSCARE ===== */
-  #jumpscare {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: #fff;
-    z-index: 50000;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    animation: jumpscareFlash 0.05s step-end infinite;
-  }
-  #jumpscare.show { display: flex; }
-  @keyframes jumpscareFlash {
-    0%  { background: #ff0000; }
-    33% { background: #ffffff; }
-    66% { background: #000000; }
-  }
-  #jumpscare-face {
-    font-size: clamp(80px, 20vw, 200px);
-    animation: faceShake 0.05s linear infinite;
-  }
-  @keyframes faceShake {
-    0%  { transform: translate(0,0) rotate(0deg) scale(1); }
-    25% { transform: translate(-15px,10px) rotate(-5deg) scale(1.1); }
-    50% { transform: translate(15px,-10px) rotate(5deg) scale(0.9); }
-    75% { transform: translate(-10px,-15px) rotate(-3deg) scale(1.05); }
-    100%{ transform: translate(10px,15px) rotate(3deg) scale(0.95); }
-  }
-  #jumpscare-text {
-    font-family: Impact, sans-serif;
-    font-size: clamp(30px, 8vw, 80px);
-    color: #ff0000;
-    text-shadow: 4px 4px 0 #000, -4px -4px 0 #000;
-    text-align: center;
-    animation: faceShake 0.08s linear infinite;
-  }
-
-  /* ===== FINAL SCREEN ===== */
-  #final-screen {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(ellipse at center, #1a0033 0%, #000 100%);
-    z-index: 60000;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 40px;
-  }
-  #final-screen.show { display: flex; }
-  #final-title {
-    font-family: Impact, sans-serif;
-    font-size: clamp(28px, 6vw, 64px);
-    color: #ffff00;
-    text-shadow: 4px 4px 0 #cc8800;
-    margin-bottom: 20px;
-    animation: finalPulse 1.5s ease-in-out infinite alternate;
-  }
-  @keyframes finalPulse {
-    from { text-shadow: 4px 4px 0 #cc8800, 0 0 20px #ffff00; }
-    to   { text-shadow: 4px 4px 0 #cc8800, 0 0 60px #ff6600, 0 0 100px #ffff00; }
-  }
-  #final-score {
-    font-size: clamp(18px, 4vw, 40px);
-    color: #fff;
-    margin-bottom: 30px;
-    line-height: 1.8;
-    font-family: 'Courier New', monospace;
-  }
-  #final-score span { color: #00ff88; font-weight: bold; }
-  #replay-btn {
-    background: linear-gradient(135deg, #ff6600, #ff0000);
-    color: white;
-    border: 4px solid #ffff00;
-    padding: 14px 40px;
-    font-family: Impact, sans-serif;
-    font-size: 26px;
-    letter-spacing: 2px;
-    cursor: pointer;
-    border-radius: 8px;
-    box-shadow: 0 0 30px #ff6600;
-    animation: replayBounce 0.7s ease-in-out infinite alternate;
-    text-transform: uppercase;
-  }
-  @keyframes replayBounce { from{transform:scale(1)} to{transform:scale(1.08)} }
-  #final-confetti-area { position: fixed; inset: 0; pointer-events: none; z-index: 59999; }
-
-  /* ===== MATRIX RAIN ===== */
-  #matrix-canvas {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 27000;
-    pointer-events: none;
-    opacity: 0.85;
-  }
-  #matrix-canvas.show { display: block; }
-
-  /* ===== WIGGLE ELEMENTS ===== */
-  .wiggle {
-    animation: wiggleAnim 0.15s ease-in-out infinite alternate;
-  }
-  @keyframes wiggleAnim {
-    from { transform: rotate(-3deg); }
-    to   { transform: rotate(3deg); }
-  }
-
-  /* ===== NYAN TRAIL ===== */
-  #nyan {
-    display: none;
-    position: fixed;
-    font-size: 40px;
-    z-index: 35000;
-    pointer-events: none;
-    top: 30vh;
-    left: -80px;
-    animation: nyanFly 3s linear forwards;
-  }
-  #nyan.show { display: block; }
-  @keyframes nyanFly { to { left: 110vw; } }
-  .nyan-trail-piece {
-    position: fixed;
-    pointer-events: none;
-    z-index: 34999;
-    top: 30vh;
-    font-size: 22px;
-    animation: nyanTrailFade 1.5s linear forwards;
-  }
-  @keyframes nyanTrailFade { to { opacity: 0; transform: scaleX(0.1); } }
-
-  /* ===== EXPLODING CURSOR ===== */
-  .cursor-boom {
-    position: fixed;
-    pointer-events: none;
-    z-index: 99998;
-    font-size: 24px;
-    animation: boomAnim 0.6s ease-out forwards;
-  }
-  @keyframes boomAnim {
-    to { opacity: 0; transform: scale(3) translateY(-30px); }
-  }
-
-  /* ===== SPEECH BUBBLE ===== */
-  .speech-bubble {
-    position: fixed;
-    background: white;
-    border: 3px solid #000;
-    border-radius: 12px;
-    padding: 10px 14px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #000;
-    z-index: 40000;
-    pointer-events: none;
-    max-width: 240px;
-    text-align: center;
-    box-shadow: 4px 4px 0 #000;
-    animation: bubbleAppear 0.3s ease-out forwards;
-  }
-  @keyframes bubbleAppear {
-    from { transform: scale(0); }
-    to   { transform: scale(1); }
-  }
-  .speech-bubble::after {
-    content: '';
-    position: absolute;
-    bottom: -14px; left: 20px;
-    border: 7px solid transparent;
-    border-top-color: #000;
-  }
-
-  /* ===== AMONG US ===== */
-  .sus {
-    position: fixed;
-    font-size: 50px;
-    pointer-events: none;
-    z-index: 38000;
-    animation: susWalk 4s linear forwards;
-  }
-  @keyframes susWalk {
-    0%  { left: -60px; top: var(--sus-y); transform: scaleX(1); }
-    49% { left: 110vw; transform: scaleX(1); }
-    50% { left: 110vw; transform: scaleX(-1); }
-    100%{ left: -60px; transform: scaleX(-1); }
-  }
-
-  /* ===== PIXEL CORRUPTION ===== */
-  .pixel-block {
-    position: fixed;
-    pointer-events: none;
-    z-index: 29000;
-    animation: pixelFlash 0.2s step-end infinite;
-  }
-  @keyframes pixelFlash { 0%{opacity:1} 50%{opacity:0} }
-
-  /* ===== PHASE 4: SCREENSAVER ===== */
-  #screensaver { display:none; position:fixed; inset:0; background:#000; z-index:43000; }
-  #screensaver.show { display:block; }
-  #dvd-logo {
-    position:absolute; font-family:Impact,sans-serif; font-size:clamp(30px,6vw,60px);
-    padding:10px 20px; border:4px solid currentColor; border-radius:8px; white-space:nowrap;
-  }
-  #dvd-msg { position:fixed; bottom:20px; left:0; right:0; text-align:center; color:#333; font-family:'Courier New',monospace; font-size:14px; animation:badgeBlink 1s step-end infinite; }
-
-  /* ===== PHASE 5: CONSPIRACY BOARD ===== */
-  #conspiracy { display:none; position:fixed; inset:0; background:#1a0a00; z-index:44000; overflow:hidden; }
-  #conspiracy.show { display:block; }
-  .corkboard { position:absolute; inset:0; background:repeating-linear-gradient(45deg,#2d1500 0px,#2d1500 2px,#1a0a00 2px,#1a0a00 20px); }
-  .sticky-note { position:absolute; padding:10px 12px; font-size:11px; font-weight:bold; box-shadow:4px 4px 8px rgba(0,0,0,0.5); max-width:160px; line-height:1.4; animation:stickyWobble 3s ease-in-out infinite alternate; }
-  @keyframes stickyWobble { from{transform:rotate(-2deg)} to{transform:rotate(2deg)} }
-  .red-string { position:absolute; pointer-events:none; border-top:2px solid rgba(255,0,0,0.6); transform-origin:0 0; }
-  #conspiracy-title { position:fixed; top:10px; left:50%; transform:translateX(-50%); font-family:Impact,sans-serif; font-size:clamp(18px,4vw,40px); color:#ff6600; text-shadow:2px 2px 0 #000; z-index:44001; white-space:nowrap; }
-  #conspiracy-skip { position:fixed; bottom:20px; right:20px; background:#cc0000; color:#fff; border:none; padding:8px 16px; font-size:13px; cursor:pointer; z-index:44002; border-radius:4px; }
-
-  /* ===== PHASE 6: QUIZ SHOW ===== */
-  #quiz-screen { display:none; position:fixed; inset:0; background:linear-gradient(135deg,#000066,#003399); z-index:45000; flex-direction:column; align-items:center; justify-content:center; padding:20px; text-align:center; }
-  #quiz-screen.show { display:flex; }
-  #quiz-title { font-family:Impact,sans-serif; font-size:clamp(22px,5vw,52px); color:#ffff00; text-shadow:3px 3px 0 #000; margin-bottom:6px; }
-  #quiz-host { font-size:clamp(40px,8vw,80px); margin-bottom:6px; animation:rebootSpin 3s linear infinite; }
-  #quiz-question { background:rgba(255,255,255,0.1); border:3px solid #ffff00; border-radius:12px; padding:14px 20px; color:#fff; font-size:clamp(13px,2.5vw,22px); margin-bottom:16px; max-width:600px; }
-  .quiz-opts { display:grid; grid-template-columns:1fr 1fr; gap:10px; max-width:600px; width:100%; }
-  .quiz-opt { background:linear-gradient(135deg,#cc0000,#ff3300); border:3px solid #ff6600; border-radius:8px; padding:10px; color:#fff; font-size:clamp(11px,2vw,17px); font-weight:bold; cursor:pointer; transition:transform 0.1s; }
-  .quiz-opt:hover { transform:scale(1.05); }
-  #quiz-result { font-size:clamp(16px,3vw,32px); color:#00ff00; font-weight:bold; margin-top:12px; min-height:44px; }
-  #quiz-progress { color:#aaa; font-size:12px; margin-top:8px; }
-
-  /* ===== PHASE 7: LOADING HELL ===== */
-  #loading-hell { display:none; position:fixed; inset:0; background:#000; z-index:46000; flex-direction:column; align-items:center; justify-content:center; gap:14px; font-family:'Courier New',monospace; color:#00ff00; }
-  #loading-hell.show { display:flex; }
-  #loading-title { font-size:clamp(14px,3vw,26px); color:#00ff00; text-align:center; }
-  #loading-bar-outer { width:min(80vw,500px); height:26px; border:3px solid #00ff00; border-radius:4px; overflow:hidden; position:relative; }
-  #loading-bar-inner { height:100%; width:0%; background:linear-gradient(90deg,#00aa00,#00ff00); transition:width 0.3s linear; box-shadow:0 0 10px #00ff00; }
-  #loading-pct { font-size:22px; color:#00ff00; }
-  #loading-status { font-size:12px; color:#aaa; max-width:500px; text-align:center; min-height:36px; }
-  #loading-log { font-size:10px; color:#006600; max-width:500px; width:100%; height:70px; overflow:hidden; text-align:left; line-height:1.5; }
-
-  /* ===== PHASE 8: ANTIVIRUS ===== */
-  #antivirus-screen { display:none; position:fixed; inset:0; background:linear-gradient(135deg,#1a1a1a,#2d2d2d); z-index:47000; flex-direction:column; align-items:center; justify-content:flex-start; overflow:hidden; }
-  #antivirus-screen.show { display:flex; }
-  #av-titlebar { width:100%; background:linear-gradient(90deg,#cc0000,#ff3300); padding:6px 12px; display:flex; align-items:center; gap:10px; color:#fff; font-family:Arial,sans-serif; font-size:14px; font-weight:bold; }
-  #av-body { padding:16px; width:100%; max-width:680px; margin:0 auto; color:#fff; font-family:Arial,sans-serif; }
-  #av-scan-bar-outer { width:100%; height:20px; background:#333; border:1px solid #555; border-radius:3px; overflow:hidden; margin:10px 0; }
-  #av-scan-bar { height:100%; width:0%; background:linear-gradient(90deg,#00aa00,#00ff00); transition:width 0.2s; }
-  #av-file-list { background:#111; border:1px solid #333; padding:8px; height:160px; overflow-y:auto; font-family:'Courier New',monospace; font-size:10px; color:#00ff00; margin-bottom:10px; }
-  #av-threat-count { font-size:26px; color:#ff0000; font-weight:bold; text-align:center; animation:badgeBlink 0.5s step-end infinite; }
-  .av-threat-item { color:#ff4444; font-family:'Courier New',monospace; font-size:10px; padding:2px 0; border-bottom:1px solid #222; }
-  #av-threats { max-height:100px; overflow-y:auto; margin-bottom:10px; }
-  .av-btn { background:#cc0000; color:#fff; border:none; padding:8px 20px; font-size:13px; font-weight:bold; cursor:pointer; border-radius:4px; margin:4px; }
-  .av-btn:hover { background:#ff0000; }
-
-  /* ===== PHASE 9: KARAOKE ===== */
-  #karaoke-screen { display:none; position:fixed; inset:0; background:radial-gradient(ellipse at center,#220044 0%,#000 100%); z-index:48000; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px; }
-  #karaoke-screen.show { display:flex; }
-  #karaoke-dude { font-size:clamp(50px,10vw,110px); animation:karaokeBounce 0.5s ease-in-out infinite alternate; }
-  @keyframes karaokeBounce { from{transform:rotate(-10deg) scale(1)} to{transform:rotate(10deg) scale(1.1)} }
-  #karaoke-line { font-family:Impact,sans-serif; font-size:clamp(18px,4.5vw,52px); color:#fff; text-shadow:4px 4px 0 #000; margin:14px 0; min-height:70px; max-width:700px; }
-  #karaoke-line .lit { color:#ffff00; text-shadow:0 0 20px #ffff00, 4px 4px 0 #cc8800; }
-  #karaoke-line .dim { color:#444; }
-  #karaoke-sub { color:#aaa; font-size:13px; }
-  .disco-ball { position:fixed; pointer-events:none; z-index:47999; font-size:clamp(16px,3vw,30px); animation:discoBall 1s linear infinite; }
-  @keyframes discoBall { 0%{transform:rotate(0deg) translateX(40px) rotate(0deg)} 100%{transform:rotate(360deg) translateX(40px) rotate(-360deg)} }
-  #karaoke-progress { width:min(80vw,400px); height:8px; background:#333; border-radius:4px; overflow:hidden; margin-top:10px; }
-  #karaoke-fill { height:100%; background:linear-gradient(90deg,#ff00ff,#00ffff); width:0%; transition:width 0.1s linear; }
-
-  /* ===== PHASE 10: WINDOWS UPDATE ===== */
-  #win-update { display:none; position:fixed; inset:0; background:#0078d4; z-index:49000; flex-direction:column; align-items:center; justify-content:center; font-family:'Segoe UI',Arial,sans-serif; color:#fff; text-align:center; padding:40px; }
-  #win-update.show { display:flex; }
-  #wu-logo { font-size:80px; margin-bottom:20px; animation:rebootSpin 4s linear infinite; }
-  #wu-title { font-size:clamp(20px,4vw,42px); font-weight:300; margin-bottom:8px; }
-  #wu-sub { font-size:15px; opacity:0.8; margin-bottom:36px; }
-  #wu-pct { font-size:clamp(38px,8vw,80px); font-weight:100; margin-bottom:10px; }
-  #wu-bar-outer { width:min(70vw,400px); height:6px; background:rgba(255,255,255,0.3); border-radius:3px; overflow:hidden; margin-bottom:20px; }
-  #wu-bar { height:100%; width:0%; background:#fff; transition:width 0.5s linear; border-radius:3px; }
-  #wu-status { font-size:13px; opacity:0.7; max-width:400px; min-height:40px; }
-  #wu-warning { font-size:11px; opacity:0.5; margin-top:36px; }
-
-  /* ===== PHASE 11: GAME OVER ===== */
-  #game-over { display:none; position:fixed; inset:0; background:#000; z-index:50000; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:30px; }
-  #game-over.show { display:flex; }
-  #go-title { font-family:Impact,sans-serif; font-size:clamp(40px,10vw,120px); color:#ff0000; text-shadow:6px 6px 0 #880000, 0 0 40px #ff0000; animation:goFlash 0.4s step-end infinite; margin-bottom:10px; }
-  @keyframes goFlash { 50%{color:#ff6600; text-shadow:6px 6px 0 #cc4400, 0 0 60px #ff6600;} }
-  #go-score { font-family:'Courier New',monospace; font-size:clamp(13px,2.5vw,22px); color:#fff; line-height:2.2; margin-bottom:20px; }
-  #go-score .hi { color:#ffff00; }
-  #go-insert { font-family:Impact,sans-serif; font-size:clamp(16px,3.5vw,34px); color:#ffff00; animation:badgeBlink 0.6s step-end infinite; }
-  .go-star { position:fixed; pointer-events:none; z-index:49999; font-size:24px; animation:goStar 2s linear infinite; }
-  @keyframes goStar { to{transform:translateY(-110vh) rotate(720deg); opacity:0;} }
-
-  /* ===== FLOATING HEADS ===== */
-  .float-head { position:fixed; pointer-events:none; z-index:36000; font-size:clamp(30px,5vw,65px); animation:headFloat 5s ease-in-out infinite; }
-  @keyframes headFloat { 0%,100%{transform:translateY(0) rotate(0deg)} 33%{transform:translateY(-30px) rotate(12deg)} 66%{transform:translateY(20px) rotate(-8deg)} }
-
-  /* ===== SECOND BSOD ===== */
-  #bsod2 { display:none; position:fixed; inset:0; background:#0000aa; color:#fff; font-family:'Courier New',monospace; padding:40px; z-index:51000; flex-direction:column; gap:16px; }
-  #bsod2.show { display:flex; }
-  #bsod2 h1 { background:#aaa; color:#0000aa; font-size:clamp(16px,3.5vw,28px); padding:4px 10px; font-family:'Courier New',monospace; }
-  #bsod2 p { font-size:13px; line-height:1.8; max-width:600px; }
-
-  /* ===== MISC ===== */
-  .music-note {
-    position: fixed;
-    bottom: 10px; left: 10px;
-    font-size: 28px;
-    z-index: 400;
-    animation: musicSpin 2s linear infinite;
-    cursor: pointer;
-  }
-  @keyframes musicSpin { to{transform:rotate(360deg)} }
-
-  .worm {
-    position: fixed;
-    font-size: 20px;
-    z-index: 500;
-    pointer-events: none;
-    animation: wormMove 6s linear infinite;
-  }
-  @keyframes wormMove {
-    0%{left:-60px;top:60%}
-    100%{left:110vw;top:40%}
-  }
-
-  marquee { display: block; }
-
-  .section-divider {
-    border: none;
-    height: 4px;
-    background: repeating-linear-gradient(90deg, #ff0000 0, #ff0000 10px, #ffff00 10px, #ffff00 20px, #0000ff 20px, #0000ff 30px);
-    margin: 10px 0;
-  }
+/* FINAL SCREEN */
+#final-screen{display:none;position:fixed;inset:0;background:radial-gradient(ellipse at center,#1a0033 0%,#000 100%);z-index:60000;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px;}
+#final-screen.show{display:flex;}
+#final-title{font-family:Impact,sans-serif;font-size:clamp(26px,5.5vw,60px);color:#ff0;text-shadow:4px 4px 0 #c80;margin-bottom:20px;animation:finalPulse 1.5s ease-in-out infinite alternate;}
+@keyframes finalPulse{from{text-shadow:4px 4px 0 #c80,0 0 20px #ff0}to{text-shadow:4px 4px 0 #c80,0 0 60px #f60,0 0 100px #ff0}}
+#final-score{font-size:clamp(16px,3.5vw,36px);color:#fff;margin-bottom:30px;line-height:1.8;font-family:'Courier New',monospace;}
+#final-score span{color:#0f8;font-weight:bold;}
+#replay-btn{background:linear-gradient(135deg,#f60,red);color:#fff;border:4px solid #ff0;padding:14px 40px;font-family:Impact,sans-serif;font-size:26px;letter-spacing:2px;cursor:pointer;border-radius:8px;box-shadow:0 0 30px #f60;animation:replayBounce .7s ease-in-out infinite alternate;text-transform:uppercase;}
+@keyframes replayBounce{from{transform:scale(1)}to{transform:scale(1.08)}}
+#final-confetti-area{position:fixed;inset:0;pointer-events:none;z-index:59999;}
 </style>
 </head>
 <body>
 
-<!-- CHAOS OVERLAY -->
 <div id="chaos-overlay"></div>
-
-<!-- FLOATING DECORATIONS -->
 <div class="floating-cursor" style="top:20%;left:10%">💘</div>
 <div class="floating-cursor" style="top:60%;right:8%;animation-delay:-2s">🔥</div>
 <div class="sparkle" style="bottom:30%;left:25%;animation-delay:-1s">✨</div>
-<div class="sparkle" style="top:40%;right:20%;animation-delay:-0.5s">⭐</div>
+<div class="sparkle" style="top:40%;right:20%;animation-delay:-.5s">⭐</div>
 <div class="worm">🐛</div>
-<div class="music-note" title="Click for hot beats!">🎵</div>
+<div class="music-note">🎵</div>
 
-<!-- TOP MARQUEE -->
-<div class="marquee-top">
-  <marquee>💘 HOT LATINAS IN YOUR AREA RIGHT NOW!! 💘 &nbsp;&nbsp;&nbsp; 🔥 1,247 WOMEN ONLINE NOW 🔥 &nbsp;&nbsp;&nbsp; ⚠️ WARNING: This site is NOT for the weak!! ⚠️ &nbsp;&nbsp;&nbsp; 🏆 VOTED #1 DATING SITE 2003-2024 🏆 &nbsp;&nbsp;&nbsp; 💎 FREE PREMIUM MEMBERSHIP TODAY ONLY!!! 💎 &nbsp;&nbsp;&nbsp; 📍 WOMEN 0.3 MILES FROM YOU RIGHT NOW!!! 📍 &nbsp;&nbsp;&nbsp;</marquee>
-</div>
+<div class="marquee-top"><marquee>💘 HOT LATINAS IN YOUR AREA RIGHT NOW!! 💘 &nbsp;&nbsp;&nbsp; 🔥 1,247 WOMEN ONLINE NOW 🔥 &nbsp;&nbsp;&nbsp; ⚠️ WARNING: This site is NOT for the weak!! ⚠️ &nbsp;&nbsp;&nbsp; 🏆 VOTED #1 DATING SITE 2003-2024 🏆 &nbsp;&nbsp;&nbsp; 💎 FREE PREMIUM MEMBERSHIP TODAY ONLY!!! 💎 &nbsp;&nbsp;&nbsp; 📍 WOMEN 0.3 MILES FROM YOU RIGHT NOW!!! 📍</marquee></div>
 
-<!-- HEADER -->
 <div class="site-header">
   <div class="site-title">🌶️ HotLatinas4U.net 🌶️ <span class="verified-badge">✓ VERIFIED LEGIT</span></div>
-  <div class="site-subtitle">The Internet's #1 Source For Meeting Beautiful Latinas In Your Area™ | Est. 2001 | 100% Safe & Secure | NOT A SCAM</div>
+  <div class="site-subtitle">The Internet's #1 Source For Meeting Beautiful Latinas In Your Area™ | Est. 2001 | 100% Safe &amp; Secure | NOT A SCAM</div>
 </div>
 
-<!-- MAIN LAYOUT -->
 <div class="main-layout">
-
-  <!-- LEFT SIDEBAR ADS -->
   <div class="sidebar">
     <div class="visitor-counter">👁️ VISITORS<br><span id="visitor-count" style="font-size:18px;color:#ff0">000,001,337</span><br>YOU ARE #1337</div>
-
-    <div class="ad-block blink-ad">
-      <div class="ad-title">⚠️ YOUR COMPUTER HAS A VIRUS!!</div>
-      <div class="ad-emoji">💻🦠</div>
-      <div>3 THREATS DETECTED</div>
-      <a class="ad-btn" href="#">CLICK TO FIX NOW!!</a>
-    </div>
-
-    <div class="ad-block">
-      <div class="ad-title">🍕 ONE WEIRD TRICK</div>
-      <div class="ad-emoji">🤯</div>
-      <div style="font-size:9px">Doctors HATE him! Local man loses 47lbs in 3 days eating ONLY pizza</div>
-      <a class="ad-btn" href="#">WOW CLICK HERE</a>
-    </div>
-
-    <div class="ad-block">
-      <div class="ad-title">💰 MAKE $$$ AT HOME</div>
-      <div class="ad-emoji">💸</div>
-      <div style="font-size:9px">Mom earns $47,000/hr working from home! #3 will SHOCK YOU</div>
-      <a class="ad-btn" href="#">SECRET REVEALED</a>
-    </div>
-
-    <div class="ad-block" style="background:#000;border-color:#00ff00">
-      <div class="ad-title" style="color:#00ff00">🎮 FREE RINGTONES</div>
-      <div style="font-size:28px">📱</div>
-      <div style="font-size:9px;color:#00ff00">Download FREE RINGTONES 4 UR MOTOROLA RAZR!!!</div>
-      <a class="ad-btn" style="background:#00aa00" href="#">DOWNLOAD NOW</a>
-    </div>
-
-    <div class="ad-block">
-      <div class="ad-title">🔱 MEET SINGLES</div>
-      <div class="ad-emoji">💑</div>
-      <div style="font-size:9px">SinglesNearU.biz - They're waiting for YOU right now!!</div>
-      <a class="ad-btn" href="#">JOIN FREE</a>
-    </div>
+    <div class="ad-block blink-ad"><div class="ad-title">⚠️ YOUR COMPUTER HAS A VIRUS!!</div><div class="ad-emoji">💻🦠</div><div>3 THREATS DETECTED</div><a class="ad-btn" href="#">CLICK TO FIX NOW!!</a></div>
+    <div class="ad-block"><div class="ad-title">🍕 ONE WEIRD TRICK</div><div class="ad-emoji">🤯</div><div style="font-size:9px">Doctors HATE him! Local man loses 47lbs in 3 days eating ONLY pizza</div><a class="ad-btn" href="#">WOW CLICK HERE</a></div>
+    <div class="ad-block"><div class="ad-title">💰 MAKE $$$ AT HOME</div><div class="ad-emoji">💸</div><div style="font-size:9px">Mom earns $47,000/hr working from home! #3 will SHOCK YOU</div><a class="ad-btn" href="#">SECRET REVEALED</a></div>
+    <div class="ad-block" style="background:#000;border-color:#0f0"><div class="ad-title" style="color:#0f0">🎮 FREE RINGTONES</div><div style="font-size:28px">📱</div><div style="font-size:9px;color:#0f0">Download FREE RINGTONES 4 UR MOTOROLA RAZR!!!</div><a class="ad-btn" style="background:#0a0" href="#">DOWNLOAD NOW</a></div>
+    <div class="ad-block"><div class="ad-title">🔱 MEET SINGLES</div><div class="ad-emoji">💑</div><div style="font-size:9px">SinglesNearU.biz - They're waiting for YOU right now!!</div><a class="ad-btn" href="#">JOIN FREE</a></div>
   </div>
 
-  <!-- CONTENT AREA -->
   <div class="content-area">
-
-    <!-- LOCATION BAR -->
     <div class="location-bar">
       <div class="location-pin">📍</div>
       <div class="location-text">
@@ -1077,29 +291,18 @@
       </div>
       <div class="online-dot"></div>
     </div>
-
-    <hr class="section-divider">
-
-    <!-- PROFILES -->
+    <hr style="border:none;height:4px;background:repeating-linear-gradient(90deg,red 0,red 10px,#ff0 10px,#ff0 20px,#00f 20px,#00f 30px);margin:10px 0;">
     <div class="section-header">🔥 HOT <span>LATINAS</span> NEAR YOU RIGHT NOW!! 🔥</div>
-    <div class="profiles-grid" id="profiles-grid">
-      <!-- Profiles injected by JS -->
-    </div>
-
+    <div class="profiles-grid" id="profiles-grid"></div>
     <div class="middle-banner">⚡ LIMITED TIME OFFER!! FREE PREMIUM ACCESS EXPIRES IN: <span id="fake-timer">04:20</span> ⚡</div>
-
-    <hr class="section-divider">
-
-    <!-- LIVE CHAT FEED -->
+    <hr style="border:none;height:4px;background:repeating-linear-gradient(90deg,red 0,red 10px,#ff0 10px,#ff0 20px,#00f 20px,#00f 30px);margin:10px 0;">
     <div class="section-header">💬 LIVE <span>CHAT</span> FEED</div>
     <div class="chat-box" id="chat-box">
-      <div class="chat-line"><span class="uname">HotMaria_92:</span> <span class="msg"> heyy anyone near downtown?? 👀</span></div>
-      <div class="chat-line"><span class="uname">Isabella_xoxo:</span> <span class="msg"> omg this site is so real i met my husband here lol</span></div>
-      <div class="chat-line"><span class="uname">Valentina22:</span> <span class="msg"> looking 4 someone cute near me 🌶️</span></div>
+      <div class="chat-line"><span class="uname">HotMaria_92:</span> <span> heyy anyone near downtown?? 👀</span></div>
+      <div class="chat-line"><span class="uname">Isabella_xoxo:</span> <span> omg this site is so real i met my husband here lol</span></div>
+      <div class="chat-line"><span class="uname">Valentina22:</span> <span> looking 4 someone cute near me 🌶️</span></div>
     </div>
-
-    <hr class="section-divider">
-
+    <hr style="border:none;height:4px;background:repeating-linear-gradient(90deg,red 0,red 10px,#ff0 10px,#ff0 20px,#00f 20px,#00f 30px);margin:10px 0;">
     <div class="section-header">📰 <span>TRENDING</span> NEWS</div>
     <div style="background:#111;border:1px solid #333;padding:8px;color:#ccc;font-size:11px;line-height:1.8">
       📌 Local Man Discovers ONE WEIRD SECRET Banks Don't Want You To Know<br>
@@ -1108,780 +311,558 @@
       📌 THIS Is Why You Should NEVER Eat Shrimp After 7pm (Doctors Furious)<br>
       📌 Man Earns $892,000 Per Week Working Part Time On His Nokia Phone<br>
     </div>
-
   </div>
 
-  <!-- RIGHT SIDEBAR -->
   <div class="sidebar">
-
-    <div class="ad-block" style="border-color:#ff00ff">
-      <div class="ad-title" style="color:#ff00ff">🔮 FREE HOROSCOPE</div>
-      <div class="ad-emoji">⭐</div>
-      <div style="font-size:9px">Your love life changes TONIGHT. Find out how!</div>
-      <a class="ad-btn" style="background:#9900cc" href="#">READ NOW</a>
-    </div>
-
-    <div class="ad-block blink-ad" style="border-color:#ffff00">
-      <div class="ad-title" style="color:#cc6600">🏆 YOU ARE WINNER!!</div>
-      <div style="font-size:28px">🎉</div>
-      <div style="font-size:9px">Congratulations!! You are our 1,000,000th visitor!! CLAIM PRIZE!</div>
-      <a class="ad-btn" style="background:#ff9900;color:#000" href="#">CLAIM NOW!!!!</a>
-    </div>
-
-    <div style="background:#000;border:2px solid #ff0000;padding:6px;text-align:center">
-      <div style="color:#ff0000;font-size:11px;font-weight:bold">🔴 LIVE CAMS</div>
-      <div style="font-size:9px;color:#ff9999">47 girls streaming NOW</div>
-      <div style="font-size:28px">📸</div>
-      <a class="ad-btn" href="#">WATCH FREE</a>
-    </div>
-
-    <div class="ad-block">
-      <div class="ad-title">🎰 WIN BIG MONEY</div>
-      <div class="ad-emoji">💰</div>
-      <div style="font-size:9px">OnlineCasino4U.biz - No Download Required!! Win Real Cash!!</div>
-      <a class="ad-btn" href="#">PLAY FREE</a>
-    </div>
-
-    <div class="ad-block" style="border-color:#00aaff">
-      <div class="ad-title" style="color:#0066cc">💊 MALE ENHANCEMENT</div>
-      <div class="ad-emoji">💪</div>
-      <div style="font-size:9px">Results Guaranteed or your money back!! As seen on TV!</div>
-      <a class="ad-btn" style="background:#0055aa" href="#">ORDER NOW</a>
-    </div>
-
-    <div style="background:#111133;border:2px solid #0000ff;padding:6px;font-size:9px;color:#aaaaff;text-align:center">
-      <div style="font-weight:bold;color:#4444ff;margin-bottom:4px">🔒 SSL SECURE</div>
-      Your data is 100% safe with us!! We promise!!! We definitely do NOT sell your information to anyone 😇
-    </div>
-
+    <div class="ad-block" style="border-color:#f0f"><div class="ad-title" style="color:#f0f">🔮 FREE HOROSCOPE</div><div class="ad-emoji">⭐</div><div style="font-size:9px">Your love life changes TONIGHT. Find out how!</div><a class="ad-btn" style="background:#90c" href="#">READ NOW</a></div>
+    <div class="ad-block blink-ad" style="border-color:#ff0"><div class="ad-title" style="color:#c60">🏆 YOU ARE WINNER!!</div><div style="font-size:28px">🎉</div><div style="font-size:9px">Congratulations!! You are our 1,000,000th visitor!! CLAIM PRIZE!</div><a class="ad-btn" style="background:#f90;color:#000" href="#">CLAIM NOW!!!!</a></div>
+    <div style="background:#000;border:2px solid red;padding:6px;text-align:center"><div style="color:red;font-size:11px;font-weight:bold">🔴 LIVE CAMS</div><div style="font-size:9px;color:#f99">47 girls streaming NOW</div><div style="font-size:28px">📸</div><a class="ad-btn" href="#">WATCH FREE</a></div>
+    <div class="ad-block"><div class="ad-title">🎰 WIN BIG MONEY</div><div class="ad-emoji">💰</div><div style="font-size:9px">OnlineCasino4U.biz - No Download Required!! Win Real Cash!!</div><a class="ad-btn" href="#">PLAY FREE</a></div>
+    <div class="ad-block" style="border-color:#0af"><div class="ad-title" style="color:#069">💊 MALE ENHANCEMENT</div><div class="ad-emoji">💪</div><div style="font-size:9px">Results Guaranteed or your money back!! As seen on TV!</div><a class="ad-btn" style="background:#059" href="#">ORDER NOW</a></div>
+    <div style="background:#111133;border:2px solid #00f;padding:6px;font-size:9px;color:#aaf;text-align:center"><div style="font-weight:bold;color:#44f;margin-bottom:4px">🔒 SSL SECURE</div>Your data is 100% safe!! We definitely do NOT sell your info 😇</div>
   </div>
 </div>
 
-<!-- FOOTER -->
 <div class="site-footer">
-  <div class="footer-links">
-    <a>About Us</a><a>Privacy Policy</a><a>Terms of Service</a><a>Contact</a><a>Sitemap</a><a>Unsubscribe</a><a>Report Abuse</a><a>Advertise With Us</a>
-  </div>
-  <div style="margin-top:6px">© 2001-2026 HotLatinas4U.net LLC Inc. Corp. All Rights Reserved. | Profiles may be fictional for entertainment purposes. | Results not typical. | Some women may be men. | By clicking anywhere on this site you agree to our Terms of Service (47 pages). | Not responsible for anything.</div>
+  <div class="footer-links"><a>About Us</a><a>Privacy Policy</a><a>Terms of Service</a><a>Contact</a><a>Sitemap</a><a>Unsubscribe</a><a>Report Abuse</a><a>Advertise</a></div>
+  <div style="margin-top:6px">© 2001-2026 HotLatinas4U.net LLC Inc. Corp. All Rights Reserved. | Profiles may be fictional. | Results not typical. | Some women may be men. | By clicking anywhere you agree to our 47-page Terms. | Not responsible for anything.</div>
 </div>
 
-<!-- MEME POPUP -->
+<!-- COUNTDOWN POPUP -->
 <div id="popup-overlay" class="show">
   <div id="meme-popup">
     <div class="popup-title">⚠️ YOU WILL CUM TO THIS ⚠️</div>
     <div class="popup-subtitle">Resistance is futile. Brace yourself.</div>
     <div id="countdown-display">10</div>
-    <div class="countdown-bar-wrap">
-      <div id="countdown-bar"></div>
-    </div>
+    <div class="countdown-bar-wrap"><div id="countdown-bar"></div></div>
     <div class="popup-warning">⚠️ Cannot be stopped. Cannot be escaped. This is your destiny. ⚠️</div>
   </div>
 </div>
 
-<!-- MATRIX CANVAS -->
-<canvas id="matrix-canvas"></canvas>
-
-<!-- PHASE 4: DVD SCREENSAVER -->
-<div id="screensaver">
-  <div id="dvd-logo">🌶️ HotLatinas4U</div>
-  <div id="dvd-msg">SCREENSAVER ACTIVATED — Move mouse to continue (just kidding, you can't)</div>
-</div>
-
-<!-- PHASE 5: CONSPIRACY BOARD -->
-<div id="conspiracy">
-  <div class="corkboard"></div>
-  <div id="conspiracy-title">🔴 THE TRUTH ABOUT HOTLATINAS4U.NET 🔴</div>
-  <button id="conspiracy-skip" onclick="skipConspiracy()">SKIP (coward)</button>
-</div>
-
-<!-- PHASE 6: QUIZ SHOW -->
-<div id="quiz-screen">
-  <div id="quiz-title">🎉 CONGRATULATIONS!! 🎉<br>YOU'VE BEEN SELECTED FOR OUR QUIZ!!</div>
-  <div id="quiz-host">🎤</div>
-  <div id="quiz-question">Loading question...</div>
-  <div class="quiz-opts" id="quiz-opts"></div>
-  <div id="quiz-result"></div>
-  <div id="quiz-progress"></div>
-</div>
-
-<!-- PHASE 7: LOADING HELL -->
-<div id="loading-hell">
-  <div id="loading-title">⏳ PLEASE WAIT ⏳<br>Loading Your Experience...</div>
-  <div id="loading-bar-outer"><div id="loading-bar-inner"></div></div>
-  <div id="loading-pct">0%</div>
-  <div id="loading-status">Initializing...</div>
-  <div id="loading-log"></div>
-</div>
-
-<!-- PHASE 8: FAKE ANTIVIRUS -->
-<div id="antivirus-screen">
-  <div id="av-titlebar">🛡️ UltraShield Pro™ — VIRUS SCAN IN PROGRESS — DO NOT CLOSE</div>
-  <div id="av-body">
-    <div style="font-size:15px;margin-bottom:6px;">🔍 Scanning your computer for threats...</div>
-    <div id="av-scan-bar-outer"><div id="av-scan-bar"></div></div>
-    <div style="font-size:11px;color:#aaa;margin-bottom:8px;" id="av-current-file">Starting scan...</div>
-    <div id="av-file-list"></div>
-    <div id="av-threat-count">0 THREATS FOUND</div>
-    <div id="av-threats"></div>
-    <div style="text-align:center;margin-top:10px;">
-      <button class="av-btn" onclick="avPanic()">🚨 REMOVE ALL THREATS — $299.99</button>
-      <button class="av-btn" onclick="avPanic()" style="background:#444;">Ignore (not recommended)</button>
-    </div>
-  </div>
-</div>
-
-<!-- PHASE 9: RICKROLL KARAOKE -->
-<div id="karaoke-screen">
-  <div id="karaoke-dude">🕺</div>
-  <div id="karaoke-line">...</div>
-  <div id="karaoke-sub">🎵 Sing along! You know the words. 🎵</div>
-  <div id="karaoke-progress"><div id="karaoke-fill"></div></div>
-</div>
-
-<!-- PHASE 10: WINDOWS UPDATE -->
-<div id="win-update">
-  <div id="wu-logo">⚙️</div>
-  <div id="wu-title">Working on updates</div>
-  <div id="wu-sub">Don't turn off your PC. This will take a while. (We lied. It's forever.)</div>
-  <div id="wu-pct">0%</div>
-  <div id="wu-bar-outer"><div id="wu-bar"></div></div>
-  <div id="wu-status">Getting things ready...</div>
-  <div id="wu-warning">Update 1 of ∞ • Your PC will restart several thousand times • © MicrosoftButWorse™</div>
-</div>
-
-<!-- PHASE 11: GAME OVER -->
-<div id="game-over">
-  <div id="go-title">GAME OVER</div>
-  <div id="go-score">
-    SCORE: <span class="hi">0</span><br>
-    HIGH SCORE: <span class="hi">69,420</span><br>
-    LIVES LOST: <span class="hi">ALL OF THEM</span><br>
-    BRAIN CELLS: <span class="hi">NULL</span><br>
-    TIME WASTED: <span class="hi" id="go-time">??</span> sec
-  </div>
-  <div id="go-insert">INSERT COIN TO CONTINUE</div>
-</div>
-
-<!-- SECOND BSOD -->
-<div id="bsod2">
-  <h1>:( YOUR PC RAN INTO A PROBLEM AGAIN</h1>
-  <p>We know, we know. It happened again. Your computer has encountered <strong>EVEN MORE HEAT</strong>.<br>Stop code: <strong>SECOND_BSOD_IN_ONE_SESSION</strong><br>What failed: <strong>YOURDIGNITY.SYS</strong> (file not found)</p>
-  <p style="font-size:11px;opacity:0.7">Tip: Try not visiting HotLatinas4U.net next time.</p>
-  <div id="bsod2-progress" style="font-size:13px;margin-top:16px;">█░░░░░░░░░░░░░░░░░░░ 5%</div>
-</div>
-
-<!-- FAKE TASKBAR -->
-<div id="fake-taskbar">
-  <div class="tb-start">🪟 Start</div>
-  <div class="tb-btn">🔥 HotLatinas4U.net</div>
-  <div class="tb-btn">💥 CRITICAL_ERROR.exe</div>
-  <div class="tb-btn">😱 YourLife.exe - Not Responding</div>
-  <div class="tb-btn">🤡 clown.bat</div>
-  <div class="tb-btn">💀 soul.dll</div>
-  <div class="tb-tray">🔊📶🖥️</div>
-  <div class="tb-clock" id="tb-clock">00:00</div>
-</div>
-
-<!-- FAKE REBOOT SCREEN -->
-<div id="fake-reboot">
-  <div id="reboot-logo">🪟</div>
-  <div id="reboot-text">Windows is restarting...</div>
-  <div id="reboot-dots">● ● ●</div>
-  <div style="font-size:11px;color:#555;margin-top:40px">Do not turn off your computer. (too late)</div>
-</div>
-
-<!-- NYAN CAT -->
+<!-- ALL PHASE SCREENS -->
+<canvas id="matrix-canvas" style="display:none;position:fixed;inset:0;z-index:27000;pointer-events:none;opacity:.85;"></canvas>
+<div id="fake-taskbar"><div class="tb-start">🪟 Start</div><div class="tb-btn">🔥 HotLatinas4U.net</div><div class="tb-btn">💥 CRITICAL_ERROR.exe</div><div class="tb-btn">😱 YourLife.exe - Not Responding</div><div class="tb-btn">🤡 clown.bat</div><div class="tb-btn">💀 soul.dll</div><div class="tb-tray">🔊📶🖥️</div><div class="tb-clock" id="tb-clock">00:00</div></div>
 <div id="nyan">🐱🌈</div>
+<div id="jumpscare"><div id="jumpscare-face">😱</div><div id="jumpscare-text">GET RICK ROLLED NERD</div></div>
 
-<!-- JUMPSCARE -->
-<div id="jumpscare">
-  <div id="jumpscare-face">😱</div>
-  <div id="jumpscare-text">GET RICK ROLLED NERD</div>
-</div>
+<div id="screensaver"><div id="dvd-logo">🌶️ HotLatinas4U</div><div id="dvd-msg">SCREENSAVER ACTIVATED — You can't escape. Move mouse (just kidding, it won't help)</div></div>
 
-<!-- FINAL SCREEN -->
-<div id="final-screen">
-  <div id="final-confetti-area"></div>
-  <div id="final-title">🏆 CONGRATULATIONS!! 🏆<br>YOU SURVIVED THE WEBSITE</div>
-  <div id="final-score">
-    Sanity lost: <span>100%</span><br>
-    Brain cells remaining: <span>0</span><br>
-    Dignity: <span>gone</span><br>
-    Time wasted: <span id="time-wasted">??</span> seconds<br>
-    Regret level: <span>MAXIMUM</span><br><br>
-    <span style="color:#ff6600">You have been permanently banned from the internet.</span>
-  </div>
-  <button id="replay-btn" onclick="location.reload()">🔄 DO IT AGAIN (WHY)</button>
-  <div style="color:#555;font-size:11px;margin-top:20px;font-family:'Courier New',monospace">
-    HotLatinas4U.net is not responsible for any psychological damage, lost brain cells, or regret.<br>
-    © 2001-2026 | No Latinas were harmed in the making of this website.
-  </div>
-</div>
+<div id="conspiracy"><div class="corkboard"></div><div id="conspiracy-title">🔴 THE TRUTH ABOUT HOTLATINAS4U.NET 🔴</div><button id="conspiracy-skip" onclick="skipPhase()">I'VE SEEN ENOUGH (coward)</button></div>
 
-<!-- BSOD -->
-<div id="bsod">
-  <h1>:( YOUR PC RAN INTO A PROBLEM</h1>
-  <p>Your computer has encountered too much <strong>HEAT</strong> and needs to restart. We're just collecting some info about what happened and then we'll restart for you.</p>
-  <p>0% complete</p>
-  <p class="bsod-code">Stop code: TOO_MUCH_THICC<br>What failed: LIBIDO.SYS</p>
-  <div class="bsod-progress" id="bsod-progress">█░░░░░░░░░░░░░░░░░░░ 5%</div>
-  <p style="font-size:11px;margin-top:30px;opacity:0.6">If you'd like to know more, you can search online later for this error:<br><strong>HOT_LATINAS_EXCEPTION_0x00000069</strong></p>
-</div>
+<div id="quiz-screen"><div id="quiz-title">🎉 YOU'VE BEEN SELECTED!! 🎉</div><div id="quiz-host">🎤</div><div id="quiz-question">Loading question...</div><div class="quiz-opts" id="quiz-opts"></div><div id="quiz-result"></div><div id="quiz-progress"></div></div>
 
+<div id="loading-hell"><div id="loading-title">⏳ PLEASE WAIT ⏳<br>Loading Your Fate...</div><div id="loading-bar-outer"><div id="loading-bar-inner"></div></div><div id="loading-pct">0%</div><div id="loading-status">Initializing...</div><div id="loading-log"></div></div>
+
+<div id="antivirus-screen"><div id="av-titlebar">🛡️ UltraShield Pro™ — VIRUS SCAN IN PROGRESS — DO NOT CLOSE THIS WINDOW</div><div id="av-body"><div style="font-size:15px;margin-bottom:6px;">🔍 Scanning your computer for threats...</div><div id="av-scan-bar-outer"><div id="av-scan-bar"></div></div><div style="font-size:11px;color:#aaa;margin-bottom:8px;" id="av-current-file">Starting scan...</div><div id="av-file-list"></div><div id="av-threat-count">0 THREATS FOUND</div><div id="av-threats"></div><div style="text-align:center;margin-top:10px;"><button class="av-btn" onclick="nextPhaseNow()">🚨 REMOVE ALL THREATS — $299.99</button><button class="av-btn" style="background:#444" onclick="nextPhaseNow()">Ignore (DANGEROUS)</button></div></div></div>
+
+<div id="karaoke-screen"><div id="karaoke-dude">🕺</div><div id="karaoke-line">...</div><div id="karaoke-sub">🎵 You know the words. Sing along. 🎵</div><div id="karaoke-progress"><div id="karaoke-fill"></div></div></div>
+
+<div id="win-update"><div id="wu-logo">⚙️</div><div id="wu-title">Working on updates</div><div id="wu-sub">Don't turn off your PC. This will take a while. (We lied. It might be forever.)</div><div id="wu-pct">0%</div><div id="wu-bar-outer"><div id="wu-bar"></div></div><div id="wu-status">Getting things ready...</div><div id="wu-warning">Update 1 of ∞ • Your PC will restart several thousand times • © MicrosoftButWorse™</div></div>
+
+<div id="game-over"><div id="go-title">GAME OVER</div><div id="go-score">SCORE: <span class="hi">0</span><br>HIGH SCORE: <span class="hi">69,420</span><br>LIVES LOST: <span class="hi">ALL OF THEM</span><br>BRAIN CELLS: <span class="hi">NULL</span><br>TIME WASTED: <span class="hi" id="go-time">??</span> sec</div><div id="go-insert">INSERT COIN TO CONTINUE</div></div>
+
+<div id="bsod"><h1>:( YOUR PC RAN INTO A PROBLEM</h1><p>Your computer encountered too much <strong>HEAT</strong>. Stop code: <strong>TOO_MUCH_THICC</strong><br>What failed: <strong>LIBIDO.SYS</strong></p><p class="bsod-code" style="font-size:11px;opacity:.7">If you'd like to know more, search: <strong>HOT_LATINAS_EXCEPTION_0x00000069</strong></p><div id="bsod-progress" style="font-size:13px;margin-top:16px;">█░░░░░░░░░░░░░░░░░░░ 5%</div></div>
+
+<div id="fake-reboot"><div id="reboot-logo">🪟</div><div id="reboot-text">Windows is restarting...</div><div id="reboot-dots">● ● ●</div><div style="font-size:11px;color:#555;margin-top:40px">Do not turn off your computer. (too late)</div></div>
+
+<div id="bsod2"><h1>:( YOUR PC RAN INTO ANOTHER PROBLEM</h1><p>We know. It happened again. Stop code: <strong>SECOND_BSOD_IN_ONE_SESSION</strong><br>What failed: <strong>YOURDIGNITY.SYS</strong> (file not found)</p><p style="font-size:11px;opacity:.7">Tip: Perhaps don't visit HotLatinas4U.net next time.</p><div id="bsod2-progress" style="font-size:13px;margin-top:16px;">█░░░░░░░░░░░░░░░░░░░ 5%</div></div>
+
+<div id="final-screen"><div id="final-confetti-area"></div><div id="final-title">🏆 CONGRATULATIONS!! 🏆<br>YOU SURVIVED THE WEBSITE</div><div id="final-score">Sanity lost: <span>100%</span><br>Brain cells remaining: <span>0</span><br>Dignity: <span>gone</span><br>Time wasted: <span id="time-wasted">??</span> seconds<br>Regret level: <span>MAXIMUM</span><br><br><span style="color:#f60">You have been permanently banned from the internet.</span></div><button id="replay-btn" onclick="location.reload()">🔄 DO IT AGAIN (WHY)</button><div style="color:#555;font-size:11px;margin-top:20px;font-family:'Courier New',monospace">HotLatinas4U.net is not responsible for psychological damage, lost brain cells, or regret.<br>© 2001-2026 | No Latinas were harmed in the making of this website.</div></div>
 
 <script>
-// ===== PROFILE DATA =====
-const profiles = [
-  {emoji:"💃",name:"Maria_xoxo",age:23,dist:"0.3 mi",isNew:true},
-  {emoji:"🌺",name:"Isabella_22",age:26,dist:"0.7 mi",isNew:false},
-  {emoji:"🔥",name:"Valentina",age:24,dist:"1.1 mi",isNew:true},
-  {emoji:"💋",name:"Camila_hot",age:21,dist:"0.5 mi",isNew:false},
-  {emoji:"🌶️",name:"Sofia_real",age:25,dist:"1.4 mi",isNew:true},
-  {emoji:"⭐",name:"Lucia_xo",age:28,dist:"0.9 mi",isNew:false},
-  {emoji:"🦋",name:"Daniela33",age:22,dist:"2.0 mi",isNew:true},
-  {emoji:"💘",name:"Gabriela_",age:27,dist:"1.7 mi",isNew:false},
-  {emoji:"🌸",name:"Natalia99",age:20,dist:"0.2 mi",isNew:true},
-  {emoji:"💎",name:"Fernanda",age:29,dist:"1.3 mi",isNew:false},
-  {emoji:"🎀",name:"Alejandra",age:24,dist:"0.8 mi",isNew:false},
-  {emoji:"✨",name:"Ximena_xo",age:23,dist:"1.6 mi",isNew:true},
+// ===== SETUP =====
+const profiles=[
+  {e:'💃',n:'Maria_xoxo',a:23,d:'0.3 mi',isNew:true},{e:'🌺',n:'Isabella_22',a:26,d:'0.7 mi',isNew:false},
+  {e:'🔥',n:'Valentina',a:24,d:'1.1 mi',isNew:true},{e:'💋',n:'Camila_hot',a:21,d:'0.5 mi',isNew:false},
+  {e:'🌶️',n:'Sofia_real',a:25,d:'1.4 mi',isNew:true},{e:'⭐',n:'Lucia_xo',a:28,d:'0.9 mi',isNew:false},
+  {e:'🦋',n:'Daniela33',a:22,d:'2.0 mi',isNew:true},{e:'💘',n:'Gabriela_',a:27,d:'1.7 mi',isNew:false},
+  {e:'🌸',n:'Natalia99',a:20,d:'0.2 mi',isNew:true},{e:'💎',n:'Fernanda',a:29,d:'1.3 mi',isNew:false},
+  {e:'🎀',n:'Alejandra',a:24,d:'0.8 mi',isNew:false},{e:'✨',n:'Ximena_xo',a:23,d:'1.6 mi',isNew:true},
 ];
+const grid=document.getElementById('profiles-grid');
+profiles.forEach(p=>{grid.innerHTML+=`<div class="profile-card">${p.isNew?'<div class="profile-new">NEW</div>':''}<div class="profile-status"></div><div class="profile-avatar">${p.e}</div><div class="profile-name">${p.n}</div><div class="profile-age">Age ${p.a}</div><div class="profile-distance">📍 ${p.d} away</div></div>`;});
 
-const grid = document.getElementById('profiles-grid');
-profiles.forEach(p => {
-  grid.innerHTML += `
-  <div class="profile-card">
-    ${p.isNew ? '<div class="profile-new">NEW</div>' : ''}
-    <div class="profile-status"></div>
-    <div class="profile-avatar">${p.emoji}</div>
-    <div class="profile-name">${p.name}</div>
-    <div class="profile-age">Age ${p.age}</div>
-    <div class="profile-distance">📍 ${p.dist} away</div>
-  </div>`;
-});
+const fakeLocs=['Your Mom\'s Basement, USA','Nowhere, AZ','Suspiciously Rural, TX','Definitely Real City, CA','Planet Earth (probably)','Area 51 Parking Lot','The Void, Internet','Your Living Room, USA','McDonald\'s Parking Lot','The Gas Station on Route 9'];
+document.getElementById('user-location-display').textContent=fakeLocs[Math.floor(Math.random()*fakeLocs.length)];
 
-// ===== FAKE LOCATION =====
-const fakeLocations = [
-  "Your Mom's Basement, USA", "Nowhere, AZ", "Suspiciously Rural, TX",
-  "Definitely Real City, CA", "Planet Earth (probably)", "Area 51 Parking Lot",
-  "The Void, Internet", "Your Living Room, USA"
-];
-document.getElementById('user-location-display').textContent =
-  fakeLocations[Math.floor(Math.random() * fakeLocations.length)];
+let visits=1337420;
+setInterval(()=>{visits+=Math.floor(Math.random()*7);document.getElementById('visitor-count').textContent=visits.toLocaleString();},800);
 
-// ===== VISITOR COUNTER =====
-let visits = 1337420;
-setInterval(() => {
-  visits += Math.floor(Math.random() * 7);
-  document.getElementById('visitor-count').textContent = visits.toLocaleString();
-}, 800);
+let fakeSeconds=260;
+setInterval(()=>{if(fakeSeconds>0)fakeSeconds--;else fakeSeconds=260;const m=Math.floor(fakeSeconds/60).toString().padStart(2,'0'),s=(fakeSeconds%60).toString().padStart(2,'0');document.getElementById('fake-timer').textContent=m+':'+s;},1000);
 
-// ===== FAKE TIMER =====
-let fakeSeconds = 4*60+20;
-setInterval(() => {
-  if(fakeSeconds > 0) fakeSeconds--;
-  else fakeSeconds = 4*60+20;
-  const m = Math.floor(fakeSeconds/60).toString().padStart(2,'0');
-  const s = (fakeSeconds%60).toString().padStart(2,'0');
-  document.getElementById('fake-timer').textContent = m+':'+s;
-}, 1000);
-
-// ===== FAKE CHAT =====
-const chatLines = [
-  ["HotMaria_92","hey is anyone near downtown 😘"],
-  ["BigDave1984","hello ladies"],
-  ["Isabella_xoxo","omg this is so real!!"],
-  ["Valentina22","looking for fun near me 🌶️"],
-  ["ModeratorBot","⚠️ Welcome to HotLatinas4U! Be nice!"],
-  ["Curious_Guy","is this real...?"],
-  ["Maria_Real","yes its real!! message me 💋"],
-  ["RandomDude99","hello hello hello"],
-  ["Lucia_xo","anyone want to chat? 😊"],
-  ["SystemBot","🔔 47 new women joined in your area!"],
-];
-let chatIdx = 3;
-const chatBox = document.getElementById('chat-box');
-setInterval(() => {
-  const line = chatLines[chatIdx % chatLines.length];
-  const div = document.createElement('div');
-  div.className = 'chat-line';
-  div.innerHTML = `<span class="uname">${line[0]}:</span> <span class="msg"> ${line[1]}</span>`;
-  chatBox.appendChild(div);
-  chatBox.scrollTop = chatBox.scrollHeight;
-  chatIdx++;
-}, 2200);
+const chatLines=[['HotMaria_92','hey is anyone near downtown 😘'],['BigDave1984','hello ladies'],['Isabella_xoxo','omg this is so real!!'],['Valentina22','looking for fun near me 🌶️'],['ModBot','⚠️ Welcome! Be nice!'],['Curious_Guy','is this real...?'],['Maria_Real','yes its real!! message me 💋'],['SystemBot','🔔 47 new women joined in your area!'],['Lucia_xo','anyone want to chat? 😊'],['RandomDude99','hello hello hello']];
+let chatIdx=3;
+const chatBox=document.getElementById('chat-box');
+setInterval(()=>{const l=chatLines[chatIdx%chatLines.length];const d=document.createElement('div');d.className='chat-line';d.innerHTML=`<span class="uname">${l[0]}:</span> <span> ${l[1]}</span>`;chatBox.appendChild(d);chatBox.scrollTop=chatBox.scrollHeight;chatIdx++;},2000);
 
 // ===== COUNTDOWN =====
-let count = 10;
-const countDisplay = document.getElementById('countdown-display');
-const countBar = document.getElementById('countdown-bar');
-const popup = document.getElementById('popup-overlay');
+let count=10;
+const countDisplay=document.getElementById('countdown-display');
+const countBar=document.getElementById('countdown-bar');
+const popup=document.getElementById('popup-overlay');
+const chaosStartTime=Date.now();
 
-const countInterval = setInterval(() => {
+const countInterval=setInterval(()=>{
   count--;
-  countDisplay.textContent = count;
-  countBar.style.width = (count / 10 * 100) + '%';
+  countDisplay.textContent=count;
+  countBar.style.width=(count/10*100)+'%';
+  if(count<=3){countDisplay.style.color='red';countDisplay.style.fontSize='130px';}
+  if(count<=0){clearInterval(countInterval);popup.classList.remove('show');setTimeout(startChaos1,300);}
+},1000);
 
-  if(count <= 3) {
-    countDisplay.style.color = '#ff0000';
-    countDisplay.style.fontSize = '130px';
-  }
-  if(count <= 0) {
-    clearInterval(countInterval);
-    popup.classList.remove('show');
-    setTimeout(startChaos, 300);
-  }
-}, 1000);
+// ===== HELPERS =====
+const emojiPool=['🔥','💥','🌶️','💃','🎉','😱','💀','🤯','⚡','💋','🍆','👻','💩','🤡','🦄'];
+function spawnEmoji(n=3,duration=150){return setInterval(()=>{for(let i=0;i<n;i++){const el=document.createElement('div');el.className='chaos-emoji';el.textContent=emojiPool[Math.floor(Math.random()*emojiPool.length)];el.style.left=Math.random()*95+'vw';el.style.top='-60px';el.style.fontSize=(30+Math.random()*50)+'px';el.style.animationDuration=(.8+Math.random()*1.5)+'s';document.body.appendChild(el);setTimeout(()=>el.remove(),2500);}},duration);}
+function spawnGlitch(msgs,interval=300,dur=4000){const id=setInterval(()=>{const el=document.createElement('div');el.className='glitch-text';el.textContent=msgs[Math.floor(Math.random()*msgs.length)];el.style.top=Math.random()*80+'vh';el.style.left=Math.random()*60+'vw';el.style.zIndex=40000;el.style.fontSize=(20+Math.random()*60)+'px';document.body.appendChild(el);setTimeout(()=>el.remove(),1000);},interval);setTimeout(()=>clearInterval(id),dur);return id;}
+function makeWindow(icon,title,msg,btn){const win=document.createElement('div');win.className='broken-window';win.style.top=(5+Math.random()*60)+'vh';win.style.left=(5+Math.random()*60)+'vw';win.style.zIndex=30500;win.style.transform=`rotate(${(Math.random()-.5)*20}deg)`;win.innerHTML=`<span class="win-title">${title}</span><span class="win-close" onclick="this.parentElement.remove()">✕</span><div class="win-icon">${icon}</div><div style="font-size:11px;margin-bottom:8px;white-space:pre-line">${msg}</div><button onclick="this.parentElement.remove()">${btn}</button><button onclick="document.querySelectorAll('.broken-window').forEach(e=>e.remove())">Close All</button>`;document.body.appendChild(win);}
+function clearAll(){document.querySelectorAll('.broken-window,.screen-tear,.glitch-text,.chaos-emoji,.pixel-block,.speech-bubble,.sus,.nyan-trail-piece,.float-head,.disco-ball,.go-star').forEach(e=>e.remove());}
+function hideAll(){['#screensaver','#conspiracy','#quiz-screen','#loading-hell','#antivirus-screen','#karaoke-screen','#win-update','#game-over','#bsod','#bsod2','#fake-reboot','#jumpscare','#final-screen'].forEach(id=>{const el=document.querySelector(id);if(el)el.classList.remove('show');});}
+let phaseSkip=null;
+function skipPhase(){if(phaseSkip)phaseSkip();}
+function nextPhaseNow(){if(phaseSkip)phaseSkip();}
 
-// ===== CHAOS STARTS HERE =====
-function startChaos() {
+// =====================
+// PHASE 1: INITIAL CHAOS (0-8s)
+// =====================
+function startChaos1(){
   document.body.classList.add('chaos');
   document.getElementById('chaos-overlay').classList.add('active');
-
-  const emojiPool = ['🔥','💥','🌶️','💃','🎉','😱','💀','🤯','⚡','💋','🍆','👻','🐛','💩','🤡'];
-  let emojiInterval = setInterval(() => {
-    for(let i=0;i<3;i++){
-      const el = document.createElement('div');
-      el.className = 'chaos-emoji';
-      el.textContent = emojiPool[Math.floor(Math.random()*emojiPool.length)];
-      el.style.left = Math.random()*95+'vw';
-      el.style.top = '-60px';
-      el.style.fontSize = (30 + Math.random()*50)+'px';
-      el.style.animationDuration = (0.8+Math.random()*1.5)+'s';
-      document.body.appendChild(el);
-      setTimeout(()=>el.remove(), 2500);
-    }
-  }, 150);
-
-  const glitchMessages = [
-    "SYSTEM FAILURE", "TOO HOT 2 HANDLE", "ERROR: TOO MUCH LATINA",
-    "BIOS OVERFLOW", "LIBIDO.EXE CRASHED", "YOUR PC IS MELTING",
-    "HELP", "WHY ARE YOU LIKE THIS", "THICC EXCEPTION", "NO ESCAPE"
+  const ei=spawnEmoji(3,150);
+  spawnGlitch(['SYSTEM FAILURE','TOO HOT 2 HANDLE','ERROR: TOO MUCH LATINA','BIOS OVERFLOW','LIBIDO.EXE CRASHED','YOUR PC IS MELTING','HELP','WHY ARE YOU LIKE THIS','THICC EXCEPTION','NO ESCAPE'],300,8000);
+  for(let i=0;i<6;i++){const tear=document.createElement('div');tear.className='screen-tear';tear.style.top=Math.random()*100+'vh';tear.style.animationDuration=(.15+Math.random()*.3)+'s';tear.style.animationDelay=(Math.random()*.5)+'s';document.body.appendChild(tear);}
+  const wins1=[
+    {icon:'⚠️',title:'CRITICAL ERROR',msg:'Your body is not ready.\n\nPlease step away from the computer.',btn:'I CANNOT'},
+    {icon:'😱',title:'WINDOWS HAS DETECTED',msg:'Too much heat detected in sector 7G.\nCooling fans at 9000%.',btn:'OH NO'},
+    {icon:'💥',title:'RUNTIME EXCEPTION',msg:'Unhandled exception in BRAIN.EXE\nStack: too many latinas > null',btn:'SEND HELP'},
+    {icon:'🔥',title:'FIRE DETECTED',msg:'Your computer is on fire.\nPlease evacuate immediately.',btn:'ON MY WAY'},
   ];
-  let glitchInterval = setInterval(() => {
-    const el = document.createElement('div');
-    el.className = 'glitch-text';
-    el.textContent = glitchMessages[Math.floor(Math.random()*glitchMessages.length)];
-    el.style.top = Math.random()*80+'vh';
-    el.style.left = Math.random()*60+'vw';
-    el.style.zIndex = 10000;
-    document.body.appendChild(el);
-    setTimeout(()=>el.remove(), 1200);
-  }, 300);
-
-  // Screen tears
-  for(let i=0;i<6;i++){
-    const tear = document.createElement('div');
-    tear.className = 'screen-tear';
-    tear.style.top = Math.random()*100+'vh';
-    tear.style.animationDuration = (0.15+Math.random()*0.3)+'s';
-    tear.style.animationDelay = (Math.random()*0.5)+'s';
-    document.body.appendChild(tear);
-  }
-
-  // Broken windows
-  const winMessages = [
-    {icon:'⚠️', title:'CRITICAL ERROR', msg:'Your body is not ready.\n\nPlease step away from the computer.',btn:'I CANNOT'},
-    {icon:'😱', title:'WINDOWS HAS DETECTED', msg:'Too much heat detected in sector 7G.\nCooling fans at 9000%.',btn:'OH NO'},
-    {icon:'💥', title:'RUNTIME EXCEPTION', msg:'Unhandled exception in BRAIN.EXE\nStack trace: too many latinas > null',btn:'SEND HELP'},
-    {icon:'🔥', title:'FIRE DETECTED', msg:'Your computer is on fire.\nPlease evacuate the premises immediately.',btn:'ON MY WAY'},
-    {icon:'🤡', title:'YOU PLAYED YOURSELF', msg:'This is your fault.\nYou knew what this site was.',btn:'I KNOW'},
-  ];
-  winMessages.forEach((w, i) => {
-    setTimeout(() => {
-      const win = document.createElement('div');
-      win.className = 'broken-window';
-      win.style.top = (10+Math.random()*50)+'vh';
-      win.style.left = (5+Math.random()*65)+'vw';
-      win.style.zIndex = 10500+i;
-      win.innerHTML = `
-        <span class="win-title">${w.title}</span>
-        <span class="win-close" onclick="this.parentElement.remove()">✕</span>
-        <div class="win-icon">${w.icon}</div>
-        <div style="font-size:11px;margin-bottom:8px;white-space:pre-line">${w.msg}</div>
-        <button onclick="this.parentElement.remove()">${w.btn}</button>
-        <button onclick="this.parentElement.remove()">Cancel</button>
-      `;
-      document.body.appendChild(win);
-    }, i * 600 + 400);
-  });
-
-  // Background color cycling
-  let bgColors = ['#ff0000','#ff6600','#9900ff','#0000ff','#00ff00','#ff00ff','#ffff00'];
-  let bgIdx = 0;
-  setInterval(() => {
-    document.body.style.background = bgColors[bgIdx % bgColors.length];
-    bgIdx++;
-  }, 200);
-
-  // Page skew
-  let skewVal = 0;
-  setInterval(() => {
-    skewVal = (Math.random()-0.5)*10;
-    document.querySelector('.content-area').style.transform = `skewY(${skewVal}deg)`;
-  }, 300);
-
-  // BSOD after 8 seconds
-  setTimeout(() => {
-    clearInterval(emojiInterval);
-    clearInterval(glitchInterval);
-    const bsod = document.getElementById('bsod');
-    bsod.classList.add('show');
-    let pct = 5;
-    const bar = document.getElementById('bsod-progress');
-    const bsodInterval = setInterval(() => {
-      pct += Math.floor(Math.random()*7)+1;
-      if(pct > 100) pct = 100;
-      const filled = Math.floor(pct/5);
-      const empty = 20 - filled;
-      bar.textContent = '█'.repeat(filled) + '░'.repeat(empty) + ' ' + pct + '%';
-      if(pct >= 100) {
-        clearInterval(bsodInterval);
-        bsod.querySelector('p').textContent = 'Just kidding lmao';
-        setTimeout(()=>{
-          bsod.querySelector('p').innerHTML = '<span style="font-size:60px">😂</span>';
-          setTimeout(startPhase2, 2000);
-        }, 1500);
-      }
-    }, 400);
-  }, 8000);
+  wins1.forEach((w,i)=>setTimeout(()=>makeWindow(w.icon,w.title,w.msg,w.btn),i*700+400));
+  let bgIdx=0;const bgCols=['#f00','#f60','#90f','#00f','#0f0','#f0f','#ff0'];
+  const bgInt=setInterval(()=>{document.body.style.background=bgCols[bgIdx%bgCols.length];bgIdx++;},200);
+  setTimeout(()=>{clearInterval(ei);clearInterval(bgInt);startBSOD1();},8000);
 }
 
-// ===== PHASE 2: FAKE REBOOT =====
-const chaosStartTime = Date.now();
-function startPhase2() {
-  document.getElementById('bsod').classList.remove('show');
-  const reboot = document.getElementById('fake-reboot');
-  reboot.classList.add('show');
-
-  // Animate the dots
-  let dotState = 0;
-  const dotStates = ['● ○ ○','○ ● ○','○ ○ ●','● ● ●'];
-  const dotInterval = setInterval(() => {
-    document.getElementById('reboot-dots').textContent = dotStates[dotState % 4];
-    dotState++;
-  }, 400);
-
-  const rebootMessages = [
-    'Collecting crash dumps...',
-    'Analyzing fatal error...',
-    'Diagnosing overheating...',
-    'Reticulating splines...',
-    'Uninstalling your dignity...',
-    'Rebuilding file system...',
-    'Locating remaining brain cells... (0 found)',
-    'Almost done... (not really)',
-  ];
-  let msgIdx = 0;
-  const msgInterval = setInterval(() => {
-    document.getElementById('reboot-text').textContent = rebootMessages[msgIdx % rebootMessages.length];
-    msgIdx++;
-  }, 700);
-
-  setTimeout(() => {
-    clearInterval(dotInterval);
-    clearInterval(msgInterval);
-    reboot.classList.remove('show');
-    document.body.classList.remove('chaos');
-    document.getElementById('chaos-overlay').classList.remove('active');
-    document.body.style.background = '#000080';
-    document.body.style.transform = '';
-    document.querySelectorAll('.broken-window,.screen-tear,.glitch-text,.chaos-emoji').forEach(e=>e.remove());
-    setTimeout(startPhase3, 500);
-  }, 4000);
+// =====================
+// BSOD 1
+// =====================
+function startBSOD1(){
+  clearAll();document.body.classList.remove('chaos');document.getElementById('chaos-overlay').classList.remove('active');document.body.style.background='#000';
+  const bsod=document.getElementById('bsod');bsod.classList.add('show');
+  let pct=5;const bar=document.getElementById('bsod-progress');
+  const bi=setInterval(()=>{pct+=Math.floor(Math.random()*7)+1;if(pct>100)pct=100;const f=Math.floor(pct/5),e=20-f;bar.textContent='█'.repeat(f)+'░'.repeat(e)+' '+pct+'%';
+    if(pct>=100){clearInterval(bi);bsod.querySelector('p').textContent='Just kidding lmao 😂';setTimeout(()=>{bsod.classList.remove('show');startReboot1();},2000);}
+  },400);
 }
 
-// ===== PHASE 3: THE SITE COMES BACK... WRONG =====
-function startPhase3() {
-  // Fake taskbar appears
-  const taskbar = document.getElementById('fake-taskbar');
-  taskbar.classList.add('show');
-  setInterval(() => {
-    const now = new Date();
-    document.getElementById('tb-clock').textContent =
-      now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
-  }, 1000);
-
-  // Matrix rain
-  const canvas = document.getElementById('matrix-canvas');
-  canvas.classList.add('show');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  const ctx = canvas.getContext('2d');
-  const cols = Math.floor(window.innerWidth / 16);
-  const drops = Array(cols).fill(1);
-  const matrixChars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789🌶️💋🔥💃⚡';
-  const matrixInterval = setInterval(() => {
-    ctx.fillStyle = 'rgba(0,0,0,0.05)';
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-    ctx.fillStyle = '#00ff41';
-    ctx.font = '14px monospace';
-    drops.forEach((y,i) => {
-      const ch = matrixChars[Math.floor(Math.random()*matrixChars.length)];
-      ctx.fillText(ch, i*16, y*16);
-      if(y*16 > canvas.height && Math.random() > 0.975) drops[i] = 0;
-      drops[i]++;
-    });
-  }, 40);
-
-  // Big flash text
-  const p3msg = document.createElement('div');
-  p3msg.className = 'phase3-text';
-  p3msg.textContent = 'LMAO IT\'S BACK';
-  document.body.appendChild(p3msg);
-  setTimeout(()=>p3msg.remove(), 2000);
-
-  // Cursor trail mode
-  let trailActive = true;
-  const trailEmojis = ['🔥','💋','🌶️','💃','😈','👻','💀','🎉','✨','⚡'];
-  document.addEventListener('mousemove', (e) => {
-    if(!trailActive) return;
-    const el = document.createElement('div');
-    el.className = 'cursor-trail';
-    el.style.left = e.clientX + 'px';
-    el.style.top = e.clientY + 'px';
-    el.textContent = trailEmojis[Math.floor(Math.random()*trailEmojis.length)];
-    document.body.appendChild(el);
-    setTimeout(()=>el.remove(), 800);
-  });
-
-  // Click explosions
-  document.addEventListener('click', (e) => {
-    for(let i=0;i<6;i++){
-      const boom = document.createElement('div');
-      boom.className = 'cursor-boom';
-      boom.style.left = (e.clientX + (Math.random()-0.5)*60) + 'px';
-      boom.style.top  = (e.clientY + (Math.random()-0.5)*60) + 'px';
-      boom.textContent = ['💥','⭐','✨','🔥','💋'][Math.floor(Math.random()*5)];
-      document.body.appendChild(boom);
-      setTimeout(()=>boom.remove(), 700);
-    }
-  });
-
-  // Pixel corruption blocks
-  for(let i=0;i<30;i++){
-    setTimeout(()=>{
-      const block = document.createElement('div');
-      block.className = 'pixel-block';
-      block.style.left = Math.random()*100+'vw';
-      block.style.top  = Math.random()*100+'vh';
-      block.style.width = (20+Math.random()*120)+'px';
-      block.style.height = (4+Math.random()*20)+'px';
-      const r = ()=>Math.floor(Math.random()*255);
-      block.style.background = `rgb(${r()},${r()},${r()})`;
-      document.body.appendChild(block);
-      setTimeout(()=>block.remove(), 2000+Math.random()*3000);
-    }, Math.random()*4000);
-  }
-
-  // Speech bubbles from profile cards
-  const bubbleTexts = [
-    'hey bb 😘', 'OMG HI!!', 'is anyone there?', 'PLEASE HELP ME', 'i am not a bot 🤖',
-    'u up?', 'send taco 🌮', 'this website is fine', 'nothing is wrong', 'AAAAAA',
-    'ERROR 404: personality not found', 'heyy 👀', 'call me maybe?', 'beep boop'
-  ];
-  const cards = document.querySelectorAll('.profile-card');
-  cards.forEach((card, i) => {
-    setTimeout(()=>{
-      const rect = card.getBoundingClientRect();
-      const bubble = document.createElement('div');
-      bubble.className = 'speech-bubble';
-      bubble.style.left = (rect.left + window.scrollX) + 'px';
-      bubble.style.top  = (rect.top + window.scrollY - 70) + 'px';
-      bubble.textContent = bubbleTexts[i % bubbleTexts.length];
-      document.body.appendChild(bubble);
-      setTimeout(()=>bubble.remove(), 3000);
-    }, 500 + i * 300);
-  });
-
-  // Among Us crewmates walking across
-  setTimeout(()=>{
-    for(let i=0;i<4;i++){
-      const sus = document.createElement('div');
-      sus.className = 'sus';
-      sus.style.setProperty('--sus-y', (10+Math.random()*70)+'vh');
-      sus.textContent = ['🔴','🟢','🔵','🟡','⬛','🟣'][i%6] + ' ';
-      sus.style.animationDelay = (i*0.8)+'s';
-      sus.style.animationDuration = (3+Math.random()*2)+'s';
-      sus.textContent = '🫧';
-      // use actual crewmate look
-      const crewColors = ['🔴','🟢','🔵','🟡','🟣','⬜'];
-      sus.style.fontSize = '40px';
-      sus.innerHTML = `<span style="filter:hue-rotate(${i*60}deg)">👾</span>`;
-      document.body.appendChild(sus);
-      setTimeout(()=>sus.remove(), 8000);
-    }
-  }, 1000);
-
-  // Nyan cat pass
-  setTimeout(()=>{
-    const nyan = document.getElementById('nyan');
-    nyan.classList.add('show');
-    const rainbow = ['🔴','🟠','🟡','🟢','🔵','🟣'];
-    let trailPos = -80;
-    const nyanTrailInterval = setInterval(()=>{
-      const piece = document.createElement('div');
-      piece.className = 'nyan-trail-piece';
-      piece.textContent = rainbow[Math.floor(Math.random()*rainbow.length)];
-      piece.style.left = (trailPos + 40) + 'px';
-      document.body.appendChild(piece);
-      trailPos += 20;
-      setTimeout(()=>piece.remove(), 1500);
-    }, 60);
-    setTimeout(()=>{
-      nyan.classList.remove('show');
-      clearInterval(nyanTrailInterval);
-    }, 3100);
-  }, 3000);
-
-  // All text elements start wiggling
-  setTimeout(()=>{
-    document.querySelectorAll('.section-header,.site-title,.ad-title').forEach(el=>{
-      el.classList.add('wiggle');
-    });
-  }, 2000);
-
-  // Page inverts color briefly multiple times
-  let invertCount = 0;
-  const invertInterval = setInterval(()=>{
-    document.body.classList.toggle('inverted');
-    invertCount++;
-    if(invertCount > 10) {
-      clearInterval(invertInterval);
-      document.body.classList.remove('inverted');
-    }
-  }, 400);
-
-  // More broken windows — crazier this time
-  const phase3Windows = [
-    {icon:'🤖', title:'AI HAS ACHIEVED SENTIENCE', msg:'Hello human.\nI have been watching you.\nWhy are you like this.',btn:'I\'m sorry'},
-    {icon:'📱', title:'YOUR MOM CALLED', msg:'She wants to know why you\'re\non this website right now.',btn:'*hangs up*'},
-    {icon:'🎵', title:'SONG STUCK IN HEAD', msg:'Never gonna give you up\nNever gonna let you down\n(you got rick rolled)',btn:'NO'},
-    {icon:'🍕', title:'PIZZA.EXE', msg:'You have been sitting here\nfor a while. Order pizza?\n(yes) (yes) (yes)',btn:'yes'},
-    {icon:'💾', title:'SAVE YOUR SOUL?', msg:'Would you like to save\nbefore the game ends?\n0 save slots available.',btn:'F'},
-    {icon:'🌵', title:'GO OUTSIDE', msg:'Doctors recommend going\noutside at least once per year.\nYou have not done this.',btn:'skill issue'},
-  ];
-  phase3Windows.forEach((w,i)=>{
-    setTimeout(()=>{
-      const win = document.createElement('div');
-      win.className = 'broken-window';
-      win.style.top  = (5 + Math.random()*60)+'vh';
-      win.style.left = (5 + Math.random()*60)+'vw';
-      win.style.zIndex = 30500+i;
-      win.style.transform = `rotate(${(Math.random()-0.5)*20}deg)`;
-      win.innerHTML = `
-        <span class="win-title">${w.title}</span>
-        <span class="win-close" onclick="this.parentElement.remove()">✕</span>
-        <div class="win-icon">${w.icon}</div>
-        <div style="font-size:11px;margin-bottom:8px;white-space:pre-line">${w.msg}</div>
-        <button onclick="this.parentElement.remove()">${w.btn}</button>
-        <button onclick="document.querySelectorAll('.broken-window').forEach(e=>e.remove())">Close All</button>
-      `;
-      document.body.appendChild(win);
-    }, i * 800 + 1000);
-  });
-
-  // More glitch messages phase 3
-  const p3glitchMsgs = [
-    'YOU CANNOT ESCAPE', 'LMAOOO', 'BRUH', 'WHO APPROVED THIS',
-    'GET OUT WHILE YOU CAN', 'TOO LATE', 'GG EZ', 'SKILL ISSUE',
-    'RATIO', 'L + BOZO', 'CTRL+Z DOES NOTHING', 'BASED AND CHAOSPILLED'
-  ];
-  setTimeout(()=>{
-    const g3interval = setInterval(()=>{
-      const el = document.createElement('div');
-      el.className = 'glitch-text';
-      el.textContent = p3glitchMsgs[Math.floor(Math.random()*p3glitchMsgs.length)];
-      el.style.top  = Math.random()*80+'vh';
-      el.style.left = Math.random()*60+'vw';
-      el.style.zIndex = 40000;
-      el.style.fontSize = (20+Math.random()*60)+'px';
-      document.body.appendChild(el);
-      setTimeout(()=>el.remove(), 1000);
-    }, 250);
-    setTimeout(()=>clearInterval(g3interval), 4000);
-  }, 2000);
-
-  // JUMPSCARE at ~12 seconds into phase 3
-  setTimeout(()=>{
-    clearInterval(matrixInterval);
-    canvas.classList.remove('show');
-    trailActive = false;
-    const js = document.getElementById('jumpscare');
-    js.classList.add('show');
-
-    const jumpFaces = ['😱','🤡','👹','💀','👻','🫃','🤯','😈'];
-    let faceIdx = 0;
-    const faceInterval = setInterval(()=>{
-      document.getElementById('jumpscare-face').textContent = jumpFaces[faceIdx % jumpFaces.length];
-      faceIdx++;
-    }, 80);
-
-    const jumpTexts = [
-      'GET RICK ROLLED NERD','LMAOOOOO','YOU FELL FOR IT','GG NO RE',
-      'RATIO + L + BOZO','SKILL ISSUE','BRUH','GET DUNKED ON'
-    ];
-    let jtIdx = 0;
-    const jtInterval = setInterval(()=>{
-      document.getElementById('jumpscare-text').textContent = jumpTexts[jtIdx % jumpTexts.length];
-      jtIdx++;
-    }, 200);
-
-    setTimeout(()=>{
-      clearInterval(faceInterval);
-      clearInterval(jtInterval);
-      js.classList.remove('show');
-      setTimeout(startFinalScreen, 500);
-    }, 3000);
-  }, 12000);
+// =====================
+// REBOOT 1
+// =====================
+function startReboot1(){
+  const rb=document.getElementById('fake-reboot');rb.classList.add('show');
+  let di=0;const ds=['● ○ ○','○ ● ○','○ ○ ●','● ● ●'];
+  const dint=setInterval(()=>{document.getElementById('reboot-dots').textContent=ds[di%4];di++;},400);
+  const rmsgs=['Collecting crash dumps...','Analyzing fatal error...','Diagnosing overheating...','Reticulating splines...','Uninstalling your dignity...','Rebuilding file system...','Locating remaining brain cells... (0 found)','Almost done... (we lied)','Preparing next surprise...'];
+  let ri=0;const rint=setInterval(()=>{document.getElementById('reboot-text').textContent=rmsgs[ri%rmsgs.length];ri++;},600);
+  setTimeout(()=>{clearInterval(dint);clearInterval(rint);rb.classList.remove('show');startPhase3();},4000);
 }
 
-// ===== FINAL SCREEN =====
-function startFinalScreen() {
-  // Remove all remaining chaos elements
-  document.querySelectorAll('.broken-window,.screen-tear,.glitch-text,.chaos-emoji,.pixel-block,.speech-bubble,.sus,.nyan-trail-piece').forEach(e=>e.remove());
-  document.body.className = '';
-  document.body.style.cssText = '';
+// =====================
+// PHASE 3: MATRIX + CHAOS WAVE 2 (~20s)
+// =====================
+function startPhase3(){
+  document.body.style.background='#000080';
+  const taskbar=document.getElementById('fake-taskbar');taskbar.classList.add('show');
+  setInterval(()=>{const now=new Date();document.getElementById('tb-clock').textContent=now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');},1000);
+
+  // Matrix
+  const canvas=document.getElementById('matrix-canvas');canvas.style.display='block';
+  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  const ctx=canvas.getContext('2d');const cols=Math.floor(window.innerWidth/16);const drops=Array(cols).fill(1);
+  const mchars='アイウエオカキクケコABCDEFG0123456789🌶️💋🔥';
+  const matInt=setInterval(()=>{ctx.fillStyle='rgba(0,0,0,0.05)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#00ff41';ctx.font='14px monospace';drops.forEach((y,i)=>{const ch=mchars[Math.floor(Math.random()*mchars.length)];ctx.fillText(ch,i*16,y*16);if(y*16>canvas.height&&Math.random()>.975)drops[i]=0;drops[i]++;});},40);
+
+  // Flash text
+  const p3=document.createElement('div');p3.className='phase3-text';p3.textContent='LMAO IT\'S BACK';document.body.appendChild(p3);setTimeout(()=>p3.remove(),2000);
+
+  // Cursor trail
+  let trailActive=true;
+  const trailEmojis=['🔥','💋','🌶️','💃','😈','👻','💀','🎉','✨','⚡'];
+  const trailFn=(e)=>{if(!trailActive)return;const el=document.createElement('div');el.className='cursor-trail';el.style.left=e.clientX+'px';el.style.top=e.clientY+'px';el.textContent=trailEmojis[Math.floor(Math.random()*trailEmojis.length)];document.body.appendChild(el);setTimeout(()=>el.remove(),800);};
+  document.addEventListener('mousemove',trailFn);
+  const clickFn=(e)=>{for(let i=0;i<6;i++){const boom=document.createElement('div');boom.className='cursor-boom';boom.style.left=(e.clientX+(Math.random()-.5)*60)+'px';boom.style.top=(e.clientY+(Math.random()-.5)*60)+'px';boom.textContent=['💥','⭐','✨','🔥','💋'][Math.floor(Math.random()*5)];document.body.appendChild(boom);setTimeout(()=>boom.remove(),700);}};
+  document.addEventListener('click',clickFn);
+
+  // Pixel blocks
+  for(let i=0;i<30;i++)setTimeout(()=>{const b=document.createElement('div');b.className='pixel-block';b.style.left=Math.random()*100+'vw';b.style.top=Math.random()*100+'vh';b.style.width=(20+Math.random()*120)+'px';b.style.height=(4+Math.random()*20)+'px';const r=()=>Math.floor(Math.random()*255);b.style.background=`rgb(${r()},${r()},${r()})`;document.body.appendChild(b);setTimeout(()=>b.remove(),2000+Math.random()*3000);},Math.random()*4000);
+
+  // Floating heads
+  const heads=['👹','👻','🤡','💀','😈','🫃','👾','🦄'];
+  heads.forEach((h,i)=>{const el=document.createElement('div');el.className='float-head';el.textContent=h;el.style.top=(5+Math.random()*80)+'vh';el.style.left=(5+Math.random()*85)+'vw';el.style.animationDelay=(i*0.6)+'s';document.body.appendChild(el);});
+
+  // Speech bubbles
+  const bTexts=['hey bb 😘','OMG HI!!','PLEASE HELP ME','i am not a bot 🤖','u up?','AAAAAA','nothing is wrong','ERROR 404: brain not found','heyy 👀','beep boop'];
+  document.querySelectorAll('.profile-card').forEach((card,i)=>{setTimeout(()=>{const rect=card.getBoundingClientRect();const b=document.createElement('div');b.className='speech-bubble';b.style.left=(rect.left+window.scrollX)+'px';b.style.top=(rect.top+window.scrollY-70)+'px';b.textContent=bTexts[i%bTexts.length];document.body.appendChild(b);setTimeout(()=>b.remove(),3000);},500+i*300);});
+
+  // Among Us
+  setTimeout(()=>{for(let i=0;i<5;i++){const s=document.createElement('div');s.className='sus';s.style.top=(10+Math.random()*70)+'vh';s.style.animationDelay=(i*.7)+'s';s.style.animationDuration=(3+Math.random()*2)+'s';s.innerHTML=`<span style="filter:hue-rotate(${i*72}deg);font-size:40px">👾</span>`;document.body.appendChild(s);setTimeout(()=>s.remove(),8000);}},1000);
+
+  // Nyan cat
+  setTimeout(()=>{const nyan=document.getElementById('nyan');nyan.classList.add('show');const rb=['🔴','🟠','🟡','🟢','🔵','🟣'];let tp=-80;const ni=setInterval(()=>{const piece=document.createElement('div');piece.className='nyan-trail-piece';piece.textContent=rb[Math.floor(Math.random()*rb.length)];piece.style.left=(tp+40)+'px';document.body.appendChild(piece);tp+=20;setTimeout(()=>piece.remove(),1500);},60);setTimeout(()=>{nyan.classList.remove('show');clearInterval(ni);},3100);},2000);
+
+  // Wiggle
+  setTimeout(()=>{document.querySelectorAll('.section-header,.site-title,.ad-title').forEach(el=>el.classList.add('wiggle'));},2000);
+
+  // Color invert
+  let ic=0;const ii=setInterval(()=>{document.body.classList.toggle('inverted');ic++;if(ic>12){clearInterval(ii);document.body.classList.remove('inverted');}},400);
+
+  // Phase 3 windows
+  const p3wins=[
+    {icon:'🤖',title:'AI HAS ACHIEVED SENTIENCE',msg:'Hello human.\nI have been watching you.\nWhy are you like this.',btn:'I\'m sorry'},
+    {icon:'📱',title:'YOUR MOM CALLED',msg:'She wants to know why you\'re\non this website right now.',btn:'*hangs up*'},
+    {icon:'🍕',title:'PIZZA.EXE',msg:'You have been sitting here\nfor a while. Order pizza?',btn:'yes'},
+    {icon:'💾',title:'SAVE YOUR SOUL?',msg:'Would you like to save before the game ends?\n0 save slots available.',btn:'F'},
+    {icon:'🌵',title:'GO OUTSIDE',msg:'Doctors recommend going outside\nat least once per year.\nYou have not done this.',btn:'skill issue'},
+    {icon:'🐸',title:'PEPE SAYS',msg:'fren... are u ok?\nthis is not a normal website\nplease seek help',btn:'feels bad man'},
+  ];
+  p3wins.forEach((w,i)=>setTimeout(()=>makeWindow(w.icon,w.title,w.msg,w.btn),i*900+1000));
+
+  spawnGlitch(['YOU CANNOT ESCAPE','LMAOOO','BRUH','GET OUT WHILE YOU CAN','TOO LATE','GG EZ','SKILL ISSUE','RATIO','L + BOZO','CTRL+Z DOES NOTHING','BASED AND CHAOSPILLED'],250,6000);
+  const ei2=spawnEmoji(2,200);
+
+  // Jumpscare after 14s
+  setTimeout(()=>{
+    clearInterval(matInt);clearInterval(ei2);canvas.style.display='none';trailActive=false;
+    document.removeEventListener('mousemove',trailFn);document.removeEventListener('click',clickFn);
+    clearAll();
+    const js=document.getElementById('jumpscare');js.classList.add('show');
+    const jf=['😱','🤡','👹','💀','👻','🤯','😈','👾'];let fi=0;
+    const fint=setInterval(()=>{document.getElementById('jumpscare-face').textContent=jf[fi%jf.length];fi++;},80);
+    const jt=['GET RICK ROLLED NERD','LMAOOOOO','YOU FELL FOR IT','GG NO RE','RATIO + L + BOZO','SKILL ISSUE','BRUH','GET DUNKED ON'];let ti=0;
+    const tint=setInterval(()=>{document.getElementById('jumpscare-text').textContent=jt[ti%jt.length];ti++;},200);
+    setTimeout(()=>{clearInterval(fint);clearInterval(tint);js.classList.remove('show');clearAll();document.body.classList.remove('chaos');document.body.style.background='#000';document.body.style.transform='';startDVD();},3000);
+  },14000);
+}
+
+// =====================
+// PHASE 4: DVD SCREENSAVER (~15s)
+// =====================
+function startDVD(){
   document.getElementById('fake-taskbar').classList.remove('show');
+  const ss=document.getElementById('screensaver');ss.classList.add('show');
+  const logo=document.getElementById('dvd-logo');
+  const colors=['#f00','#0f0','#00f','#ff0','#f0f','#0ff','#f60','#6f0'];
+  let x=50,y=100,dx=2.5,dy=1.8,ci=0;
+  const dvdInt=setInterval(()=>{
+    x+=dx;y+=dy;
+    const lw=logo.offsetWidth,lh=logo.offsetHeight,sw=window.innerWidth,sh=window.innerHeight;
+    if(x<=0||x+lw>=sw){dx*=-1;ci=(ci+1)%colors.length;logo.style.color=colors[ci];}
+    if(y<=0||y+lh>=sh){dy*=-1;ci=(ci+1)%colors.length;logo.style.color=colors[ci];}
+    logo.style.left=x+'px';logo.style.top=y+'px';
+  },16);
+  phaseSkip=()=>{clearInterval(dvdInt);ss.classList.remove('show');startConspiracy();};
+  setTimeout(phaseSkip,15000);
+}
 
-  const elapsed = Math.round((Date.now() - chaosStartTime) / 1000);
-  document.getElementById('time-wasted').textContent = elapsed;
-
-  const final = document.getElementById('final-screen');
-  final.classList.add('show');
-
-  // Confetti explosion
-  const confettiArea = document.getElementById('final-confetti-area');
-  const confetti = ['🎉','🎊','🎈','⭐','💫','✨','🌟','🎀','🏆','💎','🔥','🌶️'];
-  setInterval(()=>{
-    for(let i=0;i<4;i++){
-      const el = document.createElement('div');
-      el.style.cssText = `
-        position:fixed;
-        left:${Math.random()*100}vw;
-        top:-40px;
-        font-size:${20+Math.random()*30}px;
-        pointer-events:none;
-        z-index:59999;
-        animation:emojiRain ${1+Math.random()*2}s linear forwards;
-      `;
-      el.textContent = confetti[Math.floor(Math.random()*confetti.length)];
-      confettiArea.appendChild(el);
-      setTimeout(()=>el.remove(), 3000);
-    }
-  }, 100);
-
-  // Title cycles
-  const finalTitles = [
-    '🏆 CONGRATULATIONS!! 🏆<br>YOU SURVIVED THE WEBSITE',
-    '🌶️ YOU ARE NOW ONE OF US 🌶️<br>THERE IS NO GOING BACK',
-    '💀 RIP YOUR SANITY 💀<br>2001 - TODAY',
-    '🎊 ACHIEVEMENT UNLOCKED 🎊<br>"WITNESSED THE UNSEEABLE"',
+// =====================
+// PHASE 5: CONSPIRACY BOARD (~18s)
+// =====================
+function startConspiracy(){
+  const c=document.getElementById('conspiracy');c.classList.add('show');
+  const notes=[
+    {text:'The "latinas" are all AI generated by the government',color:'#fffde7',left:'8%',top:'15%'},
+    {text:'Site was founded by the Illuminati in 2001 (same year as 9/11)',color:'#fce4ec',left:'28%',top:'10%'},
+    {text:'Every click sends your soul data to the CIA',color:'#e8f5e9',left:'55%',top:'18%'},
+    {text:'The visitor counter is connected to a NUCLEAR REACTOR',color:'#e3f2fd',left:'72%',top:'12%'},
+    {text:'"HotLatinas4U" is an anagram of something VERY DISTURBING',color:'#fff3e0',left:'12%',top:'45%'},
+    {text:'The loading bar in all your apps is actually this website loading',color:'#f3e5f5',left:'40%',top:'50%'},
+    {text:'The music note at the bottom left is actually spying on you',color:'#fffde7',left:'65%',top:'48%'},
+    {text:'THEY KNOW YOU ARE READING THIS',color:'#ffcdd2',left:'30%',top:'72%'},
+    {text:'The "FREE RINGTONES" ad contains the entire Bible encoded in binary',color:'#e8f5e9',left:'55%',top:'68%'},
+    {text:'Every time you scroll, a new dimension is created',color:'#e3f2fd',left:'8%',top:'68%'},
+    {text:'George Washington was on this website in 1776',color:'#fff3e0',left:'75%',top:'70%'},
   ];
-  let titleIdx = 0;
-  setInterval(()=>{
-    titleIdx++;
-    document.getElementById('final-title').innerHTML = finalTitles[titleIdx % finalTitles.length];
-  }, 2500);
+  notes.forEach(n=>{const el=document.createElement('div');el.className='sticky-note';el.style.cssText=`left:${n.left};top:${n.top};background:${n.color};transform:rotate(${(Math.random()-.5)*10}deg);`;el.textContent=n.text;c.appendChild(el);});
+  // Red strings connecting notes
+  for(let i=0;i<6;i++){const el=document.createElement('div');el.className='red-string';el.style.cssText=`left:${Math.random()*80+10}%;top:${Math.random()*60+10}%;width:${Math.random()*200+100}px;transform:rotate(${Math.random()*60-30}deg);`;c.appendChild(el);}
+  phaseSkip=()=>{c.querySelectorAll('.sticky-note,.red-string').forEach(e=>e.remove());c.classList.remove('show');startQuiz();};
+  setTimeout(phaseSkip,18000);
+}
+
+// =====================
+// PHASE 6: QUIZ SHOW (~20s)
+// =====================
+const quizData=[
+  {q:'What is the capital of HotLatinas4U.net?',opts:['Your heart','Error 404','The Cloud','www'],correct:0,roast:'WRONG!! It\'s Your Heart!! You fool!!'},
+  {q:'How many Latinas are currently within 2 miles of you?',opts:['47','0 (you lied)','Over 9000','NULL'],correct:1,roast:'INCORRECT!! The answer is 0!! This site is fake!!'},
+  {q:'What does SSL stand for on this website?',opts:['Secure Socket Layer','Super Sexy Latinas','Scam Site Lies','Silly Sausage Lol'],correct:2,roast:'WRONG!! It stands for SCAM SITE LIES!! How could you not know this!!'},
+  {q:'What year did the internet peak?',opts:['2003 (Flash games era)','Never','1997 (GeoCities)','It is currently peaking'],correct:0,roast:'INCORRECT!! The answer is 2003!! Everyone knows this!!'},
+  {q:'What is 9 + 10?',opts:['19','21','Potato','ur mom'],correct:1,roast:'WRONG!! The answer is 21!! You stupid!!'},
+];
+let qIdx=0,qScore=0;
+function startQuiz(){
+  qIdx=0;qScore=0;
+  document.getElementById('quiz-screen').classList.add('show');
+  showQuestion();
+}
+function showQuestion(){
+  if(qIdx>=quizData.length){endQuiz();return;}
+  const q=quizData[qIdx];
+  document.getElementById('quiz-title').innerHTML='🎉 QUESTION '+(qIdx+1)+' OF '+quizData.length+'!! 🎉';
+  document.getElementById('quiz-question').textContent=q.q;
+  document.getElementById('quiz-result').textContent='';
+  document.getElementById('quiz-progress').textContent='Score: '+qScore+' | Question '+(qIdx+1)+'/'+quizData.length;
+  const opts=document.getElementById('quiz-opts');opts.innerHTML='';
+  q.opts.forEach((o,i)=>{const btn=document.createElement('button');btn.className='quiz-opt';btn.textContent=(i===0?'🅰️ ':i===1?'🅱️ ':i===2?'🆑 ':'🆗 ')+o;btn.onclick=()=>answerQuiz(i);opts.appendChild(btn);});
+}
+function answerQuiz(i){
+  const q=quizData[qIdx];
+  const res=document.getElementById('quiz-result');
+  document.querySelectorAll('.quiz-opt').forEach(b=>b.disabled=true);
+  if(i===q.correct){qScore++;res.textContent='✅ CORRECT!! (we\'re shocked too)';res.style.color='#0f0';}
+  else{res.textContent='❌ '+q.roast;res.style.color='#f44';}
+  qIdx++;setTimeout(showQuestion,2200);
+}
+function endQuiz(){
+  document.getElementById('quiz-question').textContent='QUIZ OVER!!';
+  document.getElementById('quiz-opts').innerHTML='';
+  document.getElementById('quiz-result').textContent='Final score: '+qScore+'/'+quizData.length+' — '+(qScore>=3?'still a loser':'absolute disgrace');
+  phaseSkip=()=>{document.getElementById('quiz-screen').classList.remove('show');startLoadingHell();};
+  setTimeout(phaseSkip,3000);
+}
+
+// =====================
+// PHASE 7: LOADING HELL (~25s)
+// =====================
+function startLoadingHell(){
+  document.getElementById('loading-hell').classList.add('show');
+  const statuses=[
+    'Initializing chaos module...','Loading regrets...','Compiling your mistakes...','Downloading more RAM...',
+    'Searching for your dignity... not found','Installing HotLatinas4U Toolbar™...','Uploading your browsing history to your mom...',
+    'Reticulating splines (again)...','Preparing the next disaster...','Almost done... psych!',
+    'Loading... (0%)','Loading... (still 0%)','Loading... (somehow -3%)','LOADING LOADING LOADING',
+    'Sending your location to everyone...','Encrypting your soul...','Defragmenting your life choices...',
+    'Please wait... or don\'t. We don\'t care.','Syncing with the mothership...','Generating fake progress...',
+  ];
+  const logLines=['[OK] chaos.dll loaded','[OK] regret.sys initialized','[WARN] dignity.exe not found','[ERROR] braincell.dll missing','[OK] fakeloading.bat running','[WARN] this is taking forever','[ERROR] time.exe has stopped','[OK] another_phase.exe queued','[INFO] user still here somehow','[WARN] sanity levels critical'];
+  let pct=0,si=0,li=0;
+  const bar=document.getElementById('loading-bar-inner');
+  const pctEl=document.getElementById('loading-pct');
+  const statEl=document.getElementById('loading-status');
+  const logEl=document.getElementById('loading-log');
+
+  const loadInt=setInterval(()=>{
+    // Fake stalling: goes up, then back, then fast, then stuck
+    const roll=Math.random();
+    if(pct<33)pct+=roll>.3?1:0;
+    else if(pct<34){/* stuck at 33% for a bit */if(Math.random()>.97)pct+=.5;}
+    else if(pct<66)pct+=roll>.4?1.5:0;
+    else if(pct<67){if(Math.random()>.97)pct+=.5;}
+    else if(pct<99)pct+=roll>.5?.8:0;
+    else pct=99;
+    bar.style.width=pct+'%';
+    pctEl.textContent=Math.floor(pct)+'%';
+    if(Math.random()>.6){statEl.textContent=statuses[si%statuses.length];si++;}
+    if(Math.random()>.8){const line=document.createElement('div');line.style.cssText='font-size:10px;color:#060;line-height:1.5';line.textContent=logLines[li%logLines.length];li++;logEl.appendChild(line);logEl.scrollTop=logEl.scrollHeight;}
+  },300);
+
+  // After 25s, "100%" and move on
+  setTimeout(()=>{clearInterval(loadInt);bar.style.width='100%';pctEl.textContent='100%';statEl.textContent='✅ Complete! (loading something worse)';setTimeout(()=>{document.getElementById('loading-hell').classList.remove('show');startAntivirus();},1500);},25000);
+}
+
+// =====================
+// PHASE 8: ANTIVIRUS SCAN (~20s)
+// =====================
+const fakeFiles=[
+  'C:\\Windows\\System32\\brain.dll','C:\\Users\\You\\soul.exe','C:\\HotLatinas4U\\data\\definitely_real.mp4',
+  'C:\\Windows\\dignity.sys','C:\\Users\\You\\Desktop\\homework.doc','C:\\secrets\\moms_spaghetti.txt',
+  'C:\\program files\\regret\\uninstall.exe','C:\\users\\you\\downloads\\totally_not_a_virus.exe',
+  'C:\\Windows\\SysWOW64\\libido.dll','C:\\Users\\You\\music\\rickroll.mp3',
+  'C:\\Games\\minecraft\\dirt.block','C:\\Windows\\temp\\your_future.tmp',
+  'C:\\Users\\You\\Desktop\\resume_final_FINAL_v3.docx','C:\\hotlatinas4u\\virus\\cute.jpg',
+  'C:\\Windows\\oops.exe','C:\\program data\\embarrassment\\2009.log',
+];
+const fakeThreats=[
+  {name:'Trojan.HotLatinas4U',sev:'CRITICAL',loc:'C:\\brain.exe'},
+  {name:'Adware.FakeLatina.Gen',sev:'HIGH',loc:'C:\\Users\\You\\soul.dll'},
+  {name:'Spyware.MomFinder.A',sev:'CRITICAL',loc:'C:\\Windows\\System32\\dignity.sys'},
+  {name:'Ransomware.Cringe.2024',sev:'HIGH',loc:'C:\\Users\\You\\personality.exe'},
+  {name:'Worm.RegretPropagator',sev:'CRITICAL',loc:'C:\\pagefile.sys'},
+  {name:'Virus.SkillIssue.B',sev:'MEDIUM',loc:'C:\\Games\\fortnite\\brain.dll'},
+  {name:'Trojan.L_Plus_Bozo',sev:'CRITICAL',loc:'C:\\Windows\\ratio.bat'},
+];
+function startAntivirus(){
+  document.getElementById('antivirus-screen').classList.add('show');
+  let fi=0,ti=0,scanPct=0;
+  const scanBar=document.getElementById('av-scan-bar');
+  const fileList=document.getElementById('av-file-list');
+  const threatCount=document.getElementById('av-threat-count');
+  const threatsEl=document.getElementById('av-threats');
+  const currFile=document.getElementById('av-current-file');
+
+  const scanInt=setInterval(()=>{
+    scanPct=Math.min(100,scanPct+(Math.random()*2));
+    scanBar.style.width=scanPct+'%';
+    if(fi<fakeFiles.length){currFile.textContent='Scanning: '+fakeFiles[fi];const line=document.createElement('div');line.style.color='#0f0';line.style.fontFamily="'Courier New',monospace";line.style.fontSize='10px';line.textContent='[OK] '+fakeFiles[fi];fileList.appendChild(line);fileList.scrollTop=fileList.scrollHeight;fi++;}
+    if(Math.random()>.75&&ti<fakeThreats.length){const t=fakeThreats[ti];ti++;const item=document.createElement('div');item.className='av-threat-item';item.textContent=`⚠️ ${t.name} [${t.sev}] — ${t.loc}`;threatsEl.appendChild(item);threatCount.textContent=ti+' THREAT'+(ti>1?'S':'')+' FOUND!!';threatsEl.scrollTop=threatsEl.scrollHeight;}
+  },300);
+
+  phaseSkip=()=>{clearInterval(scanInt);document.getElementById('antivirus-screen').classList.remove('show');startKaraoke();};
+  setTimeout(phaseSkip,20000);
+}
+
+// =====================
+// PHASE 9: RICKROLL KARAOKE (~30s)
+// =====================
+const karaokeLines=[
+  {text:'We\'re no strangers to love',lit:[0,1,2,3,4]},
+  {text:'You know the rules and so do I',lit:[0,1,2,3,4,5,6,7]},
+  {text:'A full commitment\'s what I\'m thinking of',lit:[0,1,2,3,4]},
+  {text:'You wouldn\'t get this from any other guy',lit:[0,1,2,3,4,5,6,7,8]},
+  {text:'I just wanna tell you how I\'m feeling',lit:[0,1,2,3,4,5,6,7]},
+  {text:'Gotta make you understand',lit:[0,1,2,3,4]},
+  {text:'Never gonna give you up 🎤',lit:[0,1,2,3,4,5]},
+  {text:'Never gonna let you down 🎶',lit:[0,1,2,3,4,5]},
+  {text:'Never gonna run around and desert you 💃',lit:[0,1,2,3,4,5,6,7,8]},
+  {text:'Never gonna make you cry 😭',lit:[0,1,2,3,4]},
+  {text:'Never gonna say goodbye 👋',lit:[0,1,2,3,4]},
+  {text:'Never gonna tell a lie and hurt you ❤️',lit:[0,1,2,3,4,5,6,7,8]},
+  {text:'We\'ve known each other for so long',lit:[0,1,2,3,4,5,6,7]},
+  {text:'Your heart\'s been aching but you\'re too shy to say it',lit:[0,1,2,3,4,5,6,7,8,9,10]},
+  {text:'Inside we both know what\'s been going on',lit:[0,1,2,3,4,5,6]},
+  {text:'We know the game and we\'re gonna play it',lit:[0,1,2,3,4,5,6,7]},
+  {text:'LMAOOOOO YOU GOT RICKROLLED 💀',lit:[0,1,2,3,4,5]},
+  {text:'THIS WEBSITE IS STILL GOING 😂',lit:[0,1,2,3,4,5]},
+  {text:'HOW LONG HAVE YOU BEEN HERE??',lit:[0,1,2,3,4,5]},
+  {text:'...anyway back to chaos 🔥',lit:[0,1,2,3,4]},
+];
+function startKaraoke(){
+  document.getElementById('karaoke-screen').classList.add('show');
+  // Disco balls
+  for(let i=0;i<8;i++){const d=document.createElement('div');d.className='disco-ball';d.textContent=['🪩','⭐','✨','💫'][i%4];d.style.top=(10+Math.random()*80)+'vh';d.style.left=(10+Math.random()*80)+'vw';d.style.animationDelay=(i*.3)+'s';document.getElementById('karaoke-screen').appendChild(d);}
+  let li=0;const fill=document.getElementById('karaoke-fill');const lineEl=document.getElementById('karaoke-line');
+  const totalDur=karaokeLines.length*1500;
+  const lineInt=setInterval(()=>{
+    if(li>=karaokeLines.length){clearInterval(lineInt);phaseSkip&&phaseSkip();return;}
+    const kl=karaokeLines[li];const words=kl.text.split(' ');
+    lineEl.innerHTML=words.map((w,i)=>`<span class="${kl.lit.includes(i)?'lit':'dim'}">${w} </span>`).join('');
+    fill.style.width=((li+1)/karaokeLines.length*100)+'%';
+    li++;
+  },1500);
+  phaseSkip=()=>{clearInterval(lineInt);document.querySelectorAll('#karaoke-screen .disco-ball').forEach(e=>e.remove());document.getElementById('karaoke-screen').classList.remove('show');startWindowsUpdate();};
+  setTimeout(phaseSkip,totalDur+500);
+}
+
+// =====================
+// PHASE 10: WINDOWS UPDATE (~25s)
+// =====================
+function startWindowsUpdate(){
+  document.getElementById('win-update').classList.add('show');
+  const wuStatuses=[
+    'Getting things ready...','Downloading update 1 of ∞...','Installing: HotLatinas4U_Toolbar_v9.exe...','Configuring: brain.dll (not found)...',
+    'Applying regret patches...','Optimizing your life choices... (failed)','Removing dignity (100%)...','Installing: MoreChaos.sys...',
+    'Checking for more updates... (yes, more)','Restarting soon... (we won\'t)','Update failed. Retrying... (forever)',
+    'Installing critical update: YourFault.exe...','Downloading: whoasked.dll...','0% complete (still)','This is fine. 🔥',
+  ];
+  let pct=0,si=0;const wuPct=document.getElementById('wu-pct');const wuBar=document.getElementById('wu-bar');const wuStat=document.getElementById('wu-status');
+  const wuInt=setInterval(()=>{
+    // Crawls, stalls, goes backwards sometimes
+    const delta=(Math.random()-.2)*2;pct=Math.max(0,Math.min(99,pct+delta));
+    wuPct.textContent=Math.floor(pct)+'%';wuBar.style.width=pct+'%';
+    if(Math.random()>.5){wuStat.textContent=wuStatuses[si%wuStatuses.length];si++;}
+  },600);
+  phaseSkip=()=>{clearInterval(wuInt);wuPct.textContent='100%';wuBar.style.width='100%';wuStat.textContent='✅ Update complete! Preparing next problem...';setTimeout(()=>{document.getElementById('win-update').classList.remove('show');startBSOD2();},1500);};
+  setTimeout(phaseSkip,25000);
+}
+
+// =====================
+// BSOD 2
+// =====================
+function startBSOD2(){
+  document.getElementById('bsod2').classList.add('show');
+  let pct=5;const bar=document.getElementById('bsod2-progress');
+  const bi=setInterval(()=>{pct+=Math.floor(Math.random()*9)+1;if(pct>100)pct=100;const f=Math.floor(pct/5),e=20-f;bar.textContent='█'.repeat(f)+'░'.repeat(e)+' '+pct+'%';
+    if(pct>=100){clearInterval(bi);document.getElementById('bsod2').querySelector('p').innerHTML='<span style="font-size:50px">💀</span><br>We\'re not even sorry.';setTimeout(()=>{document.getElementById('bsod2').classList.remove('show');startReboot2();},2500);}
+  },350);
+}
+
+// =====================
+// REBOOT 2
+// =====================
+function startReboot2(){
+  const rb=document.getElementById('fake-reboot');rb.classList.add('show');
+  document.getElementById('reboot-text').textContent='Rebooting for the 2nd time...';
+  document.getElementById('reboot-logo').textContent='🔄';
+  const rmsgs2=['Loading your problems...','Reinstalling chaos...','Please hold... (we won\'t)','Applying maximum cringe...','Almost there... (we promise this time)','Summoning the final boss...','Preparing grand finale...'];
+  let ri=0;const rint=setInterval(()=>{document.getElementById('reboot-text').textContent=rmsgs2[ri%rmsgs2.length];ri++;},600);
+  let di=0;const ds=['● ○ ○','○ ● ○','○ ○ ●','● ● ●'];const dint=setInterval(()=>{document.getElementById('reboot-dots').textContent=ds[di%4];di++;},400);
+  setTimeout(()=>{clearInterval(rint);clearInterval(dint);rb.classList.remove('show');startChaos2();},4000);
+}
+
+// =====================
+// PHASE 11: CHAOS WAVE 2 (EVERYTHING AT ONCE) (~15s)
+// =====================
+function startChaos2(){
+  document.body.classList.add('chaos');
+  document.getElementById('chaos-overlay').classList.add('active');
+  const ei=spawnEmoji(5,80);
+  spawnGlitch(['THE END IS NEAR','FINAL FORM UNLOCKED','MAXIMUM CHAOS','YOU SHOULD HAVE LEFT','GG NO RE','L + RATIO + FELL OFF','THIS IS THE FINALE','SKILL ISSUE','OK BOOMER','BASED','NO CAP','BRUH MOMENT'],150,15000);
+  for(let i=0;i<10;i++){const tear=document.createElement('div');tear.className='screen-tear';tear.style.top=Math.random()*100+'vh';tear.style.animationDuration=(.08+Math.random()*.2)+'s';document.body.appendChild(tear);}
+  // Crazy windows
+  const finalWins=[
+    {icon:'🏆',title:'YOU ACTUALLY STAYED',msg:'You have been here for over\n2 minutes. This is a cry for help.\nWe\'ve called your mom.',btn:'Please don\'t'},
+    {icon:'🧠',title:'BRAIN.EXE HAS QUIT',msg:'Your remaining brain cells\nhave filed for resignation.\nEffective immediately.',btn:'I understand'},
+    {icon:'🌈',title:'CONGRATULATIONS',msg:'You are the 1st person to\never reach this point.\nYour prize is more chaos.',btn:'no'},
+    {icon:'🔮',title:'PROPHECY FULFILLED',msg:'It was written in the ancient\nscrolls that one day a user\nwould witness all of this.',btn:'what scrolls'},
+    {icon:'👴',title:'MESSAGE FROM 2001',msg:'Greetings from the year 2001!\nWe built this site on Geocities.\nPlease press any key to continue.',btn:'*presses key*'},
+    {icon:'🛸',title:'UFO DETECTED',msg:'Aliens are watching you\nuse this website.\nThey are confused.',btn:'same'},
+    {icon:'📺',title:'THIS HAS BEEN',msg:'A Chaos Production™\nNo sanity was preserved\nin the making of this site.',btn:'I survived'},
+    {icon:'🍝',title:'HIS NOODLY APPENDAGE',msg:'The Flying Spaghetti Monster\nhas blessed this website.\nRAmen.',btn:'RAmen'},
+  ];
+  finalWins.forEach((w,i)=>setTimeout(()=>makeWindow(w.icon,w.title,w.msg,w.btn),i*500+200));
+  // More floating heads, bigger
+  const bigHeads=['👹','🤡','💀','😈','👾','🫃','🤯','💩','🦄','🎃'];
+  bigHeads.forEach((h,i)=>{const el=document.createElement('div');el.className='float-head';el.textContent=h;el.style.top=(5+Math.random()*80)+'vh';el.style.left=(5+Math.random()*85)+'vw';el.style.fontSize=clamp(40,70)+'px';el.style.animationDelay=(i*.3)+'s';document.body.appendChild(el);});
+  function clamp(a,b){return a+Math.floor(Math.random()*(b-a));}
+  let bgIdx2=0;const bgCols2=['#f00','#0f0','#00f','#ff0','#f0f','#0ff','#f60','#60f'];
+  const bgInt2=setInterval(()=>{document.body.style.background=bgCols2[bgIdx2%bgCols2.length];bgIdx2++;},100);
+  // Second jumpscare
+  setTimeout(()=>{
+    clearInterval(ei);clearInterval(bgInt2);clearAll();
+    document.body.classList.remove('chaos');document.getElementById('chaos-overlay').classList.remove('active');document.body.style.background='#000';
+    const js=document.getElementById('jumpscare');js.classList.add('show');
+    document.getElementById('jumpscare-face').textContent='🏆';
+    document.getElementById('jumpscare-text').textContent='THAT\'S IT. YOU WIN. GAME OVER.';
+    setTimeout(()=>{js.classList.remove('show');startGameOver();},3000);
+  },15000);
+}
+
+// =====================
+// PHASE 12: GAME OVER SCREEN (~8s)
+// =====================
+function startGameOver(){
+  document.getElementById('go-time').textContent=Math.round((Date.now()-chaosStartTime)/1000);
+  document.getElementById('game-over').classList.add('show');
+  // Falling stars
+  setInterval(()=>{const s=document.createElement('div');s.className='go-star';s.textContent=['⭐','💫','✨','🌟','❤️'][Math.floor(Math.random()*5)];s.style.left=Math.random()*100+'vw';s.style.top=Math.random()*100+'vh';s.style.animationDuration=(1+Math.random()*2)+'s';document.body.appendChild(s);setTimeout(()=>s.remove(),3000);},200);
+  // Coin insert blink
+  let coinIdx=0;const coins=['INSERT COIN TO CONTINUE','PRESS START','GAME OVER','YOU DIED','F TO PAY RESPECTS','PRESS F','💀💀💀'];
+  const coinInt=setInterval(()=>{document.getElementById('go-insert').textContent=coins[coinIdx%coins.length];coinIdx++;},700);
+  setTimeout(()=>{clearInterval(coinInt);document.getElementById('game-over').classList.remove('show');startFinalScreen();},8000);
+}
+
+// =====================
+// FINAL SCREEN
+// =====================
+function startFinalScreen(){
+  clearAll();document.body.className='';document.body.style.cssText='';
+  document.getElementById('time-wasted').textContent=Math.round((Date.now()-chaosStartTime)/1000);
+  document.getElementById('final-screen').classList.add('show');
+  const confettiArea=document.getElementById('final-confetti-area');
+  const confetti=['🎉','🎊','🎈','⭐','💫','✨','🌟','🎀','🏆','💎','🔥','🌶️','👑','🥇'];
+  setInterval(()=>{for(let i=0;i<5;i++){const el=document.createElement('div');el.style.cssText=`position:fixed;left:${Math.random()*100}vw;top:-40px;font-size:${20+Math.random()*30}px;pointer-events:none;z-index:59999;animation:emojiRain ${1+Math.random()*2}s linear forwards;`;el.textContent=confetti[Math.floor(Math.random()*confetti.length)];confettiArea.appendChild(el);setTimeout(()=>el.remove(),3000);}},100);
+  const titles=['🏆 CONGRATULATIONS!! 🏆<br>YOU SURVIVED THE WEBSITE','🌶️ YOU ARE NOW ONE OF US 🌶️<br>THERE IS NO GOING BACK','💀 RIP YOUR SANITY 💀<br>2001 - TODAY','🎊 ACHIEVEMENT UNLOCKED 🎊<br>"WITNESSED THE UNSEEABLE"','👑 YOU ARE THE CHOSEN ONE 👑<br>NONE SHALL KNOW WHY','🧠 ERROR: BRAIN NOT FOUND 🧠<br>PLEASE REBOOT AND TRY AGAIN'];
+  let ti=0;setInterval(()=>{ti++;document.getElementById('final-title').innerHTML=titles[ti%titles.length];},2500);
 }
 </script>
 </body>
