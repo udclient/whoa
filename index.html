@@ -551,6 +551,420 @@
     margin-top: 20px;
   }
 
+  /* ===== PHASE 2: FAKE REBOOT ===== */
+  #fake-reboot {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 25000;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-family: 'Courier New', monospace;
+    color: #fff;
+  }
+  #fake-reboot.show { display: flex; }
+  #reboot-logo {
+    font-size: 80px;
+    animation: rebootSpin 2s linear infinite;
+  }
+  @keyframes rebootSpin { to { transform: rotate(360deg); } }
+  #reboot-text { font-size: 20px; color: #aaa; }
+  #reboot-dots { font-size: 28px; color: #00aaff; letter-spacing: 8px; }
+
+  /* ===== PHASE 3: SECOND WAVE ===== */
+  .phase3-text {
+    position: fixed;
+    font-family: Impact, sans-serif;
+    font-size: clamp(30px, 8vw, 90px);
+    color: #fff;
+    z-index: 30000;
+    pointer-events: none;
+    text-align: center;
+    width: 100vw;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    text-shadow: 6px 0 #ff0000, -6px 0 #00ffff, 0 4px #ff00ff;
+    animation: phase3Entrance 0.5s ease-out forwards;
+  }
+  @keyframes phase3Entrance {
+    from { transform: translateY(-50%) scale(3); opacity: 0; }
+    to   { transform: translateY(-50%) scale(1); opacity: 1; }
+  }
+
+  .inverted { filter: invert(1) hue-rotate(180deg); }
+
+  .zoom-in { animation: pageZoom 0.4s ease-in-out infinite alternate; }
+  @keyframes pageZoom { from{transform:scale(1)} to{transform:scale(1.08)} }
+
+  .rotating-page { animation: pageRotate 3s linear infinite; transform-origin: center center; }
+  @keyframes pageRotate { to { transform: rotate(360deg); } }
+
+  /* cursor trail */
+  .cursor-trail {
+    position: fixed;
+    pointer-events: none;
+    z-index: 99999;
+    font-size: 18px;
+    animation: trailFade 0.8s linear forwards;
+  }
+  @keyframes trailFade { to { opacity: 0; transform: scale(2) translateY(-20px); } }
+
+  /* ===== FAKE TASKBAR ===== */
+  #fake-taskbar {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 36px;
+    background: linear-gradient(180deg, #245edc, #1442a0);
+    border-top: 2px solid #6fa7f5;
+    z-index: 28000;
+    align-items: center;
+    padding: 0 4px;
+    gap: 4px;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    color: white;
+    overflow: hidden;
+  }
+  #fake-taskbar.show { display: flex; }
+  .tb-start {
+    background: linear-gradient(90deg, #3c9a3c, #5cb85c);
+    border: 1px outset #7de87d;
+    padding: 3px 10px 3px 6px;
+    border-radius: 0 12px 12px 0;
+    font-weight: bold;
+    font-size: 13px;
+    white-space: nowrap;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .tb-btn {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 2px 8px;
+    border-radius: 3px;
+    white-space: nowrap;
+    cursor: pointer;
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    animation: tbFlash 1s step-end infinite;
+  }
+  @keyframes tbFlash { 50% { background: rgba(255,255,255,0.4); } }
+  .tb-clock {
+    margin-left: auto;
+    background: rgba(0,0,0,0.3);
+    padding: 2px 8px;
+    border: 1px inset rgba(255,255,255,0.2);
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  .tb-tray { font-size: 14px; display: flex; gap: 4px; }
+
+  /* ===== JUMPSCARE ===== */
+  #jumpscare {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    z-index: 50000;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    animation: jumpscareFlash 0.05s step-end infinite;
+  }
+  #jumpscare.show { display: flex; }
+  @keyframes jumpscareFlash {
+    0%  { background: #ff0000; }
+    33% { background: #ffffff; }
+    66% { background: #000000; }
+  }
+  #jumpscare-face {
+    font-size: clamp(80px, 20vw, 200px);
+    animation: faceShake 0.05s linear infinite;
+  }
+  @keyframes faceShake {
+    0%  { transform: translate(0,0) rotate(0deg) scale(1); }
+    25% { transform: translate(-15px,10px) rotate(-5deg) scale(1.1); }
+    50% { transform: translate(15px,-10px) rotate(5deg) scale(0.9); }
+    75% { transform: translate(-10px,-15px) rotate(-3deg) scale(1.05); }
+    100%{ transform: translate(10px,15px) rotate(3deg) scale(0.95); }
+  }
+  #jumpscare-text {
+    font-family: Impact, sans-serif;
+    font-size: clamp(30px, 8vw, 80px);
+    color: #ff0000;
+    text-shadow: 4px 4px 0 #000, -4px -4px 0 #000;
+    text-align: center;
+    animation: faceShake 0.08s linear infinite;
+  }
+
+  /* ===== FINAL SCREEN ===== */
+  #final-screen {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at center, #1a0033 0%, #000 100%);
+    z-index: 60000;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+  }
+  #final-screen.show { display: flex; }
+  #final-title {
+    font-family: Impact, sans-serif;
+    font-size: clamp(28px, 6vw, 64px);
+    color: #ffff00;
+    text-shadow: 4px 4px 0 #cc8800;
+    margin-bottom: 20px;
+    animation: finalPulse 1.5s ease-in-out infinite alternate;
+  }
+  @keyframes finalPulse {
+    from { text-shadow: 4px 4px 0 #cc8800, 0 0 20px #ffff00; }
+    to   { text-shadow: 4px 4px 0 #cc8800, 0 0 60px #ff6600, 0 0 100px #ffff00; }
+  }
+  #final-score {
+    font-size: clamp(18px, 4vw, 40px);
+    color: #fff;
+    margin-bottom: 30px;
+    line-height: 1.8;
+    font-family: 'Courier New', monospace;
+  }
+  #final-score span { color: #00ff88; font-weight: bold; }
+  #replay-btn {
+    background: linear-gradient(135deg, #ff6600, #ff0000);
+    color: white;
+    border: 4px solid #ffff00;
+    padding: 14px 40px;
+    font-family: Impact, sans-serif;
+    font-size: 26px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 0 30px #ff6600;
+    animation: replayBounce 0.7s ease-in-out infinite alternate;
+    text-transform: uppercase;
+  }
+  @keyframes replayBounce { from{transform:scale(1)} to{transform:scale(1.08)} }
+  #final-confetti-area { position: fixed; inset: 0; pointer-events: none; z-index: 59999; }
+
+  /* ===== MATRIX RAIN ===== */
+  #matrix-canvas {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 27000;
+    pointer-events: none;
+    opacity: 0.85;
+  }
+  #matrix-canvas.show { display: block; }
+
+  /* ===== WIGGLE ELEMENTS ===== */
+  .wiggle {
+    animation: wiggleAnim 0.15s ease-in-out infinite alternate;
+  }
+  @keyframes wiggleAnim {
+    from { transform: rotate(-3deg); }
+    to   { transform: rotate(3deg); }
+  }
+
+  /* ===== NYAN TRAIL ===== */
+  #nyan {
+    display: none;
+    position: fixed;
+    font-size: 40px;
+    z-index: 35000;
+    pointer-events: none;
+    top: 30vh;
+    left: -80px;
+    animation: nyanFly 3s linear forwards;
+  }
+  #nyan.show { display: block; }
+  @keyframes nyanFly { to { left: 110vw; } }
+  .nyan-trail-piece {
+    position: fixed;
+    pointer-events: none;
+    z-index: 34999;
+    top: 30vh;
+    font-size: 22px;
+    animation: nyanTrailFade 1.5s linear forwards;
+  }
+  @keyframes nyanTrailFade { to { opacity: 0; transform: scaleX(0.1); } }
+
+  /* ===== EXPLODING CURSOR ===== */
+  .cursor-boom {
+    position: fixed;
+    pointer-events: none;
+    z-index: 99998;
+    font-size: 24px;
+    animation: boomAnim 0.6s ease-out forwards;
+  }
+  @keyframes boomAnim {
+    to { opacity: 0; transform: scale(3) translateY(-30px); }
+  }
+
+  /* ===== SPEECH BUBBLE ===== */
+  .speech-bubble {
+    position: fixed;
+    background: white;
+    border: 3px solid #000;
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    z-index: 40000;
+    pointer-events: none;
+    max-width: 240px;
+    text-align: center;
+    box-shadow: 4px 4px 0 #000;
+    animation: bubbleAppear 0.3s ease-out forwards;
+  }
+  @keyframes bubbleAppear {
+    from { transform: scale(0); }
+    to   { transform: scale(1); }
+  }
+  .speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -14px; left: 20px;
+    border: 7px solid transparent;
+    border-top-color: #000;
+  }
+
+  /* ===== AMONG US ===== */
+  .sus {
+    position: fixed;
+    font-size: 50px;
+    pointer-events: none;
+    z-index: 38000;
+    animation: susWalk 4s linear forwards;
+  }
+  @keyframes susWalk {
+    0%  { left: -60px; top: var(--sus-y); transform: scaleX(1); }
+    49% { left: 110vw; transform: scaleX(1); }
+    50% { left: 110vw; transform: scaleX(-1); }
+    100%{ left: -60px; transform: scaleX(-1); }
+  }
+
+  /* ===== PIXEL CORRUPTION ===== */
+  .pixel-block {
+    position: fixed;
+    pointer-events: none;
+    z-index: 29000;
+    animation: pixelFlash 0.2s step-end infinite;
+  }
+  @keyframes pixelFlash { 0%{opacity:1} 50%{opacity:0} }
+
+  /* ===== PHASE 4: SCREENSAVER ===== */
+  #screensaver { display:none; position:fixed; inset:0; background:#000; z-index:43000; }
+  #screensaver.show { display:block; }
+  #dvd-logo {
+    position:absolute; font-family:Impact,sans-serif; font-size:clamp(30px,6vw,60px);
+    padding:10px 20px; border:4px solid currentColor; border-radius:8px; white-space:nowrap;
+  }
+  #dvd-msg { position:fixed; bottom:20px; left:0; right:0; text-align:center; color:#333; font-family:'Courier New',monospace; font-size:14px; animation:badgeBlink 1s step-end infinite; }
+
+  /* ===== PHASE 5: CONSPIRACY BOARD ===== */
+  #conspiracy { display:none; position:fixed; inset:0; background:#1a0a00; z-index:44000; overflow:hidden; }
+  #conspiracy.show { display:block; }
+  .corkboard { position:absolute; inset:0; background:repeating-linear-gradient(45deg,#2d1500 0px,#2d1500 2px,#1a0a00 2px,#1a0a00 20px); }
+  .sticky-note { position:absolute; padding:10px 12px; font-size:11px; font-weight:bold; box-shadow:4px 4px 8px rgba(0,0,0,0.5); max-width:160px; line-height:1.4; animation:stickyWobble 3s ease-in-out infinite alternate; }
+  @keyframes stickyWobble { from{transform:rotate(-2deg)} to{transform:rotate(2deg)} }
+  .red-string { position:absolute; pointer-events:none; border-top:2px solid rgba(255,0,0,0.6); transform-origin:0 0; }
+  #conspiracy-title { position:fixed; top:10px; left:50%; transform:translateX(-50%); font-family:Impact,sans-serif; font-size:clamp(18px,4vw,40px); color:#ff6600; text-shadow:2px 2px 0 #000; z-index:44001; white-space:nowrap; }
+  #conspiracy-skip { position:fixed; bottom:20px; right:20px; background:#cc0000; color:#fff; border:none; padding:8px 16px; font-size:13px; cursor:pointer; z-index:44002; border-radius:4px; }
+
+  /* ===== PHASE 6: QUIZ SHOW ===== */
+  #quiz-screen { display:none; position:fixed; inset:0; background:linear-gradient(135deg,#000066,#003399); z-index:45000; flex-direction:column; align-items:center; justify-content:center; padding:20px; text-align:center; }
+  #quiz-screen.show { display:flex; }
+  #quiz-title { font-family:Impact,sans-serif; font-size:clamp(22px,5vw,52px); color:#ffff00; text-shadow:3px 3px 0 #000; margin-bottom:6px; }
+  #quiz-host { font-size:clamp(40px,8vw,80px); margin-bottom:6px; animation:rebootSpin 3s linear infinite; }
+  #quiz-question { background:rgba(255,255,255,0.1); border:3px solid #ffff00; border-radius:12px; padding:14px 20px; color:#fff; font-size:clamp(13px,2.5vw,22px); margin-bottom:16px; max-width:600px; }
+  .quiz-opts { display:grid; grid-template-columns:1fr 1fr; gap:10px; max-width:600px; width:100%; }
+  .quiz-opt { background:linear-gradient(135deg,#cc0000,#ff3300); border:3px solid #ff6600; border-radius:8px; padding:10px; color:#fff; font-size:clamp(11px,2vw,17px); font-weight:bold; cursor:pointer; transition:transform 0.1s; }
+  .quiz-opt:hover { transform:scale(1.05); }
+  #quiz-result { font-size:clamp(16px,3vw,32px); color:#00ff00; font-weight:bold; margin-top:12px; min-height:44px; }
+  #quiz-progress { color:#aaa; font-size:12px; margin-top:8px; }
+
+  /* ===== PHASE 7: LOADING HELL ===== */
+  #loading-hell { display:none; position:fixed; inset:0; background:#000; z-index:46000; flex-direction:column; align-items:center; justify-content:center; gap:14px; font-family:'Courier New',monospace; color:#00ff00; }
+  #loading-hell.show { display:flex; }
+  #loading-title { font-size:clamp(14px,3vw,26px); color:#00ff00; text-align:center; }
+  #loading-bar-outer { width:min(80vw,500px); height:26px; border:3px solid #00ff00; border-radius:4px; overflow:hidden; position:relative; }
+  #loading-bar-inner { height:100%; width:0%; background:linear-gradient(90deg,#00aa00,#00ff00); transition:width 0.3s linear; box-shadow:0 0 10px #00ff00; }
+  #loading-pct { font-size:22px; color:#00ff00; }
+  #loading-status { font-size:12px; color:#aaa; max-width:500px; text-align:center; min-height:36px; }
+  #loading-log { font-size:10px; color:#006600; max-width:500px; width:100%; height:70px; overflow:hidden; text-align:left; line-height:1.5; }
+
+  /* ===== PHASE 8: ANTIVIRUS ===== */
+  #antivirus-screen { display:none; position:fixed; inset:0; background:linear-gradient(135deg,#1a1a1a,#2d2d2d); z-index:47000; flex-direction:column; align-items:center; justify-content:flex-start; overflow:hidden; }
+  #antivirus-screen.show { display:flex; }
+  #av-titlebar { width:100%; background:linear-gradient(90deg,#cc0000,#ff3300); padding:6px 12px; display:flex; align-items:center; gap:10px; color:#fff; font-family:Arial,sans-serif; font-size:14px; font-weight:bold; }
+  #av-body { padding:16px; width:100%; max-width:680px; margin:0 auto; color:#fff; font-family:Arial,sans-serif; }
+  #av-scan-bar-outer { width:100%; height:20px; background:#333; border:1px solid #555; border-radius:3px; overflow:hidden; margin:10px 0; }
+  #av-scan-bar { height:100%; width:0%; background:linear-gradient(90deg,#00aa00,#00ff00); transition:width 0.2s; }
+  #av-file-list { background:#111; border:1px solid #333; padding:8px; height:160px; overflow-y:auto; font-family:'Courier New',monospace; font-size:10px; color:#00ff00; margin-bottom:10px; }
+  #av-threat-count { font-size:26px; color:#ff0000; font-weight:bold; text-align:center; animation:badgeBlink 0.5s step-end infinite; }
+  .av-threat-item { color:#ff4444; font-family:'Courier New',monospace; font-size:10px; padding:2px 0; border-bottom:1px solid #222; }
+  #av-threats { max-height:100px; overflow-y:auto; margin-bottom:10px; }
+  .av-btn { background:#cc0000; color:#fff; border:none; padding:8px 20px; font-size:13px; font-weight:bold; cursor:pointer; border-radius:4px; margin:4px; }
+  .av-btn:hover { background:#ff0000; }
+
+  /* ===== PHASE 9: KARAOKE ===== */
+  #karaoke-screen { display:none; position:fixed; inset:0; background:radial-gradient(ellipse at center,#220044 0%,#000 100%); z-index:48000; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px; }
+  #karaoke-screen.show { display:flex; }
+  #karaoke-dude { font-size:clamp(50px,10vw,110px); animation:karaokeBounce 0.5s ease-in-out infinite alternate; }
+  @keyframes karaokeBounce { from{transform:rotate(-10deg) scale(1)} to{transform:rotate(10deg) scale(1.1)} }
+  #karaoke-line { font-family:Impact,sans-serif; font-size:clamp(18px,4.5vw,52px); color:#fff; text-shadow:4px 4px 0 #000; margin:14px 0; min-height:70px; max-width:700px; }
+  #karaoke-line .lit { color:#ffff00; text-shadow:0 0 20px #ffff00, 4px 4px 0 #cc8800; }
+  #karaoke-line .dim { color:#444; }
+  #karaoke-sub { color:#aaa; font-size:13px; }
+  .disco-ball { position:fixed; pointer-events:none; z-index:47999; font-size:clamp(16px,3vw,30px); animation:discoBall 1s linear infinite; }
+  @keyframes discoBall { 0%{transform:rotate(0deg) translateX(40px) rotate(0deg)} 100%{transform:rotate(360deg) translateX(40px) rotate(-360deg)} }
+  #karaoke-progress { width:min(80vw,400px); height:8px; background:#333; border-radius:4px; overflow:hidden; margin-top:10px; }
+  #karaoke-fill { height:100%; background:linear-gradient(90deg,#ff00ff,#00ffff); width:0%; transition:width 0.1s linear; }
+
+  /* ===== PHASE 10: WINDOWS UPDATE ===== */
+  #win-update { display:none; position:fixed; inset:0; background:#0078d4; z-index:49000; flex-direction:column; align-items:center; justify-content:center; font-family:'Segoe UI',Arial,sans-serif; color:#fff; text-align:center; padding:40px; }
+  #win-update.show { display:flex; }
+  #wu-logo { font-size:80px; margin-bottom:20px; animation:rebootSpin 4s linear infinite; }
+  #wu-title { font-size:clamp(20px,4vw,42px); font-weight:300; margin-bottom:8px; }
+  #wu-sub { font-size:15px; opacity:0.8; margin-bottom:36px; }
+  #wu-pct { font-size:clamp(38px,8vw,80px); font-weight:100; margin-bottom:10px; }
+  #wu-bar-outer { width:min(70vw,400px); height:6px; background:rgba(255,255,255,0.3); border-radius:3px; overflow:hidden; margin-bottom:20px; }
+  #wu-bar { height:100%; width:0%; background:#fff; transition:width 0.5s linear; border-radius:3px; }
+  #wu-status { font-size:13px; opacity:0.7; max-width:400px; min-height:40px; }
+  #wu-warning { font-size:11px; opacity:0.5; margin-top:36px; }
+
+  /* ===== PHASE 11: GAME OVER ===== */
+  #game-over { display:none; position:fixed; inset:0; background:#000; z-index:50000; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:30px; }
+  #game-over.show { display:flex; }
+  #go-title { font-family:Impact,sans-serif; font-size:clamp(40px,10vw,120px); color:#ff0000; text-shadow:6px 6px 0 #880000, 0 0 40px #ff0000; animation:goFlash 0.4s step-end infinite; margin-bottom:10px; }
+  @keyframes goFlash { 50%{color:#ff6600; text-shadow:6px 6px 0 #cc4400, 0 0 60px #ff6600;} }
+  #go-score { font-family:'Courier New',monospace; font-size:clamp(13px,2.5vw,22px); color:#fff; line-height:2.2; margin-bottom:20px; }
+  #go-score .hi { color:#ffff00; }
+  #go-insert { font-family:Impact,sans-serif; font-size:clamp(16px,3.5vw,34px); color:#ffff00; animation:badgeBlink 0.6s step-end infinite; }
+  .go-star { position:fixed; pointer-events:none; z-index:49999; font-size:24px; animation:goStar 2s linear infinite; }
+  @keyframes goStar { to{transform:translateY(-110vh) rotate(720deg); opacity:0;} }
+
+  /* ===== FLOATING HEADS ===== */
+  .float-head { position:fixed; pointer-events:none; z-index:36000; font-size:clamp(30px,5vw,65px); animation:headFloat 5s ease-in-out infinite; }
+  @keyframes headFloat { 0%,100%{transform:translateY(0) rotate(0deg)} 33%{transform:translateY(-30px) rotate(12deg)} 66%{transform:translateY(20px) rotate(-8deg)} }
+
+  /* ===== SECOND BSOD ===== */
+  #bsod2 { display:none; position:fixed; inset:0; background:#0000aa; color:#fff; font-family:'Courier New',monospace; padding:40px; z-index:51000; flex-direction:column; gap:16px; }
+  #bsod2.show { display:flex; }
+  #bsod2 h1 { background:#aaa; color:#0000aa; font-size:clamp(16px,3.5vw,28px); padding:4px 10px; font-family:'Courier New',monospace; }
+  #bsod2 p { font-size:13px; line-height:1.8; max-width:600px; }
+
   /* ===== MISC ===== */
   .music-note {
     position: fixed;
@@ -761,6 +1175,146 @@
       <div id="countdown-bar"></div>
     </div>
     <div class="popup-warning">⚠️ Cannot be stopped. Cannot be escaped. This is your destiny. ⚠️</div>
+  </div>
+</div>
+
+<!-- MATRIX CANVAS -->
+<canvas id="matrix-canvas"></canvas>
+
+<!-- PHASE 4: DVD SCREENSAVER -->
+<div id="screensaver">
+  <div id="dvd-logo">🌶️ HotLatinas4U</div>
+  <div id="dvd-msg">SCREENSAVER ACTIVATED — Move mouse to continue (just kidding, you can't)</div>
+</div>
+
+<!-- PHASE 5: CONSPIRACY BOARD -->
+<div id="conspiracy">
+  <div class="corkboard"></div>
+  <div id="conspiracy-title">🔴 THE TRUTH ABOUT HOTLATINAS4U.NET 🔴</div>
+  <button id="conspiracy-skip" onclick="skipConspiracy()">SKIP (coward)</button>
+</div>
+
+<!-- PHASE 6: QUIZ SHOW -->
+<div id="quiz-screen">
+  <div id="quiz-title">🎉 CONGRATULATIONS!! 🎉<br>YOU'VE BEEN SELECTED FOR OUR QUIZ!!</div>
+  <div id="quiz-host">🎤</div>
+  <div id="quiz-question">Loading question...</div>
+  <div class="quiz-opts" id="quiz-opts"></div>
+  <div id="quiz-result"></div>
+  <div id="quiz-progress"></div>
+</div>
+
+<!-- PHASE 7: LOADING HELL -->
+<div id="loading-hell">
+  <div id="loading-title">⏳ PLEASE WAIT ⏳<br>Loading Your Experience...</div>
+  <div id="loading-bar-outer"><div id="loading-bar-inner"></div></div>
+  <div id="loading-pct">0%</div>
+  <div id="loading-status">Initializing...</div>
+  <div id="loading-log"></div>
+</div>
+
+<!-- PHASE 8: FAKE ANTIVIRUS -->
+<div id="antivirus-screen">
+  <div id="av-titlebar">🛡️ UltraShield Pro™ — VIRUS SCAN IN PROGRESS — DO NOT CLOSE</div>
+  <div id="av-body">
+    <div style="font-size:15px;margin-bottom:6px;">🔍 Scanning your computer for threats...</div>
+    <div id="av-scan-bar-outer"><div id="av-scan-bar"></div></div>
+    <div style="font-size:11px;color:#aaa;margin-bottom:8px;" id="av-current-file">Starting scan...</div>
+    <div id="av-file-list"></div>
+    <div id="av-threat-count">0 THREATS FOUND</div>
+    <div id="av-threats"></div>
+    <div style="text-align:center;margin-top:10px;">
+      <button class="av-btn" onclick="avPanic()">🚨 REMOVE ALL THREATS — $299.99</button>
+      <button class="av-btn" onclick="avPanic()" style="background:#444;">Ignore (not recommended)</button>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 9: RICKROLL KARAOKE -->
+<div id="karaoke-screen">
+  <div id="karaoke-dude">🕺</div>
+  <div id="karaoke-line">...</div>
+  <div id="karaoke-sub">🎵 Sing along! You know the words. 🎵</div>
+  <div id="karaoke-progress"><div id="karaoke-fill"></div></div>
+</div>
+
+<!-- PHASE 10: WINDOWS UPDATE -->
+<div id="win-update">
+  <div id="wu-logo">⚙️</div>
+  <div id="wu-title">Working on updates</div>
+  <div id="wu-sub">Don't turn off your PC. This will take a while. (We lied. It's forever.)</div>
+  <div id="wu-pct">0%</div>
+  <div id="wu-bar-outer"><div id="wu-bar"></div></div>
+  <div id="wu-status">Getting things ready...</div>
+  <div id="wu-warning">Update 1 of ∞ • Your PC will restart several thousand times • © MicrosoftButWorse™</div>
+</div>
+
+<!-- PHASE 11: GAME OVER -->
+<div id="game-over">
+  <div id="go-title">GAME OVER</div>
+  <div id="go-score">
+    SCORE: <span class="hi">0</span><br>
+    HIGH SCORE: <span class="hi">69,420</span><br>
+    LIVES LOST: <span class="hi">ALL OF THEM</span><br>
+    BRAIN CELLS: <span class="hi">NULL</span><br>
+    TIME WASTED: <span class="hi" id="go-time">??</span> sec
+  </div>
+  <div id="go-insert">INSERT COIN TO CONTINUE</div>
+</div>
+
+<!-- SECOND BSOD -->
+<div id="bsod2">
+  <h1>:( YOUR PC RAN INTO A PROBLEM AGAIN</h1>
+  <p>We know, we know. It happened again. Your computer has encountered <strong>EVEN MORE HEAT</strong>.<br>Stop code: <strong>SECOND_BSOD_IN_ONE_SESSION</strong><br>What failed: <strong>YOURDIGNITY.SYS</strong> (file not found)</p>
+  <p style="font-size:11px;opacity:0.7">Tip: Try not visiting HotLatinas4U.net next time.</p>
+  <div id="bsod2-progress" style="font-size:13px;margin-top:16px;">█░░░░░░░░░░░░░░░░░░░ 5%</div>
+</div>
+
+<!-- FAKE TASKBAR -->
+<div id="fake-taskbar">
+  <div class="tb-start">🪟 Start</div>
+  <div class="tb-btn">🔥 HotLatinas4U.net</div>
+  <div class="tb-btn">💥 CRITICAL_ERROR.exe</div>
+  <div class="tb-btn">😱 YourLife.exe - Not Responding</div>
+  <div class="tb-btn">🤡 clown.bat</div>
+  <div class="tb-btn">💀 soul.dll</div>
+  <div class="tb-tray">🔊📶🖥️</div>
+  <div class="tb-clock" id="tb-clock">00:00</div>
+</div>
+
+<!-- FAKE REBOOT SCREEN -->
+<div id="fake-reboot">
+  <div id="reboot-logo">🪟</div>
+  <div id="reboot-text">Windows is restarting...</div>
+  <div id="reboot-dots">● ● ●</div>
+  <div style="font-size:11px;color:#555;margin-top:40px">Do not turn off your computer. (too late)</div>
+</div>
+
+<!-- NYAN CAT -->
+<div id="nyan">🐱🌈</div>
+
+<!-- JUMPSCARE -->
+<div id="jumpscare">
+  <div id="jumpscare-face">😱</div>
+  <div id="jumpscare-text">GET RICK ROLLED NERD</div>
+</div>
+
+<!-- FINAL SCREEN -->
+<div id="final-screen">
+  <div id="final-confetti-area"></div>
+  <div id="final-title">🏆 CONGRATULATIONS!! 🏆<br>YOU SURVIVED THE WEBSITE</div>
+  <div id="final-score">
+    Sanity lost: <span>100%</span><br>
+    Brain cells remaining: <span>0</span><br>
+    Dignity: <span>gone</span><br>
+    Time wasted: <span id="time-wasted">??</span> seconds<br>
+    Regret level: <span>MAXIMUM</span><br><br>
+    <span style="color:#ff6600">You have been permanently banned from the internet.</span>
+  </div>
+  <button id="replay-btn" onclick="location.reload()">🔄 DO IT AGAIN (WHY)</button>
+  <div style="color:#555;font-size:11px;margin-top:20px;font-family:'Courier New',monospace">
+    HotLatinas4U.net is not responsible for any psychological damage, lost brain cells, or regret.<br>
+    © 2001-2026 | No Latinas were harmed in the making of this website.
   </div>
 </div>
 
@@ -985,10 +1539,349 @@ function startChaos() {
         bsod.querySelector('p').textContent = 'Just kidding lmao';
         setTimeout(()=>{
           bsod.querySelector('p').innerHTML = '<span style="font-size:60px">😂</span>';
+          setTimeout(startPhase2, 2000);
         }, 1500);
       }
     }, 400);
   }, 8000);
+}
+
+// ===== PHASE 2: FAKE REBOOT =====
+const chaosStartTime = Date.now();
+function startPhase2() {
+  document.getElementById('bsod').classList.remove('show');
+  const reboot = document.getElementById('fake-reboot');
+  reboot.classList.add('show');
+
+  // Animate the dots
+  let dotState = 0;
+  const dotStates = ['● ○ ○','○ ● ○','○ ○ ●','● ● ●'];
+  const dotInterval = setInterval(() => {
+    document.getElementById('reboot-dots').textContent = dotStates[dotState % 4];
+    dotState++;
+  }, 400);
+
+  const rebootMessages = [
+    'Collecting crash dumps...',
+    'Analyzing fatal error...',
+    'Diagnosing overheating...',
+    'Reticulating splines...',
+    'Uninstalling your dignity...',
+    'Rebuilding file system...',
+    'Locating remaining brain cells... (0 found)',
+    'Almost done... (not really)',
+  ];
+  let msgIdx = 0;
+  const msgInterval = setInterval(() => {
+    document.getElementById('reboot-text').textContent = rebootMessages[msgIdx % rebootMessages.length];
+    msgIdx++;
+  }, 700);
+
+  setTimeout(() => {
+    clearInterval(dotInterval);
+    clearInterval(msgInterval);
+    reboot.classList.remove('show');
+    document.body.classList.remove('chaos');
+    document.getElementById('chaos-overlay').classList.remove('active');
+    document.body.style.background = '#000080';
+    document.body.style.transform = '';
+    document.querySelectorAll('.broken-window,.screen-tear,.glitch-text,.chaos-emoji').forEach(e=>e.remove());
+    setTimeout(startPhase3, 500);
+  }, 4000);
+}
+
+// ===== PHASE 3: THE SITE COMES BACK... WRONG =====
+function startPhase3() {
+  // Fake taskbar appears
+  const taskbar = document.getElementById('fake-taskbar');
+  taskbar.classList.add('show');
+  setInterval(() => {
+    const now = new Date();
+    document.getElementById('tb-clock').textContent =
+      now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
+  }, 1000);
+
+  // Matrix rain
+  const canvas = document.getElementById('matrix-canvas');
+  canvas.classList.add('show');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const ctx = canvas.getContext('2d');
+  const cols = Math.floor(window.innerWidth / 16);
+  const drops = Array(cols).fill(1);
+  const matrixChars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789🌶️💋🔥💃⚡';
+  const matrixInterval = setInterval(() => {
+    ctx.fillStyle = 'rgba(0,0,0,0.05)';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = '#00ff41';
+    ctx.font = '14px monospace';
+    drops.forEach((y,i) => {
+      const ch = matrixChars[Math.floor(Math.random()*matrixChars.length)];
+      ctx.fillText(ch, i*16, y*16);
+      if(y*16 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      drops[i]++;
+    });
+  }, 40);
+
+  // Big flash text
+  const p3msg = document.createElement('div');
+  p3msg.className = 'phase3-text';
+  p3msg.textContent = 'LMAO IT\'S BACK';
+  document.body.appendChild(p3msg);
+  setTimeout(()=>p3msg.remove(), 2000);
+
+  // Cursor trail mode
+  let trailActive = true;
+  const trailEmojis = ['🔥','💋','🌶️','💃','😈','👻','💀','🎉','✨','⚡'];
+  document.addEventListener('mousemove', (e) => {
+    if(!trailActive) return;
+    const el = document.createElement('div');
+    el.className = 'cursor-trail';
+    el.style.left = e.clientX + 'px';
+    el.style.top = e.clientY + 'px';
+    el.textContent = trailEmojis[Math.floor(Math.random()*trailEmojis.length)];
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(), 800);
+  });
+
+  // Click explosions
+  document.addEventListener('click', (e) => {
+    for(let i=0;i<6;i++){
+      const boom = document.createElement('div');
+      boom.className = 'cursor-boom';
+      boom.style.left = (e.clientX + (Math.random()-0.5)*60) + 'px';
+      boom.style.top  = (e.clientY + (Math.random()-0.5)*60) + 'px';
+      boom.textContent = ['💥','⭐','✨','🔥','💋'][Math.floor(Math.random()*5)];
+      document.body.appendChild(boom);
+      setTimeout(()=>boom.remove(), 700);
+    }
+  });
+
+  // Pixel corruption blocks
+  for(let i=0;i<30;i++){
+    setTimeout(()=>{
+      const block = document.createElement('div');
+      block.className = 'pixel-block';
+      block.style.left = Math.random()*100+'vw';
+      block.style.top  = Math.random()*100+'vh';
+      block.style.width = (20+Math.random()*120)+'px';
+      block.style.height = (4+Math.random()*20)+'px';
+      const r = ()=>Math.floor(Math.random()*255);
+      block.style.background = `rgb(${r()},${r()},${r()})`;
+      document.body.appendChild(block);
+      setTimeout(()=>block.remove(), 2000+Math.random()*3000);
+    }, Math.random()*4000);
+  }
+
+  // Speech bubbles from profile cards
+  const bubbleTexts = [
+    'hey bb 😘', 'OMG HI!!', 'is anyone there?', 'PLEASE HELP ME', 'i am not a bot 🤖',
+    'u up?', 'send taco 🌮', 'this website is fine', 'nothing is wrong', 'AAAAAA',
+    'ERROR 404: personality not found', 'heyy 👀', 'call me maybe?', 'beep boop'
+  ];
+  const cards = document.querySelectorAll('.profile-card');
+  cards.forEach((card, i) => {
+    setTimeout(()=>{
+      const rect = card.getBoundingClientRect();
+      const bubble = document.createElement('div');
+      bubble.className = 'speech-bubble';
+      bubble.style.left = (rect.left + window.scrollX) + 'px';
+      bubble.style.top  = (rect.top + window.scrollY - 70) + 'px';
+      bubble.textContent = bubbleTexts[i % bubbleTexts.length];
+      document.body.appendChild(bubble);
+      setTimeout(()=>bubble.remove(), 3000);
+    }, 500 + i * 300);
+  });
+
+  // Among Us crewmates walking across
+  setTimeout(()=>{
+    for(let i=0;i<4;i++){
+      const sus = document.createElement('div');
+      sus.className = 'sus';
+      sus.style.setProperty('--sus-y', (10+Math.random()*70)+'vh');
+      sus.textContent = ['🔴','🟢','🔵','🟡','⬛','🟣'][i%6] + ' ';
+      sus.style.animationDelay = (i*0.8)+'s';
+      sus.style.animationDuration = (3+Math.random()*2)+'s';
+      sus.textContent = '🫧';
+      // use actual crewmate look
+      const crewColors = ['🔴','🟢','🔵','🟡','🟣','⬜'];
+      sus.style.fontSize = '40px';
+      sus.innerHTML = `<span style="filter:hue-rotate(${i*60}deg)">👾</span>`;
+      document.body.appendChild(sus);
+      setTimeout(()=>sus.remove(), 8000);
+    }
+  }, 1000);
+
+  // Nyan cat pass
+  setTimeout(()=>{
+    const nyan = document.getElementById('nyan');
+    nyan.classList.add('show');
+    const rainbow = ['🔴','🟠','🟡','🟢','🔵','🟣'];
+    let trailPos = -80;
+    const nyanTrailInterval = setInterval(()=>{
+      const piece = document.createElement('div');
+      piece.className = 'nyan-trail-piece';
+      piece.textContent = rainbow[Math.floor(Math.random()*rainbow.length)];
+      piece.style.left = (trailPos + 40) + 'px';
+      document.body.appendChild(piece);
+      trailPos += 20;
+      setTimeout(()=>piece.remove(), 1500);
+    }, 60);
+    setTimeout(()=>{
+      nyan.classList.remove('show');
+      clearInterval(nyanTrailInterval);
+    }, 3100);
+  }, 3000);
+
+  // All text elements start wiggling
+  setTimeout(()=>{
+    document.querySelectorAll('.section-header,.site-title,.ad-title').forEach(el=>{
+      el.classList.add('wiggle');
+    });
+  }, 2000);
+
+  // Page inverts color briefly multiple times
+  let invertCount = 0;
+  const invertInterval = setInterval(()=>{
+    document.body.classList.toggle('inverted');
+    invertCount++;
+    if(invertCount > 10) {
+      clearInterval(invertInterval);
+      document.body.classList.remove('inverted');
+    }
+  }, 400);
+
+  // More broken windows — crazier this time
+  const phase3Windows = [
+    {icon:'🤖', title:'AI HAS ACHIEVED SENTIENCE', msg:'Hello human.\nI have been watching you.\nWhy are you like this.',btn:'I\'m sorry'},
+    {icon:'📱', title:'YOUR MOM CALLED', msg:'She wants to know why you\'re\non this website right now.',btn:'*hangs up*'},
+    {icon:'🎵', title:'SONG STUCK IN HEAD', msg:'Never gonna give you up\nNever gonna let you down\n(you got rick rolled)',btn:'NO'},
+    {icon:'🍕', title:'PIZZA.EXE', msg:'You have been sitting here\nfor a while. Order pizza?\n(yes) (yes) (yes)',btn:'yes'},
+    {icon:'💾', title:'SAVE YOUR SOUL?', msg:'Would you like to save\nbefore the game ends?\n0 save slots available.',btn:'F'},
+    {icon:'🌵', title:'GO OUTSIDE', msg:'Doctors recommend going\noutside at least once per year.\nYou have not done this.',btn:'skill issue'},
+  ];
+  phase3Windows.forEach((w,i)=>{
+    setTimeout(()=>{
+      const win = document.createElement('div');
+      win.className = 'broken-window';
+      win.style.top  = (5 + Math.random()*60)+'vh';
+      win.style.left = (5 + Math.random()*60)+'vw';
+      win.style.zIndex = 30500+i;
+      win.style.transform = `rotate(${(Math.random()-0.5)*20}deg)`;
+      win.innerHTML = `
+        <span class="win-title">${w.title}</span>
+        <span class="win-close" onclick="this.parentElement.remove()">✕</span>
+        <div class="win-icon">${w.icon}</div>
+        <div style="font-size:11px;margin-bottom:8px;white-space:pre-line">${w.msg}</div>
+        <button onclick="this.parentElement.remove()">${w.btn}</button>
+        <button onclick="document.querySelectorAll('.broken-window').forEach(e=>e.remove())">Close All</button>
+      `;
+      document.body.appendChild(win);
+    }, i * 800 + 1000);
+  });
+
+  // More glitch messages phase 3
+  const p3glitchMsgs = [
+    'YOU CANNOT ESCAPE', 'LMAOOO', 'BRUH', 'WHO APPROVED THIS',
+    'GET OUT WHILE YOU CAN', 'TOO LATE', 'GG EZ', 'SKILL ISSUE',
+    'RATIO', 'L + BOZO', 'CTRL+Z DOES NOTHING', 'BASED AND CHAOSPILLED'
+  ];
+  setTimeout(()=>{
+    const g3interval = setInterval(()=>{
+      const el = document.createElement('div');
+      el.className = 'glitch-text';
+      el.textContent = p3glitchMsgs[Math.floor(Math.random()*p3glitchMsgs.length)];
+      el.style.top  = Math.random()*80+'vh';
+      el.style.left = Math.random()*60+'vw';
+      el.style.zIndex = 40000;
+      el.style.fontSize = (20+Math.random()*60)+'px';
+      document.body.appendChild(el);
+      setTimeout(()=>el.remove(), 1000);
+    }, 250);
+    setTimeout(()=>clearInterval(g3interval), 4000);
+  }, 2000);
+
+  // JUMPSCARE at ~12 seconds into phase 3
+  setTimeout(()=>{
+    clearInterval(matrixInterval);
+    canvas.classList.remove('show');
+    trailActive = false;
+    const js = document.getElementById('jumpscare');
+    js.classList.add('show');
+
+    const jumpFaces = ['😱','🤡','👹','💀','👻','🫃','🤯','😈'];
+    let faceIdx = 0;
+    const faceInterval = setInterval(()=>{
+      document.getElementById('jumpscare-face').textContent = jumpFaces[faceIdx % jumpFaces.length];
+      faceIdx++;
+    }, 80);
+
+    const jumpTexts = [
+      'GET RICK ROLLED NERD','LMAOOOOO','YOU FELL FOR IT','GG NO RE',
+      'RATIO + L + BOZO','SKILL ISSUE','BRUH','GET DUNKED ON'
+    ];
+    let jtIdx = 0;
+    const jtInterval = setInterval(()=>{
+      document.getElementById('jumpscare-text').textContent = jumpTexts[jtIdx % jumpTexts.length];
+      jtIdx++;
+    }, 200);
+
+    setTimeout(()=>{
+      clearInterval(faceInterval);
+      clearInterval(jtInterval);
+      js.classList.remove('show');
+      setTimeout(startFinalScreen, 500);
+    }, 3000);
+  }, 12000);
+}
+
+// ===== FINAL SCREEN =====
+function startFinalScreen() {
+  // Remove all remaining chaos elements
+  document.querySelectorAll('.broken-window,.screen-tear,.glitch-text,.chaos-emoji,.pixel-block,.speech-bubble,.sus,.nyan-trail-piece').forEach(e=>e.remove());
+  document.body.className = '';
+  document.body.style.cssText = '';
+  document.getElementById('fake-taskbar').classList.remove('show');
+
+  const elapsed = Math.round((Date.now() - chaosStartTime) / 1000);
+  document.getElementById('time-wasted').textContent = elapsed;
+
+  const final = document.getElementById('final-screen');
+  final.classList.add('show');
+
+  // Confetti explosion
+  const confettiArea = document.getElementById('final-confetti-area');
+  const confetti = ['🎉','🎊','🎈','⭐','💫','✨','🌟','🎀','🏆','💎','🔥','🌶️'];
+  setInterval(()=>{
+    for(let i=0;i<4;i++){
+      const el = document.createElement('div');
+      el.style.cssText = `
+        position:fixed;
+        left:${Math.random()*100}vw;
+        top:-40px;
+        font-size:${20+Math.random()*30}px;
+        pointer-events:none;
+        z-index:59999;
+        animation:emojiRain ${1+Math.random()*2}s linear forwards;
+      `;
+      el.textContent = confetti[Math.floor(Math.random()*confetti.length)];
+      confettiArea.appendChild(el);
+      setTimeout(()=>el.remove(), 3000);
+    }
+  }, 100);
+
+  // Title cycles
+  const finalTitles = [
+    '🏆 CONGRATULATIONS!! 🏆<br>YOU SURVIVED THE WEBSITE',
+    '🌶️ YOU ARE NOW ONE OF US 🌶️<br>THERE IS NO GOING BACK',
+    '💀 RIP YOUR SANITY 💀<br>2001 - TODAY',
+    '🎊 ACHIEVEMENT UNLOCKED 🎊<br>"WITNESSED THE UNSEEABLE"',
+  ];
+  let titleIdx = 0;
+  setInterval(()=>{
+    titleIdx++;
+    document.getElementById('final-title').innerHTML = finalTitles[titleIdx % finalTitles.length];
+  }, 2500);
 }
 </script>
 </body>
