@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HotLatinas4U.net - Meet Singles In Your Area!!!</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Impact&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #000080;
+    font-family: 'Comic Sans MS', 'Comic Neue', cursive;
+    overflow-x: hidden;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext y='28' font-size='28'%3E❤️%3C/text%3E%3C/svg%3E") 16 16, auto;
+  }
+
+  /* ===== MARQUEE BARS ===== */
+  .marquee-top {
+    background: linear-gradient(90deg, #ff0000, #ff6600, #ffff00, #00ff00, #0000ff, #ff00ff, #ff0000);
+    background-size: 400%;
+    animation: rainbowScroll 2s linear infinite;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 4px 0;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  @keyframes rainbowScroll { 0%{background-position:0%} 100%{background-position:400%} }
+
+  /* ===== HEADER ===== */
+  .site-header {
+    background: linear-gradient(135deg, #cc0000, #ff3300);
+    padding: 10px;
+    text-align: center;
+    border-bottom: 4px solid yellow;
+    position: relative;
+  }
+  .site-title {
+    font-family: Impact, sans-serif;
+    font-size: clamp(28px, 6vw, 56px);
+    color: yellow;
+    text-shadow: 3px 3px 0 #000, -1px -1px 0 #ff6600;
+    letter-spacing: 2px;
+    animation: titlePulse 1s ease-in-out infinite alternate;
+  }
+  @keyframes titlePulse { from{transform:scale(1)} to{transform:scale(1.04)} }
+  .site-subtitle {
+    color: #fff;
+    font-size: 13px;
+    text-shadow: 1px 1px 0 #000;
+    margin-top: 4px;
+  }
+  .verified-badge {
+    display: inline-block;
+    background: #00cc00;
+    color: white;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-left: 8px;
+    border: 2px solid #00ff00;
+    animation: badgeBlink 0.7s step-end infinite;
+  }
+  @keyframes badgeBlink { 50%{opacity:0} }
+
+  /* ===== LAYOUT ===== */
+  .main-layout {
+    display: grid;
+    grid-template-columns: 160px 1fr 160px;
+    gap: 0;
+    min-height: calc(100vh - 120px);
+  }
+
+  /* ===== ADS SIDEBARS ===== */
+  .sidebar {
+    background: #c0c0c0;
+    border: 2px inset #808080;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow: hidden;
+  }
+  .ad-block {
+    background: white;
+    border: 3px solid #ff0000;
+    padding: 6px;
+    text-align: center;
+    font-size: 10px;
+    color: #000;
+    position: relative;
+    overflow: hidden;
+  }
+  .ad-block .ad-title {
+    font-size: 11px;
+    font-weight: bold;
+    color: #cc0000;
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+  .ad-block .ad-img {
+    width: 100%;
+    height: 60px;
+    object-fit: cover;
+    display: block;
+    background: linear-gradient(135deg, #ff9999, #ff6666);
+    margin-bottom: 4px;
+    position: relative;
+  }
+  .ad-emoji { font-size: 32px; line-height: 60px; display: block; }
+  .ad-btn {
+    display: block;
+    background: #ff6600;
+    color: white;
+    border: 2px solid #cc3300;
+    padding: 2px 4px;
+    font-size: 9px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 4px;
+    animation: btnPulse 0.5s ease-in-out infinite alternate;
+  }
+  @keyframes btnPulse { from{background:#ff6600} to{background:#ff0000} }
+  .ad-block.blink-ad { animation: blinkAd 0.4s step-end infinite; }
+  @keyframes blinkAd { 50%{opacity:0.3} }
+
+  .visitor-counter {
+    background: #000;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    padding: 4px;
+    text-align: center;
+    border: 2px solid #00ff00;
+  }
+
+  /* ===== MAIN CONTENT ===== */
+  .content-area {
+    background: #1a1a2e;
+    padding: 10px;
+  }
+
+  .location-bar {
+    background: linear-gradient(90deg, #003366, #0066cc);
+    border: 2px solid #00aaff;
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-size: 13px;
+  }
+  .location-pin {
+    font-size: 24px;
+    animation: pinBounce 1s ease-in-out infinite;
+  }
+  @keyframes pinBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+  .location-text strong {
+    color: #ffff00;
+    font-size: 15px;
+    display: block;
+  }
+  .location-text span { font-size: 11px; color: #aaddff; }
+  .online-dot {
+    width: 10px; height: 10px;
+    background: #00ff00;
+    border-radius: 50%;
+    margin-left: auto;
+    box-shadow: 0 0 8px #00ff00;
+    animation: dotPulse 1s ease-in-out infinite alternate;
+  }
+  @keyframes dotPulse { from{box-shadow:0 0 4px #00ff00} to{box-shadow:0 0 16px #00ff00} }
+
+  /* ===== PROFILES GRID ===== */
+  .section-header {
+    font-family: Impact, sans-serif;
+    font-size: 22px;
+    color: #ff6600;
+    text-shadow: 2px 2px 0 #000;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  .section-header span { color: yellow; }
+
+  .profiles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .profile-card {
+    background: linear-gradient(135deg, #2d1b4e, #1a0f2e);
+    border: 2px solid #ff3399;
+    border-radius: 6px;
+    padding: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.1s;
+    position: relative;
+    overflow: hidden;
+  }
+  .profile-card:hover { transform: scale(1.05); border-color: #ffff00; }
+  .profile-avatar {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    margin: 0 auto 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px;
+    border: 3px solid #ff3399;
+    background: linear-gradient(135deg, #ff6699, #cc0044);
+  }
+  .profile-name {
+    color: #fff;
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 2px;
+  }
+  .profile-age { color: #ff99cc; font-size: 10px; margin-bottom: 3px; }
+  .profile-distance {
+    color: #00ff88;
+    font-size: 10px;
+    display: flex; align-items: center; justify-content: center; gap: 3px;
+  }
+  .profile-status {
+    position: absolute;
+    top: 5px; right: 5px;
+    background: #00cc00;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #00ff00;
+  }
+  .profile-new {
+    position: absolute;
+    top: 5px; left: 5px;
+    background: #ff0000;
+    color: white;
+    font-size: 8px;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-weight: bold;
+  }
+
+  /* ===== MIDDLE STUFF ===== */
+  .middle-banner {
+    background: linear-gradient(90deg, #ff0000, #ff6600, #ffff00);
+    padding: 8px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+    margin: 10px 0;
+    border: 3px dashed #000;
+    animation: bannerShake 0.5s ease-in-out infinite;
+  }
+  @keyframes bannerShake {
+    0%,100%{transform:translateX(0)}
+    25%{transform:translateX(-2px)}
+    75%{transform:translateX(2px)}
+  }
+
+  .chat-box {
+    background: #000;
+    border: 2px solid #00ff00;
+    padding: 8px;
+    margin-bottom: 10px;
+    height: 90px;
+    overflow: hidden;
+    position: relative;
+  }
+  .chat-line {
+    font-size: 11px;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    line-height: 1.6;
+  }
+  .chat-line .uname { color: #ff99ff; }
+  .chat-line .msg { color: #00ff00; }
+
+  /* ===== FOOTER ===== */
+  .site-footer {
+    background: #000033;
+    border-top: 3px solid #ff0000;
+    padding: 8px;
+    text-align: center;
+    font-size: 10px;
+    color: #aaaaaa;
+  }
+  .footer-links a {
+    color: #6699ff;
+    text-decoration: underline;
+    margin: 0 6px;
+    cursor: pointer;
+  }
+
+  /* ===== FLOATING ELEMENTS ===== */
+  .floating-cursor {
+    position: fixed;
+    font-size: 18px;
+    pointer-events: none;
+    z-index: 500;
+    transition: none;
+    animation: floatAbout 4s ease-in-out infinite;
+  }
+  @keyframes floatAbout {
+    0%,100%{transform:translate(0,0) rotate(0deg)}
+    25%{transform:translate(20px,-15px) rotate(10deg)}
+    75%{transform:translate(-10px,10px) rotate(-5deg)}
+  }
+
+  .sparkle {
+    position: fixed;
+    pointer-events: none;
+    font-size: 20px;
+    z-index: 400;
+    animation: sparkleFly 3s ease-in-out infinite;
+  }
+  @keyframes sparkleFly {
+    0%{opacity:0;transform:translateY(0) scale(0)}
+    20%{opacity:1;transform:translateY(-20px) scale(1)}
+    100%{opacity:0;transform:translateY(-100px) scale(0)}
+  }
+
+  /* ===== POPUP OVERLAY ===== */
+  #popup-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 9000;
+    align-items: center;
+    justify-content: center;
+  }
+  #popup-overlay.show { display: flex; }
+
+  #meme-popup {
+    background: linear-gradient(135deg, #1a0000, #330000);
+    border: 4px solid #ff0000;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    max-width: 380px;
+    width: 90%;
+    box-shadow: 0 0 60px #ff0000, 0 0 120px rgba(255,0,0,0.3);
+    position: relative;
+    animation: popupEntrance 0.3s ease-out;
+  }
+  @keyframes popupEntrance {
+    from{transform:scale(0.5) rotate(-5deg);opacity:0}
+    to{transform:scale(1) rotate(0deg);opacity:1}
+  }
+  .popup-title {
+    font-family: Impact, sans-serif;
+    font-size: 28px;
+    color: #ff3300;
+    text-shadow: 0 0 20px #ff0000;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+  .popup-subtitle {
+    color: #ffcccc;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  #countdown-display {
+    font-family: Impact, sans-serif;
+    font-size: 100px;
+    color: #ff0000;
+    text-shadow: 0 0 30px #ff0000, 0 0 60px #ff6600;
+    line-height: 1;
+    margin: 10px 0;
+    animation: countPulse 1s ease-in-out infinite;
+  }
+  @keyframes countPulse {
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.15)}
+  }
+  .countdown-bar-wrap {
+    background: #330000;
+    border: 2px solid #ff3300;
+    border-radius: 4px;
+    height: 16px;
+    margin: 16px 0;
+    overflow: hidden;
+  }
+  #countdown-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #ff6600, #ff0000);
+    width: 100%;
+    transition: width 1s linear;
+    box-shadow: 0 0 10px #ff6600;
+  }
+  .popup-warning {
+    color: #ff9999;
+    font-size: 11px;
+    margin-top: 10px;
+    opacity: 0.7;
+  }
+
+  /* ===== CHAOS MODE ===== */
+  body.chaos {
+    animation: chaosShake 0.1s infinite;
+    background: #ff0000;
+  }
+  @keyframes chaosShake {
+    0%{transform:translate(0,0) rotate(0deg)}
+    10%{transform:translate(-8px,4px) rotate(-1deg)}
+    20%{transform:translate(6px,-6px) rotate(1.5deg)}
+    30%{transform:translate(-10px,2px) rotate(-0.5deg)}
+    40%{transform:translate(8px,8px) rotate(2deg)}
+    50%{transform:translate(-4px,-8px) rotate(-1deg)}
+    60%{transform:translate(10px,4px) rotate(1deg)}
+    70%{transform:translate(-6px,6px) rotate(-2deg)}
+    80%{transform:translate(4px,-4px) rotate(0.5deg)}
+    90%{transform:translate(-8px,2px) rotate(-1.5deg)}
+    100%{transform:translate(0,0) rotate(0deg)}
+  }
+  .chaos-emoji {
+    position: fixed;
+    font-size: 40px;
+    pointer-events: none;
+    z-index: 10000;
+    animation: emojiRain 1.5s linear forwards;
+  }
+  @keyframes emojiRain {
+    0%{transform:translateY(-60px) rotate(0deg);opacity:1}
+    100%{transform:translateY(110vh) rotate(720deg);opacity:0.5}
+  }
+  .glitch-text {
+    position: fixed;
+    font-family: Impact, sans-serif;
+    font-size: clamp(24px, 6vw, 60px);
+    pointer-events: none;
+    z-index: 10000;
+    animation: glitchText 0.3s step-end infinite;
+    white-space: nowrap;
+    text-shadow: 3px 0 #ff0000, -3px 0 #00ffff;
+  }
+  @keyframes glitchText {
+    0%{color:#ff0000;transform:translateX(0) skewX(0)}
+    20%{color:#00ffff;transform:translateX(-6px) skewX(-8deg)}
+    40%{color:#ff00ff;transform:translateX(6px) skewX(5deg)}
+    60%{color:#ffff00;transform:translateX(-3px) skewX(2deg)}
+    80%{color:#00ff00;transform:translateX(4px) skewX(-4deg)}
+    100%{color:#ff0000;transform:translateX(0) skewX(0)}
+  }
+  .screen-tear {
+    position: fixed;
+    left: 0; right: 0;
+    height: 8px;
+    pointer-events: none;
+    z-index: 9999;
+    background: linear-gradient(90deg, #ff0000 0%, #00ff00 25%, #0000ff 50%, #ffff00 75%, #ff00ff 100%);
+    mix-blend-mode: difference;
+    animation: tearMove 0.2s step-end infinite;
+  }
+  @keyframes tearMove { to{transform:translateY(100vh)} }
+  #chaos-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 8000;
+    pointer-events: none;
+    animation: overlayFlash 0.15s step-end infinite;
+  }
+  #chaos-overlay.active { display: block; }
+  @keyframes overlayFlash {
+    0%{background:rgba(255,0,0,0.08)}
+    33%{background:rgba(0,255,255,0.05)}
+    66%{background:rgba(255,0,255,0.08)}
+    100%{background:rgba(0,0,0,0)}
+  }
+  .broken-window {
+    position: fixed;
+    background: linear-gradient(135deg, #c0c0c0, #d0d0d0);
+    border: 2px solid #808080;
+    border-top: 28px solid #000080;
+    padding: 10px;
+    font-size: 12px;
+    color: #000;
+    font-family: 'Arial', sans-serif;
+    z-index: 10500;
+    box-shadow: 3px 3px 0 #000;
+    min-width: 200px;
+    max-width: 280px;
+    animation: windowWobble 0.3s ease-in-out infinite alternate;
+  }
+  @keyframes windowWobble {
+    from{transform:rotate(-2deg) scale(1)}
+    to{transform:rotate(2deg) scale(1.02)}
+  }
+  .broken-window .win-title {
+    position: absolute;
+    top: -24px; left: 4px;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+  }
+  .broken-window .win-close {
+    position: absolute;
+    top: -24px; right: 4px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #cc0000;
+    padding: 0 5px;
+    line-height: 20px;
+  }
+  .broken-window .win-icon { font-size: 24px; margin-bottom: 6px; }
+  .broken-window button {
+    background: #c0c0c0;
+    border: 2px outset #fff;
+    padding: 3px 12px;
+    font-size: 11px;
+    cursor: pointer;
+    margin: 3px;
+  }
+  .broken-window button:active { border-style: inset; }
+
+  #bsod {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #0000aa;
+    color: white;
+    font-family: 'Courier New', monospace;
+    padding: 40px;
+    z-index: 20000;
+    flex-direction: column;
+    gap: 20px;
+  }
+  #bsod.show { display: flex; }
+  #bsod h1 {
+    background: #aaaaaa;
+    color: #0000aa;
+    font-size: 28px;
+    padding: 4px 10px;
+    font-family: 'Courier New', monospace;
+  }
+  #bsod p { font-size: 14px; line-height: 1.8; max-width: 600px; }
+  #bsod .bsod-code { font-size: 11px; opacity: 0.7; }
+  .bsod-progress {
+    font-size: 13px;
+    margin-top: 20px;
+  }
+
+  /* ===== MISC ===== */
+  .music-note {
+    position: fixed;
+    bottom: 10px; left: 10px;
+    font-size: 28px;
+    z-index: 400;
+    animation: musicSpin 2s linear infinite;
+    cursor: pointer;
+  }
+  @keyframes musicSpin { to{transform:rotate(360deg)} }
+
+  .worm {
+    position: fixed;
+    font-size: 20px;
+    z-index: 500;
+    pointer-events: none;
+    animation: wormMove 6s linear infinite;
+  }
+  @keyframes wormMove {
+    0%{left:-60px;top:60%}
+    100%{left:110vw;top:40%}
+  }
+
+  marquee { display: block; }
+
+  .section-divider {
+    border: none;
+    height: 4px;
+    background: repeating-linear-gradient(90deg, #ff0000 0, #ff0000 10px, #ffff00 10px, #ffff00 20px, #0000ff 20px, #0000ff 30px);
+    margin: 10px 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- CHAOS OVERLAY -->
+<div id="chaos-overlay"></div>
+
+<!-- FLOATING DECORATIONS -->
+<div class="floating-cursor" style="top:20%;left:10%">💘</div>
+<div class="floating-cursor" style="top:60%;right:8%;animation-delay:-2s">🔥</div>
+<div class="sparkle" style="bottom:30%;left:25%;animation-delay:-1s">✨</div>
+<div class="sparkle" style="top:40%;right:20%;animation-delay:-0.5s">⭐</div>
+<div class="worm">🐛</div>
+<div class="music-note" title="Click for hot beats!">🎵</div>
+
+<!-- TOP MARQUEE -->
+<div class="marquee-top">
+  <marquee>💘 HOT LATINAS IN YOUR AREA RIGHT NOW!! 💘 &nbsp;&nbsp;&nbsp; 🔥 1,247 WOMEN ONLINE NOW 🔥 &nbsp;&nbsp;&nbsp; ⚠️ WARNING: This site is NOT for the weak!! ⚠️ &nbsp;&nbsp;&nbsp; 🏆 VOTED #1 DATING SITE 2003-2024 🏆 &nbsp;&nbsp;&nbsp; 💎 FREE PREMIUM MEMBERSHIP TODAY ONLY!!! 💎 &nbsp;&nbsp;&nbsp; 📍 WOMEN 0.3 MILES FROM YOU RIGHT NOW!!! 📍 &nbsp;&nbsp;&nbsp;</marquee>
+</div>
+
+<!-- HEADER -->
+<div class="site-header">
+  <div class="site-title">🌶️ HotLatinas4U.net 🌶️ <span class="verified-badge">✓ VERIFIED LEGIT</span></div>
+  <div class="site-subtitle">The Internet's #1 Source For Meeting Beautiful Latinas In Your Area™ | Est. 2001 | 100% Safe & Secure | NOT A SCAM</div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="main-layout">
+
+  <!-- LEFT SIDEBAR ADS -->
+  <div class="sidebar">
+    <div class="visitor-counter">👁️ VISITORS<br><span id="visitor-count" style="font-size:18px;color:#ff0">000,001,337</span><br>YOU ARE #1337</div>
+
+    <div class="ad-block blink-ad">
+      <div class="ad-title">⚠️ YOUR COMPUTER HAS A VIRUS!!</div>
+      <div class="ad-emoji">💻🦠</div>
+      <div>3 THREATS DETECTED</div>
+      <a class="ad-btn" href="#">CLICK TO FIX NOW!!</a>
+    </div>
+
+    <div class="ad-block">
+      <div class="ad-title">🍕 ONE WEIRD TRICK</div>
+      <div class="ad-emoji">🤯</div>
+      <div style="font-size:9px">Doctors HATE him! Local man loses 47lbs in 3 days eating ONLY pizza</div>
+      <a class="ad-btn" href="#">WOW CLICK HERE</a>
+    </div>
+
+    <div class="ad-block">
+      <div class="ad-title">💰 MAKE $$$ AT HOME</div>
+      <div class="ad-emoji">💸</div>
+      <div style="font-size:9px">Mom earns $47,000/hr working from home! #3 will SHOCK YOU</div>
+      <a class="ad-btn" href="#">SECRET REVEALED</a>
+    </div>
+
+    <div class="ad-block" style="background:#000;border-color:#00ff00">
+      <div class="ad-title" style="color:#00ff00">🎮 FREE RINGTONES</div>
+      <div style="font-size:28px">📱</div>
+      <div style="font-size:9px;color:#00ff00">Download FREE RINGTONES 4 UR MOTOROLA RAZR!!!</div>
+      <a class="ad-btn" style="background:#00aa00" href="#">DOWNLOAD NOW</a>
+    </div>
+
+    <div class="ad-block">
+      <div class="ad-title">🔱 MEET SINGLES</div>
+      <div class="ad-emoji">💑</div>
+      <div style="font-size:9px">SinglesNearU.biz - They're waiting for YOU right now!!</div>
+      <a class="ad-btn" href="#">JOIN FREE</a>
+    </div>
+  </div>
+
+  <!-- CONTENT AREA -->
+  <div class="content-area">
+
+    <!-- LOCATION BAR -->
+    <div class="location-bar">
+      <div class="location-pin">📍</div>
+      <div class="location-text">
+        <strong id="user-location-display">Detecting your location...</strong>
+        <span>🟢 <span id="local-count">47</span> Latinas within 2 miles of you RIGHT NOW</span>
+      </div>
+      <div class="online-dot"></div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- PROFILES -->
+    <div class="section-header">🔥 HOT <span>LATINAS</span> NEAR YOU RIGHT NOW!! 🔥</div>
+    <div class="profiles-grid" id="profiles-grid">
+      <!-- Profiles injected by JS -->
+    </div>
+
+    <div class="middle-banner">⚡ LIMITED TIME OFFER!! FREE PREMIUM ACCESS EXPIRES IN: <span id="fake-timer">04:20</span> ⚡</div>
+
+    <hr class="section-divider">
+
+    <!-- LIVE CHAT FEED -->
+    <div class="section-header">💬 LIVE <span>CHAT</span> FEED</div>
+    <div class="chat-box" id="chat-box">
+      <div class="chat-line"><span class="uname">HotMaria_92:</span> <span class="msg"> heyy anyone near downtown?? 👀</span></div>
+      <div class="chat-line"><span class="uname">Isabella_xoxo:</span> <span class="msg"> omg this site is so real i met my husband here lol</span></div>
+      <div class="chat-line"><span class="uname">Valentina22:</span> <span class="msg"> looking 4 someone cute near me 🌶️</span></div>
+    </div>
+
+    <hr class="section-divider">
+
+    <div class="section-header">📰 <span>TRENDING</span> NEWS</div>
+    <div style="background:#111;border:1px solid #333;padding:8px;color:#ccc;font-size:11px;line-height:1.8">
+      📌 Local Man Discovers ONE WEIRD SECRET Banks Don't Want You To Know<br>
+      📌 Area Woman Loses 400lbs In 2 Days Using THIS Simple Trick<br>
+      📌 Scientists BAFFLED By New Discovery In [YOUR CITY] - Click To Find Out<br>
+      📌 THIS Is Why You Should NEVER Eat Shrimp After 7pm (Doctors Furious)<br>
+      📌 Man Earns $892,000 Per Week Working Part Time On His Nokia Phone<br>
+    </div>
+
+  </div>
+
+  <!-- RIGHT SIDEBAR -->
+  <div class="sidebar">
+
+    <div class="ad-block" style="border-color:#ff00ff">
+      <div class="ad-title" style="color:#ff00ff">🔮 FREE HOROSCOPE</div>
+      <div class="ad-emoji">⭐</div>
+      <div style="font-size:9px">Your love life changes TONIGHT. Find out how!</div>
+      <a class="ad-btn" style="background:#9900cc" href="#">READ NOW</a>
+    </div>
+
+    <div class="ad-block blink-ad" style="border-color:#ffff00">
+      <div class="ad-title" style="color:#cc6600">🏆 YOU ARE WINNER!!</div>
+      <div style="font-size:28px">🎉</div>
+      <div style="font-size:9px">Congratulations!! You are our 1,000,000th visitor!! CLAIM PRIZE!</div>
+      <a class="ad-btn" style="background:#ff9900;color:#000" href="#">CLAIM NOW!!!!</a>
+    </div>
+
+    <div style="background:#000;border:2px solid #ff0000;padding:6px;text-align:center">
+      <div style="color:#ff0000;font-size:11px;font-weight:bold">🔴 LIVE CAMS</div>
+      <div style="font-size:9px;color:#ff9999">47 girls streaming NOW</div>
+      <div style="font-size:28px">📸</div>
+      <a class="ad-btn" href="#">WATCH FREE</a>
+    </div>
+
+    <div class="ad-block">
+      <div class="ad-title">🎰 WIN BIG MONEY</div>
+      <div class="ad-emoji">💰</div>
+      <div style="font-size:9px">OnlineCasino4U.biz - No Download Required!! Win Real Cash!!</div>
+      <a class="ad-btn" href="#">PLAY FREE</a>
+    </div>
+
+    <div class="ad-block" style="border-color:#00aaff">
+      <div class="ad-title" style="color:#0066cc">💊 MALE ENHANCEMENT</div>
+      <div class="ad-emoji">💪</div>
+      <div style="font-size:9px">Results Guaranteed or your money back!! As seen on TV!</div>
+      <a class="ad-btn" style="background:#0055aa" href="#">ORDER NOW</a>
+    </div>
+
+    <div style="background:#111133;border:2px solid #0000ff;padding:6px;font-size:9px;color:#aaaaff;text-align:center">
+      <div style="font-weight:bold;color:#4444ff;margin-bottom:4px">🔒 SSL SECURE</div>
+      Your data is 100% safe with us!! We promise!!! We definitely do NOT sell your information to anyone 😇
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="site-footer">
+  <div class="footer-links">
+    <a>About Us</a><a>Privacy Policy</a><a>Terms of Service</a><a>Contact</a><a>Sitemap</a><a>Unsubscribe</a><a>Report Abuse</a><a>Advertise With Us</a>
+  </div>
+  <div style="margin-top:6px">© 2001-2026 HotLatinas4U.net LLC Inc. Corp. All Rights Reserved. | Profiles may be fictional for entertainment purposes. | Results not typical. | Some women may be men. | By clicking anywhere on this site you agree to our Terms of Service (47 pages). | Not responsible for anything.</div>
+</div>
+
+<!-- MEME POPUP -->
+<div id="popup-overlay" class="show">
+  <div id="meme-popup">
+    <div class="popup-title">⚠️ YOU WILL CUM TO THIS ⚠️</div>
+    <div class="popup-subtitle">Resistance is futile. Brace yourself.</div>
+    <div id="countdown-display">10</div>
+    <div class="countdown-bar-wrap">
+      <div id="countdown-bar"></div>
+    </div>
+    <div class="popup-warning">⚠️ Cannot be stopped. Cannot be escaped. This is your destiny. ⚠️</div>
+  </div>
+</div>
+
+<!-- BSOD -->
+<div id="bsod">
+  <h1>:( YOUR PC RAN INTO A PROBLEM</h1>
+  <p>Your computer has encountered too much <strong>HEAT</strong> and needs to restart. We're just collecting some info about what happened and then we'll restart for you.</p>
+  <p>0% complete</p>
+  <p class="bsod-code">Stop code: TOO_MUCH_THICC<br>What failed: LIBIDO.SYS</p>
+  <div class="bsod-progress" id="bsod-progress">█░░░░░░░░░░░░░░░░░░░ 5%</div>
+  <p style="font-size:11px;margin-top:30px;opacity:0.6">If you'd like to know more, you can search online later for this error:<br><strong>HOT_LATINAS_EXCEPTION_0x00000069</strong></p>
+</div>
+
+
+<script>
+// ===== PROFILE DATA =====
+const profiles = [
+  {emoji:"💃",name:"Maria_xoxo",age:23,dist:"0.3 mi",isNew:true},
+  {emoji:"🌺",name:"Isabella_22",age:26,dist:"0.7 mi",isNew:false},
+  {emoji:"🔥",name:"Valentina",age:24,dist:"1.1 mi",isNew:true},
+  {emoji:"💋",name:"Camila_hot",age:21,dist:"0.5 mi",isNew:false},
+  {emoji:"🌶️",name:"Sofia_real",age:25,dist:"1.4 mi",isNew:true},
+  {emoji:"⭐",name:"Lucia_xo",age:28,dist:"0.9 mi",isNew:false},
+  {emoji:"🦋",name:"Daniela33",age:22,dist:"2.0 mi",isNew:true},
+  {emoji:"💘",name:"Gabriela_",age:27,dist:"1.7 mi",isNew:false},
+  {emoji:"🌸",name:"Natalia99",age:20,dist:"0.2 mi",isNew:true},
+  {emoji:"💎",name:"Fernanda",age:29,dist:"1.3 mi",isNew:false},
+  {emoji:"🎀",name:"Alejandra",age:24,dist:"0.8 mi",isNew:false},
+  {emoji:"✨",name:"Ximena_xo",age:23,dist:"1.6 mi",isNew:true},
+];
+
+const grid = document.getElementById('profiles-grid');
+profiles.forEach(p => {
+  grid.innerHTML += `
+  <div class="profile-card">
+    ${p.isNew ? '<div class="profile-new">NEW</div>' : ''}
+    <div class="profile-status"></div>
+    <div class="profile-avatar">${p.emoji}</div>
+    <div class="profile-name">${p.name}</div>
+    <div class="profile-age">Age ${p.age}</div>
+    <div class="profile-distance">📍 ${p.dist} away</div>
+  </div>`;
+});
+
+// ===== FAKE LOCATION =====
+const fakeLocations = [
+  "Your Mom's Basement, USA", "Nowhere, AZ", "Suspiciously Rural, TX",
+  "Definitely Real City, CA", "Planet Earth (probably)", "Area 51 Parking Lot",
+  "The Void, Internet", "Your Living Room, USA"
+];
+document.getElementById('user-location-display').textContent =
+  fakeLocations[Math.floor(Math.random() * fakeLocations.length)];
+
+// ===== VISITOR COUNTER =====
+let visits = 1337420;
+setInterval(() => {
+  visits += Math.floor(Math.random() * 7);
+  document.getElementById('visitor-count').textContent = visits.toLocaleString();
+}, 800);
+
+// ===== FAKE TIMER =====
+let fakeSeconds = 4*60+20;
+setInterval(() => {
+  if(fakeSeconds > 0) fakeSeconds--;
+  else fakeSeconds = 4*60+20;
+  const m = Math.floor(fakeSeconds/60).toString().padStart(2,'0');
+  const s = (fakeSeconds%60).toString().padStart(2,'0');
+  document.getElementById('fake-timer').textContent = m+':'+s;
+}, 1000);
+
+// ===== FAKE CHAT =====
+const chatLines = [
+  ["HotMaria_92","hey is anyone near downtown 😘"],
+  ["BigDave1984","hello ladies"],
+  ["Isabella_xoxo","omg this is so real!!"],
+  ["Valentina22","looking for fun near me 🌶️"],
+  ["ModeratorBot","⚠️ Welcome to HotLatinas4U! Be nice!"],
+  ["Curious_Guy","is this real...?"],
+  ["Maria_Real","yes its real!! message me 💋"],
+  ["RandomDude99","hello hello hello"],
+  ["Lucia_xo","anyone want to chat? 😊"],
+  ["SystemBot","🔔 47 new women joined in your area!"],
+];
+let chatIdx = 3;
+const chatBox = document.getElementById('chat-box');
+setInterval(() => {
+  const line = chatLines[chatIdx % chatLines.length];
+  const div = document.createElement('div');
+  div.className = 'chat-line';
+  div.innerHTML = `<span class="uname">${line[0]}:</span> <span class="msg"> ${line[1]}</span>`;
+  chatBox.appendChild(div);
+  chatBox.scrollTop = chatBox.scrollHeight;
+  chatIdx++;
+}, 2200);
+
+// ===== COUNTDOWN =====
+let count = 10;
+const countDisplay = document.getElementById('countdown-display');
+const countBar = document.getElementById('countdown-bar');
+const popup = document.getElementById('popup-overlay');
+
+const countInterval = setInterval(() => {
+  count--;
+  countDisplay.textContent = count;
+  countBar.style.width = (count / 10 * 100) + '%';
+
+  if(count <= 3) {
+    countDisplay.style.color = '#ff0000';
+    countDisplay.style.fontSize = '130px';
+  }
+  if(count <= 0) {
+    clearInterval(countInterval);
+    popup.classList.remove('show');
+    setTimeout(startChaos, 300);
+  }
+}, 1000);
+
+// ===== CHAOS STARTS HERE =====
+function startChaos() {
+  document.body.classList.add('chaos');
+  document.getElementById('chaos-overlay').classList.add('active');
+
+  const emojiPool = ['🔥','💥','🌶️','💃','🎉','😱','💀','🤯','⚡','💋','🍆','👻','🐛','💩','🤡'];
+  let emojiInterval = setInterval(() => {
+    for(let i=0;i<3;i++){
+      const el = document.createElement('div');
+      el.className = 'chaos-emoji';
+      el.textContent = emojiPool[Math.floor(Math.random()*emojiPool.length)];
+      el.style.left = Math.random()*95+'vw';
+      el.style.top = '-60px';
+      el.style.fontSize = (30 + Math.random()*50)+'px';
+      el.style.animationDuration = (0.8+Math.random()*1.5)+'s';
+      document.body.appendChild(el);
+      setTimeout(()=>el.remove(), 2500);
+    }
+  }, 150);
+
+  const glitchMessages = [
+    "SYSTEM FAILURE", "TOO HOT 2 HANDLE", "ERROR: TOO MUCH LATINA",
+    "BIOS OVERFLOW", "LIBIDO.EXE CRASHED", "YOUR PC IS MELTING",
+    "HELP", "WHY ARE YOU LIKE THIS", "THICC EXCEPTION", "NO ESCAPE"
+  ];
+  let glitchInterval = setInterval(() => {
+    const el = document.createElement('div');
+    el.className = 'glitch-text';
+    el.textContent = glitchMessages[Math.floor(Math.random()*glitchMessages.length)];
+    el.style.top = Math.random()*80+'vh';
+    el.style.left = Math.random()*60+'vw';
+    el.style.zIndex = 10000;
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(), 1200);
+  }, 300);
+
+  // Screen tears
+  for(let i=0;i<6;i++){
+    const tear = document.createElement('div');
+    tear.className = 'screen-tear';
+    tear.style.top = Math.random()*100+'vh';
+    tear.style.animationDuration = (0.15+Math.random()*0.3)+'s';
+    tear.style.animationDelay = (Math.random()*0.5)+'s';
+    document.body.appendChild(tear);
+  }
+
+  // Broken windows
+  const winMessages = [
+    {icon:'⚠️', title:'CRITICAL ERROR', msg:'Your body is not ready.\n\nPlease step away from the computer.',btn:'I CANNOT'},
+    {icon:'😱', title:'WINDOWS HAS DETECTED', msg:'Too much heat detected in sector 7G.\nCooling fans at 9000%.',btn:'OH NO'},
+    {icon:'💥', title:'RUNTIME EXCEPTION', msg:'Unhandled exception in BRAIN.EXE\nStack trace: too many latinas > null',btn:'SEND HELP'},
+    {icon:'🔥', title:'FIRE DETECTED', msg:'Your computer is on fire.\nPlease evacuate the premises immediately.',btn:'ON MY WAY'},
+    {icon:'🤡', title:'YOU PLAYED YOURSELF', msg:'This is your fault.\nYou knew what this site was.',btn:'I KNOW'},
+  ];
+  winMessages.forEach((w, i) => {
+    setTimeout(() => {
+      const win = document.createElement('div');
+      win.className = 'broken-window';
+      win.style.top = (10+Math.random()*50)+'vh';
+      win.style.left = (5+Math.random()*65)+'vw';
+      win.style.zIndex = 10500+i;
+      win.innerHTML = `
+        <span class="win-title">${w.title}</span>
+        <span class="win-close" onclick="this.parentElement.remove()">✕</span>
+        <div class="win-icon">${w.icon}</div>
+        <div style="font-size:11px;margin-bottom:8px;white-space:pre-line">${w.msg}</div>
+        <button onclick="this.parentElement.remove()">${w.btn}</button>
+        <button onclick="this.parentElement.remove()">Cancel</button>
+      `;
+      document.body.appendChild(win);
+    }, i * 600 + 400);
+  });
+
+  // Background color cycling
+  let bgColors = ['#ff0000','#ff6600','#9900ff','#0000ff','#00ff00','#ff00ff','#ffff00'];
+  let bgIdx = 0;
+  setInterval(() => {
+    document.body.style.background = bgColors[bgIdx % bgColors.length];
+    bgIdx++;
+  }, 200);
+
+  // Page skew
+  let skewVal = 0;
+  setInterval(() => {
+    skewVal = (Math.random()-0.5)*10;
+    document.querySelector('.content-area').style.transform = `skewY(${skewVal}deg)`;
+  }, 300);
+
+  // BSOD after 8 seconds
+  setTimeout(() => {
+    clearInterval(emojiInterval);
+    clearInterval(glitchInterval);
+    const bsod = document.getElementById('bsod');
+    bsod.classList.add('show');
+    let pct = 5;
+    const bar = document.getElementById('bsod-progress');
+    const bsodInterval = setInterval(() => {
+      pct += Math.floor(Math.random()*7)+1;
+      if(pct > 100) pct = 100;
+      const filled = Math.floor(pct/5);
+      const empty = 20 - filled;
+      bar.textContent = '█'.repeat(filled) + '░'.repeat(empty) + ' ' + pct + '%';
+      if(pct >= 100) {
+        clearInterval(bsodInterval);
+        bsod.querySelector('p').textContent = 'Just kidding lmao';
+        setTimeout(()=>{
+          bsod.querySelector('p').innerHTML = '<span style="font-size:60px">😂</span>';
+        }, 1500);
+      }
+    }, 400);
+  }, 8000);
+}
+</script>
+</body>
+</html>
